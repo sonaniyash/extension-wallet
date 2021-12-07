@@ -55,7 +55,7 @@ const config = {
   },
   plugins: [
     new CopyPlugin({
-      patterns: [{ from: "public", to: "." }],
+      patterns: [{ from: "src/public", to: "." }],
     }),
   ],
 };

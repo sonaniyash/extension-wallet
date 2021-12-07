@@ -1,0 +1,29 @@
+
+@import '../../styles/variables.scss';
+
+.home {
+    &__selectors {
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+        &__button {
+            cursor: pointer;
+            margin: 0 10px;
+            color: $grey-2;
+            padding: 6px;
+            border-radius: 6px;
+            width: 64px;
+            &.--btn-active {
+                background-color: $grey-light-1;
+            }
+        }
+        &__input {
+            border: 1px solid #CFCFCF;
+            background-color: #F9F9F9;
+            border-radius: 8px;
+            width: 258px;
+            padding: 16px;
+        }
+        font-size: 14px;
+    }
+}
