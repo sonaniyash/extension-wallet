@@ -9,7 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode production",
-    "start": "dev",
+    "start": "npm run dev",
     "prod": "webpack --watch --mode production",
     "dev": "webpack --watch --mode development --devtool inline-source-map"
   },
