@@ -13,7 +13,6 @@ class HeaderBg extends Component<Props, State> {
     render() {
         return (
             <header className="header-bg">
-                <img className="header-bg__bg" src='./assets/bg-header.png' alt="" />
                 <img className="header-bg__logo"  src='./assets/logo.png' />
             </header>
         )

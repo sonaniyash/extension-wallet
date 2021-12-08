@@ -3,4 +3,80 @@ body {
     font-family: 'Inter', sans-serif;
     font-style: normal;
     font-weight: 500;
+    color: $text-200;
 }
+a {
+    cursor: pointer;
+    color: $blue-100;
+}
+
+input:focus,input:focus-visible {
+    outline: none;
+}
+
+input {
+    border: 1px solid #CFCFCF;
+    background-color: #F9F9F9;
+    border-radius: 8px;
+    width: 258px;
+    padding: 16px;
+    &:focus, &:focus-visible{
+        outline: $accent-2 2px solid;
+    }
+}
+
+button {
+    cursor: pointer;
+}
+
+.button {
+    $darken: 6;
+
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px 30px 0px 20px;
+    color: $white;
+    min-height: 40px;
+    min-width: 117px;
+    border-radius: 10px;
+    background: $accent-2;
+    border: transparent;
+    font-size: 16px;
+    transition: background-color ease-in-out 0.2s;
+    &::after {
+        content: ">";
+        position: absolute;
+        right: 9px;
+        font-size: 22px;
+    }
+    &:disabled {
+        background-color: $grey-light-2;
+    }
+    &.btn-dark {
+        background-color: $black;
+        &:hover {
+            background-color: darken($black, $darken);
+        }
+    }
+    &.btn-light {
+        background-color: transparent;
+        color: $accent-2;
+        &:hover {
+            background-color: darken($accent-2, $darken);
+            color: $white;
+        }
+    } 
+    &:hover:not(:disabled):not(.btn-dark):not(.btn-dark) {
+        background-color: darken($accent-2, $darken);
+    } 
+
+}
+
+.error-text {
+    color: red;
+}
+
+
+
