@@ -14,12 +14,11 @@ const Home = (props: Props) => {
         PHONE
     }
 
-    const [isValid, setIsValid] = useState(false);
-    const [errorMessage, setErrorMessage] = useState('');
-    const [typeLogin, setTypeLogin] = useState(LOGIN_TYPE.EMAIL);
-    const [buttonDisabled, setButtonDisabled] = useState(false);
+    const [isValid, setIsValid] = useState<boolean | null>(false);
+    const [errorMessage, setErrorMessage] = useState<string | null>('');
+    const [typeLogin, setTypeLogin] = useState<any | null>(LOGIN_TYPE.EMAIL);
+    const [buttonDisabled, setButtonDisabled] = useState<boolean | null>(false);
     const [inputSt, setInput] = useState<any | null>('');
-    const inputRef = useRef<any | null>(inputSt);
     const emailRegex = /\S+@\S+\.\S+/;
 
     const onChangeInput= (e: any) => {
@@ -43,8 +42,8 @@ const Home = (props: Props) => {
         }
     }
 
-    const validateEmail = (email: string)=> {
-        if (emailRegex.test(email)) {
+    const validateEmail = (email: string | null)=> {
+        if (email && emailRegex.test(email)) {
             setIsValid(true);
         } else {
             setIsValid(false);
@@ -52,13 +51,12 @@ const Home = (props: Props) => {
         }
     }
 
-    const validatePhone = (phone: string)=> {
+    const validatePhone = (phone: string | null)=> {
             setIsValid(true);
     }
 
     const clickOption = (type: number)=> {
         setErrorMessage('');
-        setInput('');
         setTypeLogin(type);
         checkTypeValidation(type);
     }
@@ -78,7 +76,7 @@ const Home = (props: Props) => {
                     <a className={ (typeLogin === LOGIN_TYPE.EMAIL ? ' --btn-active' : '') + " home__selectors__button"} onClick={()=> { clickOption(LOGIN_TYPE.EMAIL) }}>Email</a>
                     <a className={ (typeLogin === LOGIN_TYPE.PHONE ? ' --btn-active' : '') + " home__selectors__button"} onClick={()=> { clickOption(LOGIN_TYPE.PHONE)  }}>Phone</a>
                 </div>
-                <input type="text"  ref={inputRef } onChange={(val)=> onChangeInput(val)} placeholder={typeLogin === LOGIN_TYPE.PHONE ? "Ex. (373) 378 8383" : "jhondoe@gmail.com"} className="home__selectors__input" />
+                <input type="text"  ref={setInput } onChange={(onChangeInput)} placeholder={typeLogin === LOGIN_TYPE.PHONE ? "Ex. (373) 378 8383" : "jhondoe@gmail.com"} className="home__selectors__input" />
                 { !isValid ? ( <p className='error-text'> {errorMessage}</p> ) : ''}
                 <button disabled={ buttonDisabled || !isValid } className="button home__button" >Continue</button>
                 <p>by clicking continue you must agree to near labs <a> Terms & Conditions</a>  ans <a> Privacy Policy</a></p>
