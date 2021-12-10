@@ -1,20 +1,14 @@
 
-.header {
+.header-bg {
     position: relative;
     overflow: hidden;
-    height: 30vh;
-    &__bg {
-        display: block;
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F5F5F5;
+    height: 50px;
     &__logo {
-        position: absolute; 
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 20px;  
-        left: 0;
-        right: 0;
-        bottom: 0;
-        text-align: center;
+        height: 22px;
     }
 }
 
