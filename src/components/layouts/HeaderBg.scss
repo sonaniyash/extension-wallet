@@ -1,12 +1,20 @@
 
+$bg:#F5F5F5;
+$border: #DFDFE0;
+
 .header-bg {
     position: relative;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #F5F5F5;
+    background-color: $bg;
     height: 50px;
+    border-bottom: 1px solid $border;
+    &>* {
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
     &__logo {
         height: 22px;
     }

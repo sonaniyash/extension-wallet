@@ -11,5 +11,4 @@ const HeaderBg = (props: Props) => {
         </header>
     )
 }
-
 export default HeaderBg

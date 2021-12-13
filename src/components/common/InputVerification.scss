@@ -1,0 +1,23 @@
+@import './../../styles/variables.scss';
+
+$spaccing: 43px;
+$width-input: 300px;
+$widthBox: 32px;
+$heightBox: 31px;
+
+
+.code-ver {
+  margin-top: 10px;
+  &__input-container {
+    display: flex;
+    &__input {
+        width: 8px;
+        height: 8px;
+        margin: 3px;
+        text-align: center;
+        background: rgba(128, 128, 128, 0.014);
+        outline: none;
+      }
+    }
+}
+
