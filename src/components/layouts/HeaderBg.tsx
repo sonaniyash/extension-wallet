@@ -1,22 +1,15 @@
 import React, { Component } from 'react'
-import './HeaderBg.scss'; 
+import './HeaderBg.scss';
 interface Props {
-    
-}
-interface State {
-    
+    children: JSX.Element
 }
 
-class HeaderBg extends Component<Props, State> {
-    state = {}
-
-    render() {
-        return (
-            <header className="header-bg">
-                <img className="header-bg__logo"  src='./assets/logo.png' />
-            </header>
-        )
-    }
+const HeaderBg = (props: Props) => {
+    return (
+        <header className="header-bg">
+            {props.children}
+        </header>
+    )
 }
 
 export default HeaderBg
