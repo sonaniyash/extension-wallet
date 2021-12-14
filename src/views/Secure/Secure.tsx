@@ -4,13 +4,15 @@ import { useForm } from '../../hooks/useForm';
 import HeaderBg from '../../components/layouts/HeaderBg'
 import './Secure.scss';
 import {isEmpty} from 'lodash';
+import { ROUTES } from '../../const/routeNames';
+import { ContextMain } from '../../context/store';
 
 const Secure = ({}) => {
     interface Password {
         password: string;
         repeatPassword: string;
     }
-  
+    const [ dispatch ] = React.useContext(ContextMain)
     const [isValid, setIsValid] = useState<boolean | null>(false);
     const [errorMessage, setErrorMessage] = useState<string | null>('');
     const [buttonDisabled, setButtonDisabled] = useState<boolean | null>(false);
@@ -37,14 +39,17 @@ const Secure = ({}) => {
    const navigate = useNavigate();
 
     const clickContinue = ()=> {
-        navigate('/seed-phrase');
+        navigate(ROUTES.SEED_PHRASE.url);
     }
+    useEffect(()=>{
+        dispatch({type: 'SET_UI', payload: ROUTES.SECURE.url});
+    }, [])
 
     return (
         <main>
             <form>
             <HeaderBg>
-                <p> Secure your account </p>
+            <p className='header-title'>{ROUTES.SECURE.title}</p>
             </HeaderBg>
             <section className="secure">
                 <p className="secure__description">Keep your apps safe from other with access to your computer.</p>
