@@ -12,7 +12,7 @@ const Secure = ({}) => {
         password: string;
         repeatPassword: string;
     }
-    const [ dispatch ] = React.useContext(ContextMain)
+    const [ , dispatch ] = React.useContext(ContextMain)
     const [isValid, setIsValid] = useState<boolean | null>(false);
     const [errorMessage, setErrorMessage] = useState<string | null>('');
     const [buttonDisabled, setButtonDisabled] = useState<boolean | null>(false);

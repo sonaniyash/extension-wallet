@@ -7,7 +7,7 @@ export const ROUTES = {
     },
     HOME: {
         title: 'Home',
-        url: '/home'
+        url: '/'
     },
     VERIFICATION: {
         title: 'Verification',
