@@ -1,0 +1,14 @@
+.input-with-label {
+    div{
+        text-align: left;
+        margin-left: 40px;
+    }
+    input{
+        margin-bottom: 10px;
+    }
+    &__button {
+        text-align: center;
+        min-width: 136px;
+        margin-top: 20px;
+    }
+}
