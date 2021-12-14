@@ -74,10 +74,9 @@ const Home = (props: Props) => {
                 <img className="header-bg__logo" src='./assets/logo.png' />
             </HeaderBg>
             <section className="home">
-                <div className="home__selectors">
-                    { }
-                    <a className={(typeLogin === LOGIN_TYPE.EMAIL ? ' --btn-active' : '') + " home__selectors__button"} onClick={() => { clickOption(LOGIN_TYPE.EMAIL) }}>Email</a>
-                    <a className={(typeLogin === LOGIN_TYPE.PHONE ? ' --btn-active' : '') + " home__selectors__button"} onClick={() => { clickOption(LOGIN_TYPE.PHONE) }}>Phone</a>
+                <div className="home__selectors"> 
+                    <a className={ (typeLogin === LOGIN_TYPE.EMAIL ? ' --btn-active' : '') + " home__selectors__button"} onClick={()=> { clickOption(LOGIN_TYPE.EMAIL) }}>Email</a>
+                    <a className={ (typeLogin === LOGIN_TYPE.PHONE ? ' --btn-active' : '') + " home__selectors__button"} onClick={()=> { clickOption(LOGIN_TYPE.PHONE)  }}>Phone</a>
                 </div>
                 <input type="text" value={inputSt} onPaste={onChangeInput} onBlur={onChangeInput} onChange={onChangeInput} placeholder={typeLogin === LOGIN_TYPE.PHONE ? "Ex. (373) 378 8383" : "jhondoe@gmail.com"} className="home__selectors__input" />
                 {!isValid ? (<p className='error-text'> {errorMessage}</p>) : ''}

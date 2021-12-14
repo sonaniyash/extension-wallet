@@ -1,20 +1,21 @@
 import React, {createContext, useReducer} from "react";
-import Reducer from './account/Reducer'
+import Reducer from './index.reducer'
 
 
 const initialState: any = {
     account: [],
+    ui: '',
     error: null
 };
 
 const Store = ({children}: any) => {
     const [state, dispatch] = useReducer(Reducer, initialState);
     return (
-        <Context.Provider value={[state, dispatch]}>
+        <ContextMain.Provider value={[state, dispatch]}>
             {children}
-        </Context.Provider>
+        </ContextMain.Provider>
     )
 };
 
-export const Context = createContext(initialState);
+export const ContextMain = createContext(initialState);
 export default Store;
