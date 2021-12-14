@@ -12,7 +12,7 @@ const Secure = ({}) => {
         password: string;
         repeatPassword: string;
     }
-    const [ dispatch ] = React.useContext(ContextMain)
+    const [ state, dispatch ] = React.useContext(ContextMain)
     const [isValid, setIsValid] = useState<boolean | null>(false);
     const [errorMessage, setErrorMessage] = useState<string | null>('');
     const [buttonDisabled, setButtonDisabled] = useState<boolean | null>(false);
@@ -21,11 +21,6 @@ const Secure = ({}) => {
         repeatPassword: ''
     };
 
-    const onChangeCb = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setErrorMessage('');
-        setButtonDisabled(true);
-        validateForm();
-    }
     const validateForm = () => {
         const validform = !isEmpty(formState.password) && formState.password === formState.repeatPassword
         setIsValid(validform);
@@ -34,7 +29,15 @@ const Secure = ({}) => {
             setErrorMessage('The password confirmation does not match')
         }
     }
-    const {formState, onChange} = useForm<Password>(onChangeCb, initialState)
+    const {formState, onChange} = useForm<Password>(initialState)
+
+    useEffect(()=> {
+        if (!isEmpty(formState.password) && !isEmpty(formState.repeatPassword)) {
+            setErrorMessage('');
+            setButtonDisabled(true);
+            validateForm();
+        }
+    }, [formState])
 
    const navigate = useNavigate();
 
