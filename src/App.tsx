@@ -5,6 +5,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import Home from './views/Home/Home';
 import Login from './views/Login/Login';
 import Store from "./context/store";
+import Secure from './views/Secure/Secure';
 
 const App = () => {
   
@@ -20,6 +21,7 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/secure' element={<Secure />} />
         </Routes>     
       </Store>
     </div>
