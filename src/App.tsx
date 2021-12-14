@@ -7,6 +7,7 @@ import CreateAccount from './views/CreateAccount/CreateAccount';
 import Login from './views/Login/Login';
 import Store from "./context/store";
 import Verification from "./views/Verification/Verification";
+import Secure from './views/Secure/Secure';
 
 const App = () => {
 
@@ -24,6 +25,7 @@ const App = () => {
           <Route path='/login' element={<Login />} />
           <Route path='/createAccount' element={<CreateAccount />} />
           <Route path='/verification' element={<Verification />} />
+          <Route path='/secure' element={<Secure />} />
         </Routes>     
       </Store>
     </div>
