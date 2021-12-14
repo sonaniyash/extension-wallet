@@ -46,7 +46,9 @@ const Home = ({}) => {
     return (
         <main>
             <form>
-            <HeaderBg/>
+            <HeaderBg>
+                <p> Secure your account </p>
+            </HeaderBg>
             <section className="secure">
                 <p className="secure__description">Keep your apps safe from other with access to your computer.</p>
                 <label htmlFor="password" className="secure__label">Password</label>
