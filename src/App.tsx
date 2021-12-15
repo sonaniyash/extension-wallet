@@ -8,6 +8,8 @@ import Login from './views/Login/Login';
 import Store from "./context/store";
 import Verification from "./views/Verification/Verification";
 import Secure from './views/Secure/Secure';
+import SeedPhrasePage from "./views/Secure copy/SeedPhraseCreation";
+import { ROUTES } from "./const/routeNames";
 
 const App = () => {
 
@@ -21,13 +23,12 @@ const App = () => {
     <div className="App">
       <Store>
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/secure' element={<Secure />} />
-          <Route path='/createAccount' element={<CreateAccount />} />
-          <Route path='/verification' element={<Verification />} />
-          <Route path='/secure' element={<Secure />} />
-        </Routes>
+          <Route path={ROUTES.HOME.url} element={<Home />} />
+          <Route path={ROUTES.CREATE_ACCT.url} element={<CreateAccount />} />
+          <Route path={ROUTES.VERIFICATION.url} element={<Verification />} />
+          <Route path={ROUTES.SECURE.url} element={<Secure />} />
+          <Route path={ROUTES.SEED_PHRASE.url} element={<SeedPhrasePage />} />
+        </Routes>     
       </Store>
     </div>
   );

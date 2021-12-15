@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import HeaderBg from '../../components/layouts/HeaderBg'
+import { ROUTES } from '../../const/routeNames';
+import { ContextMain } from '../../context/store';
 import './Home.scss';
 
 interface Props {
@@ -50,6 +52,10 @@ const Home = (props: Props) => {
         }
     }
 
+    const [ state, dispatch ] = React.useContext(ContextMain)
+    const navigate = useNavigate();
+
+
     const clickOption = (type: number) => {
         setErrorMessage('');
         setInput('');
@@ -57,12 +63,17 @@ const Home = (props: Props) => {
         checkTypeValidation(type);
     }
 
+
+
     useEffect(() => {
+        if( state.ui ) {
+            navigate(state.ui);
+        }
+        dispatch({type: 'SET_UI', payload: ROUTES.HOME.url});
         setInput('');
         setButtonDisabled(true);
     }, [])
 
-    const navigate = useNavigate();
 
     const clickContinue = () => {
         navigate('/verification');
