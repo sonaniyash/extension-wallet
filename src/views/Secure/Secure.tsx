@@ -6,6 +6,7 @@ import './Secure.scss';
 import {isEmpty} from 'lodash';
 import { ROUTES } from '../../const/routeNames';
 import { ContextMain } from '../../context/store';
+import ProgressBar from '../../components/common/ProgressBar';
 
 const Secure = ({}) => {
     interface Password {
@@ -52,19 +53,20 @@ const Secure = ({}) => {
     return (
         <main>
             <form>
-            <HeaderBg>
-            <p className='header-title'>{ROUTES.SECURE.title}</p>
-            </HeaderBg>
-            <section className="secure">
-                <p className="secure__description">Keep your apps safe from other with access to your computer.</p>
-                <label htmlFor="password" className="secure__label">Password</label>
-                <input type="password" id='password' name="password" value={formState.password} onBlur={onChange} onChange={onChange} placeholder='' className="secure__selectors__input" />
-                <label htmlFor="repeatPassword" className="secure__label">Repeat Password</label>
-                <input type="password" id="password" name="repeatPassword" value={formState.repeatPassword} onBlur={onChange} onChange={onChange} placeholder='' className="secure__selectors__input" />
-                { !isValid ? ( <p className='error-text'> {errorMessage}</p> ) : ''}
-                <button disabled={ buttonDisabled || !isValid } className="button secure__button" onClick={clickContinue} >Continue</button>
-                <p>by clicking continue you must agree to near labs <a> Terms & Conditions</a>  ans <a> Privacy Policy</a></p>
-            </section>
+                <HeaderBg>
+                    <p className='header-title'>{ROUTES.SECURE.title}</p>
+                </HeaderBg>
+                <ProgressBar percentage={70} />
+                <section className="secure">
+                    <p className="secure__description">Keep your apps safe from other with access to your computer.</p>
+                    <label htmlFor="password" className="secure__label">Password</label>
+                    <input type="password" id='password' name="password" value={formState.password} onBlur={onChange} onChange={onChange} placeholder='' className="secure__selectors__input" />
+                    <label htmlFor="repeatPassword" className="secure__label">Repeat Password</label>
+                    <input type="password" id="password" name="repeatPassword" value={formState.repeatPassword} onBlur={onChange} onChange={onChange} placeholder='' className="secure__selectors__input" />
+                    { !isValid ? ( <p className='error-text'> {errorMessage}</p> ) : ''}
+                    <button disabled={ buttonDisabled || !isValid } className="button secure__button" onClick={clickContinue} >Continue</button>
+                    <p>by clicking continue you must agree to near labs <a> Terms & Conditions</a>  ans <a> Privacy Policy</a></p>
+                </section>
             </form>
         </main>
     )
