@@ -20,7 +20,7 @@ const CreateAccount = (props: Props) => {
     const onChangeIDHandler = ((e: React.ChangeEvent<HTMLInputElement>): void => {
         //in this point, just need to call API and check if 
         //e.currentTarget.value exist as account
-        if (e.currentTarget.value == "fede") {
+        if (e.currentTarget.value == "test") {
             setWrongAccount(true);
         } else {
             setWrongAccount(false);
