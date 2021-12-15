@@ -4,6 +4,7 @@ import HeaderBg from '../../components/layouts/HeaderBg'
 import './CreateAccount.scss';
 import { useNavigate } from 'react-router-dom';
 import ProgressBar from '../../components/common/ProgressBar';
+import CloseCreateAccnt from '../../components/common/CloseCreateAccnt';
 
 interface Props {
 
@@ -34,7 +35,10 @@ const CreateAccount = (props: Props) => {
     return (
         <React.Fragment>
             <HeaderBg>
-                <p> Create NEAR account </p>
+                <>
+                    <p> Create NEAR account </p>
+                    <CloseCreateAccnt/>
+                </>
             </HeaderBg>
             <ProgressBar percentage={30} />
             <section className="createAccount">

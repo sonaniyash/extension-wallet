@@ -7,6 +7,7 @@ import {isEmpty} from 'lodash';
 import { ROUTES } from '../../const/routeNames';
 import { ContextMain } from '../../context/store';
 import ProgressBar from '../../components/common/ProgressBar';
+import CloseCreateAccnt from '../../components/common/CloseCreateAccnt';
 
 const Secure = ({}) => {
     interface Password {
@@ -54,7 +55,10 @@ const Secure = ({}) => {
         <main>
             <form>
                 <HeaderBg>
-                    <p className='header-title'>{ROUTES.SECURE.title}</p>
+                    <>
+                        <p className='header-title'>{ROUTES.SECURE.title}</p>
+                        <CloseCreateAccnt/>
+                    </>
                 </HeaderBg>
                 <ProgressBar percentage={70} />
                 <section className="secure">

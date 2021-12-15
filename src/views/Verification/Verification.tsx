@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect  } from 'react'
 import { useNavigate } from 'react-router-dom';
+import CloseCreateAccnt from '../../components/common/CloseCreateAccnt';
 import InputVerification from '../../components/common/InputVerification';
 import HeaderBg from '../../components/layouts/HeaderBg'
 import { ROUTES } from '../../const/routeNames';
@@ -35,7 +36,10 @@ const Verification = (props: Props) => {
     return (
         <main> 
             <HeaderBg>
-                <p className='header-title'>{TITLE_NAME}</p>
+                <>
+                    <p className='header-title'>{TITLE_NAME}</p>
+                    <CloseCreateAccnt/>
+                </>
             </HeaderBg>
             <section className='verification'>
                 <div className='verification__text' >We've sent a 6-digit verification code to your phone </div>

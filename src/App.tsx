@@ -16,7 +16,7 @@ const App = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    navigate(ROUTES.CREATE_ACCT.url);
+    navigate(ROUTES.MAIN.url);
   }, []);
 
   return (
