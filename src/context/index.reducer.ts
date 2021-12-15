@@ -6,7 +6,6 @@ const Reducer = (state: any, action: any) => {
                 ...state,
                 ui: action.payload
             }
-            localStorage.setItem('state',JSON.stringify(newState));
             return newState;
         case 'ADD_UI':
             return {

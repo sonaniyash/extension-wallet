@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import InputWithLabel from '../../components/common/InputWithLabel';
 import HeaderBg from '../../components/layouts/HeaderBg'
 import './CreateAccount.scss';
@@ -7,6 +7,8 @@ import ProgressBar from '../../components/common/ProgressBar';
 import CloseCreateAccnt from '../../components/common/CloseCreateAccnt';
 import { isEmpty } from 'lodash';
 import { stringify } from 'querystring';
+import { ROUTES } from '../../const/routeNames';
+import { ContextMain } from '../../context/store';
 
 interface Props {
 
@@ -14,10 +16,16 @@ interface Props {
 
 const CreateAccount = (props: Props) => {
     const navigate = useNavigate();
+    const [ state, dispatch ] = React.useContext(ContextMain)
 
     const clickContinue = () => {
         navigate('/secure');
     }
+    
+    useEffect(()=>{
+        dispatch({type: 'SET_UI', payload: ROUTES.CREATE_ACCT.url});
+    }, [])
+
     const [wrongAccount, setWrongAccount] = useState(false);
     const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
     const [nameAccount, setNameAccount] = useState('')
@@ -73,3 +81,7 @@ const CreateAccount = (props: Props) => {
 }
 
 export default CreateAccount;
+function dispatch(arg0: { type: string; payload: any; }) {
+    throw new Error('Function not implemented.');
+}
+
