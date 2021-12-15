@@ -1,12 +1,11 @@
 import { useState } from "react";
 
-export const useForm = <T>(callback: any, initialState:T) => {
+export const useForm = <T>(initialState:T) => {
     const [formState, setFormState] = useState(initialState);
 
     // onChange
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setFormState({ ...formState, [event.target.name]: event.target.value });
-        callback();
     };
 
     // onPaste
