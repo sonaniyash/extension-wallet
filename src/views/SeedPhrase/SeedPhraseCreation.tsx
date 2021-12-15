@@ -5,6 +5,7 @@ import './SeedPhraseCreation.scss';
 import { ROUTES } from '../../const/routeNames';
 import { ContextMain } from '../../context/store';
 import SeedPhraseContainer from '../../components/common/SeedPhraseContainer';
+import CloseCreateAccnt from '../../components/common/CloseCreateAccnt';
 
 const SeedPhrasePage = ({}) => {
 
@@ -28,7 +29,10 @@ const SeedPhrasePage = ({}) => {
     return (
         <main>
             <HeaderBg>
-            <p className='header-title'>{ROUTES.SEED_PHRASE.title}</p>
+                <>
+                    <p className='header-title'>{ROUTES.SEED_PHRASE.title}</p>
+                    <CloseCreateAccnt/>
+                </>
             </HeaderBg>
             <section className="seed-phrase">
                 <p className="seed-phrase__description">Keep your apps safe from other with access to your computer..</p>
