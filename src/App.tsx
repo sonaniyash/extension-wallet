@@ -27,7 +27,7 @@ const App = () => {
           <Route path='/createAccount' element={<CreateAccount />} />
           <Route path='/verification' element={<Verification />} />
           <Route path='/secure' element={<Secure />} />
-        </Routes>     
+        </Routes>
       </Store>
     </div>
   );
