@@ -8,7 +8,7 @@ import Login from './views/Login/Login';
 import Store from "./context/store";
 import Verification from "./views/Verification/Verification";
 import Secure from './views/Secure/Secure';
-import SeedPhrasePage from "./views/Secure copy/SeedPhraseCreation";
+import SeedPhrasePage from "./views/SeedPhrase/SeedPhraseCreation";
 import { ROUTES } from "./const/routeNames";
 
 const App = () => {
@@ -16,7 +16,7 @@ const App = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    navigate('/');
+    navigate(ROUTES.CREATE_ACCT.url);
   }, []);
 
   return (

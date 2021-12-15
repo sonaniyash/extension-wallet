@@ -38,16 +38,16 @@ const CreateAccount = (props: Props) => {
             <section className="createAccount">
                 <p> Enter an Account ID to use with your NEAR account. Your Account ID will be used for all NEAR operations, including sending and receiving assets.</p>
                 <InputWithLabel label="Full Name" onChange={onChangeNameHandler} />
-                <div className='accountId_label'>Account ID</div>
                 <div className="accountId_after">
+                    <label className='accountId_label'>Account ID</label>
                     <input className={`accountId_input ${wrongAccount ? 'wrong' : ''}`} onChange={onChangeIDHandler} />
                 </div>
-                <button className="button createAccount__button btn-dark" onClick={clickContinue}>Continue</button>
+                <button className="button createAccount__button" onClick={clickContinue}>Continue</button>
                 <p className='conditions'>By creating a NEAR account, you agree to the NEAR <br /> Wallet <a>Terms of Service</a> and<a> Privacy Policy</a></p>
             </section>
             <section className="createAccount__after">
                 <span className="createAccount__question"> Already have NEAR account? {nameAccount}</span>
-                <button className="button btn-dark createAccount__button" >Login with NEAR</button>
+                <button className="button createAccount__button btn-dark" >Login with NEAR</button>
 
             </section>
         </React.Fragment>
