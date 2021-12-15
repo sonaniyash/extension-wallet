@@ -55,15 +55,12 @@ const Home = (props: Props) => {
     const [ state, dispatch ] = React.useContext(ContextMain)
     const navigate = useNavigate();
 
-
     const clickOption = (type: number) => {
         setErrorMessage('');
         setInput('');
         setTypeLogin(type);
         checkTypeValidation(type);
     }
-
-
 
     useEffect(() => {
         if( state.ui ) {
@@ -73,7 +70,6 @@ const Home = (props: Props) => {
         setInput('');
         setButtonDisabled(true);
     }, [])
-
 
     const clickContinue = () => {
         navigate('/verification');

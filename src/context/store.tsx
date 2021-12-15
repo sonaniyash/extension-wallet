@@ -3,13 +3,15 @@ import Reducer from './index.reducer'
 
 
 const initialState: any = {
-    account: [],
     ui: '',
     error: null
 };
 
 const Store = ({children}: any) => {
-    const [state, dispatch] = useReducer(Reducer, initialState);
+    const localStorageState =  localStorage.getItem('state');
+    const [state, dispatch] = useReducer(Reducer, localStorageState ? JSON.parse(localStorageState) :  initialState);
+    localStorage.setItem('state',JSON.stringify(state));
+
     return (
         <ContextMain.Provider value={[state, dispatch]}>
             {children}
