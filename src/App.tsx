@@ -14,7 +14,7 @@ const App = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    navigate('/');
+    navigate('/createAccount');
   }, []);
 
   return (
