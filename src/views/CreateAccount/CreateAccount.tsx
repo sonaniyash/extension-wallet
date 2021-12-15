@@ -3,6 +3,7 @@ import InputWithLabel from '../../components/common/InputWithLabel';
 import HeaderBg from '../../components/layouts/HeaderBg'
 import './CreateAccount.scss';
 import { useNavigate } from 'react-router-dom';
+import ProgressBar from '../../components/common/ProgressBar';
 
 interface Props {
 
@@ -35,6 +36,7 @@ const CreateAccount = (props: Props) => {
             <HeaderBg>
                 <p> Create NEAR account </p>
             </HeaderBg>
+            <ProgressBar percentage={30} />
             <section className="createAccount">
                 <p> Enter an Account ID to use with your NEAR account. Your Account ID will be used for all NEAR operations, including sending and receiving assets.</p>
                 <InputWithLabel label="Full Name" onChange={onChangeNameHandler} />
