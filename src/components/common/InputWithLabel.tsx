@@ -1,16 +1,17 @@
-import React, { ReactElement } from 'react'
+import React, { ChangeEventHandler, ReactElement } from 'react'
 import './InputWithLabel.scss'
 
 interface Props {
-    label: string
+    label: string,
+    onChange?: ChangeEventHandler,
+    className?: string
 }
 
-export default function InputWithLabel({ label }: Props): ReactElement {
+export default function InputWithLabel({ label, onChange, className }: Props): ReactElement {
     return (
-        <span className="input-with-label">
+        <span className={`input-with-label`} >
             <div>{label}</div>
-            <input type="text" />
-
+            <input type="text" onChange={onChange} className={`${className}`} />
         </span>
     )
 }

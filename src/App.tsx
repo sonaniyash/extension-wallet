@@ -24,7 +24,6 @@ const App = () => {
       <Store>
         <Routes>
           <Route path={ROUTES.HOME.url} element={<Home />} />
-          <Route path={ROUTES.SECURE.url} element={<Secure />} />
           <Route path={ROUTES.CREATE_ACCT.url} element={<CreateAccount />} />
           <Route path={ROUTES.VERIFICATION.url} element={<Verification />} />
           <Route path={ROUTES.SECURE.url} element={<Secure />} />
