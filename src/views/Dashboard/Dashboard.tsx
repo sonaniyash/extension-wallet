@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import HeaderBg from '../../components/layouts/HeaderBg';
+import SelectAccountBtn from '../../components/SelectAccountBtn/SelectAccountBtn';
 import './Dashboard.scss';
 
 interface Props {
@@ -21,7 +22,7 @@ const Dashboard = (props: Props) => {
                     <a> 
                         <img src="./assets/home-icon.png" alt="" />
                     </a>
-                    <p> dashboard </p>
+                    <SelectAccountBtn/>
                     <div>
                         <a> 
                             <img src="./assets/notification.png" alt="" />
