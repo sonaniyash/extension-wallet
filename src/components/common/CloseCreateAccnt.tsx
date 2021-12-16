@@ -13,6 +13,7 @@ const CloseCreateAccnt = (props: Props) => {
 
     const navigate = useNavigate();
     const onClick = () => {
+        dispatch({type: 'CLEAR_CREATE_ACCT'});
         dispatch({type: 'SET_UI', payload: ROUTES.HOME.url});
         navigate(ROUTES.HOME.url);
     }
