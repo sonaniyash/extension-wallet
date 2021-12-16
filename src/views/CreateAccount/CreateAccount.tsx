@@ -9,6 +9,7 @@ import { isEmpty } from 'lodash';
 import { stringify } from 'querystring';
 import { ROUTES } from '../../const/routeNames';
 import { ContextMain } from '../../context/store';
+import { CreateAccountData, STATUS_CREATE_ACCT } from '../../context/models';
 
 interface Props {
 
@@ -19,6 +20,10 @@ const CreateAccount = (props: Props) => {
     const [ state, dispatch ] = React.useContext(ContextMain)
 
     const clickContinue = () => {
+        let data: CreateAccountData = state;
+        data.firstName = nameAccount;
+        data.nearAccountId = nameAccountID;
+        dispatch({type: 'SET_CREATE_ACCT', payload: data});
         navigate('/secure');
     }
     
