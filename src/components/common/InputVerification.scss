@@ -8,9 +8,18 @@ $heightBox: 31px;
 
 .code-ver {
   margin-top: 10px;
+  label {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+  }
   &__input-container {
+    margin: 7px;
     display: flex;
     &__input {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 28px;
         width: 8px;
         height: 8px;
         margin: 3px;
