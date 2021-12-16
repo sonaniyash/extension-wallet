@@ -24,5 +24,8 @@ export const ROUTES = {
     SEED_PHRASE: {
         title: 'Secure your account',
         url: '/seed-phrase'
+    },
+    DASHBOARD: {
+        url: '/dashboard'
     }
 }

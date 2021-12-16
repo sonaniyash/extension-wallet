@@ -1,0 +1,94 @@
+@import '../../styles/variables.scss';
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@600&display=swap'); 
+
+$spacing: 5px;
+$btn-padding: 20px;
+.dashboard {
+    padding: 10px;
+    &__btn-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        .dash-btn {
+            .chevron {
+                position: absolute;
+                right: 20px;
+                top: 25px;
+            }
+        }
+        a {
+            font-family: 'Manrope', sans-serif;
+            margin: $spacing;
+            &.contact-btn {
+                position: relative;
+                display: block;
+                width: calc( 50% - calc($spacing * 2) - calc($btn-padding * 2));
+                height: calc(99px - $btn-padding *2);
+                border-radius: 6px;
+                background-color: $light-blue-1;
+                padding: 20px;
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 22px;
+                text-align: start;
+                letter-spacing: -0.154px;
+                color: $text-100;
+            }
+            
+            &.web3-btn {
+                position: relative;
+                display: block;
+                background-image: url('../../public/assets/btn-dash-2.png');
+                background-color:  $accent-2;
+                background-repeat: no-repeat;
+                background-position: top right;
+                width: calc( 50% - calc($spacing * 2) - calc($btn-padding * 2));
+                height: calc(99px - $btn-padding *2);
+                border-radius: 6px;
+                padding: 20px;
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 22px;
+                text-align: start;
+                letter-spacing: -0.154px;
+                color: #FFFFFF;
+
+                span.web3-btn__notification {
+                    display: inline-block;
+                    padding: 2px 7px;
+                    color: white;
+                    background-color: #18D7A9;
+                    font-weight: 500;
+                    font-size: 12px;
+                    line-height: 16px;
+                    border-radius: 6px;
+                }
+            }
+            
+            &.createNFT-btn {
+                position: relative;
+                display: block;
+                max-width: 341px;
+                width: 100%;
+                height: calc(168px - 40px);
+                border-radius: 6px;
+                background-image: url('../../public/assets/btn-dash-3.png');
+                background-color: $light-purple;
+                background-repeat: no-repeat;
+                background-position: top right;
+                font-weight: 600;
+                padding: 20px 45% 28px 19px;
+                text-align: start;
+                font-size: 24px;
+                line-height: 30px;
+                letter-spacing: -0.04em;
+                color: $text-100;
+                button {
+                    margin: 10px 0;
+                    width: 148px;
+                }
+            }
+        }
+    }
+}
+

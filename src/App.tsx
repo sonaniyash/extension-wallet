@@ -10,6 +10,7 @@ import Verification from "./views/Verification/Verification";
 import Secure from './views/Secure/Secure';
 import SeedPhrasePage from "./views/SeedPhrase/SeedPhraseCreation";
 import { ROUTES } from "./const/routeNames";
+import Dashboard from "./views/Dashboard/Dashboard";
 
 const App = () => {
 
@@ -28,6 +29,7 @@ const App = () => {
           <Route path={ROUTES.VERIFICATION.url} element={<Verification />} />
           <Route path={ROUTES.SECURE.url} element={<Secure />} />
           <Route path={ROUTES.SEED_PHRASE.url} element={<SeedPhrasePage />} />
+          <Route path={ROUTES.DASHBOARD.url} element={<Dashboard />} />
         </Routes>
       </Store>
     </div>
