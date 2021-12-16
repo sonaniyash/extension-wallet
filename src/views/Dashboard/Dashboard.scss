@@ -3,6 +3,17 @@
 
 $spacing: 5px;
 $btn-padding: 20px;
+
+.header-dash {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    a {
+        margin: 0 7px;
+    }
+}
+
 .dashboard {
     padding: 10px;
     &__btn-container {
@@ -83,6 +94,10 @@ $btn-padding: 20px;
                 line-height: 30px;
                 letter-spacing: -0.04em;
                 color: $text-100;
+                span {
+                    display: block;
+                    width: 150px;
+                }
                 button {
                     margin: 10px 0;
                     width: 148px;

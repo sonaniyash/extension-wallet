@@ -17,9 +17,20 @@ const Dashboard = (props: Props) => {
     return (
         <>
             <HeaderBg>
-                <>
+                <header className='header-dash'>
+                    <a> 
+                        <img src="./assets/home-icon.png" alt="" />
+                    </a>
                     <p> dashboard </p>
-                </>
+                    <div>
+                        <a> 
+                            <img src="./assets/notification.png" alt="" />
+                        </a>
+                        <a> 
+                            <img src="./assets/settings.png" alt="" />
+                        </a>
+                    </div>
+                </header>
             </HeaderBg>
             <section className="dashboard">
                 <div className="dashboard__btn-container">
