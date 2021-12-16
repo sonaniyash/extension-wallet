@@ -1,0 +1,27 @@
+@import './../../styles/variables.scss';
+
+.select-act {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  justify-content: space-between;
+  background: #FFFFFF;
+  border: 1px solid #DFDFE0;
+  box-sizing: border-box;
+  border-radius: 30px;
+  &__img {
+    height: 21px;
+    width: 21px;
+  }
+  &__name {
+    color: $text-100;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19px;
+    text-align: center;
+    margin: 10px 15px;
+  }
+}
+
