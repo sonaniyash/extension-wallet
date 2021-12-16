@@ -5,6 +5,8 @@ import './CreateAccount.scss';
 import { useNavigate } from 'react-router-dom';
 import ProgressBar from '../../components/common/ProgressBar';
 import CloseCreateAccnt from '../../components/common/CloseCreateAccnt';
+import { isEmpty } from 'lodash';
+import { stringify } from 'querystring';
 
 interface Props {
 
@@ -17,9 +19,16 @@ const CreateAccount = (props: Props) => {
         navigate('/secure');
     }
     const [wrongAccount, setWrongAccount] = useState(false);
+    const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
     const [nameAccount, setNameAccount] = useState('')
+    const [nameAccountID, setNameAccountID] = useState('')
 
-    const onChangeIDHandler = ((e: React.ChangeEvent<HTMLInputElement>): void => {
+    const validateForm = () => {
+        const validform = nameAccount.length > 0 && nameAccountID.length > 0;
+        setButtonDisabled(!validform);
+    }
+
+    const onChangeIDHandler = ((e: React.ChangeEvent<HTMLInputElement>) => {
         //in this point, just need to call API and check if 
         //e.currentTarget.value exist as account
         if (e.currentTarget.value == "test") {
@@ -27,9 +36,12 @@ const CreateAccount = (props: Props) => {
         } else {
             setWrongAccount(false);
         }
+        setNameAccountID(e.currentTarget.value);
+        validateForm();
     })
     const onChangeNameHandler = ((e: React.ChangeEvent<HTMLInputElement>): void => {
         setNameAccount(e.currentTarget.value);
+        validateForm();
     })
 
     return (
@@ -37,7 +49,7 @@ const CreateAccount = (props: Props) => {
             <HeaderBg>
                 <>
                     <p> Create NEAR account </p>
-                    <CloseCreateAccnt/>
+                    <CloseCreateAccnt />
                 </>
             </HeaderBg>
             <ProgressBar percentage={30} />
@@ -48,11 +60,11 @@ const CreateAccount = (props: Props) => {
                     <label className='accountId_label'>Account ID</label>
                     <input className={`accountId_input ${wrongAccount ? 'wrong' : ''}`} onChange={onChangeIDHandler} />
                 </div>
-                <button className="button createAccount__button" onClick={clickContinue}>Continue</button>
+                <button disabled={buttonDisabled || wrongAccount} className="button createAccount__button" onClick={clickContinue}>Continue</button>
                 <p className='conditions'>By creating a NEAR account, you agree to the NEAR <br /> Wallet <a>Terms of Service</a> and<a> Privacy Policy</a></p>
             </section>
             <section className="createAccount__after">
-                <span className="createAccount__question"> Already have NEAR account? {nameAccount}</span>
+                <span className="createAccount__question"> Already have NEAR account?</span>
                 <button className="button createAccount__button btn-dark" >Login with NEAR</button>
 
             </section>
