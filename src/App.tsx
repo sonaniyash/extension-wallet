@@ -28,7 +28,7 @@ const App = () => {
           <Route path={ROUTES.VERIFICATION.url} element={<Verification />} />
           <Route path={ROUTES.SECURE.url} element={<Secure />} />
           <Route path={ROUTES.SEED_PHRASE.url} element={<SeedPhrasePage />} />
-        </Routes>     
+        </Routes>
       </Store>
     </div>
   );
