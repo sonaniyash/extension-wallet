@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import HeaderBg from '../../components/layouts/HeaderBg';
 import SelectAccountBtn from '../../components/SelectAccountBtn/SelectAccountBtn';
+import TabsContainer from '../../components/common/TabsContainer/TabsContainer';
+import TabsHeader from '../../components/common/TabsHeader/TabsHeader';
 import './Dashboard.scss';
 
 interface Props {
@@ -14,6 +16,9 @@ const Dashboard = (props: Props) => {
     const clickContinue = () => {
         navigate('/secure');
     }
+    const [activeTab, setActive] = useState(0)
+    const tab1 = useRef<any>()
+    const tab2 = useRef<any>()
 
     return (
         <>
@@ -49,6 +54,18 @@ const Dashboard = (props: Props) => {
                         <button className="button" >Create NFT</button>                        
                     </a>
                 </div>
+                <TabsHeader tabsHeader={['Collectibles', 'Transactions']} setActive={setActive} />
+                <TabsContainer tabs={[tab1, tab2]} activeTabId={activeTab}>
+                        <>  
+                            <div data-tab="0" ref={tab1} className="tab-text">
+                                text tab 1
+                            </div>
+                            <div data-tab="1" ref={tab2} className="tab-text">
+                                text tab 2
+                            </div>
+                        </>
+                </TabsContainer>
+
             </section>
         </>
     )
