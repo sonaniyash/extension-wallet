@@ -24,7 +24,7 @@ const TabsHeader = ({setActive, tabsHeader} : Props) => {
     };
 
     const listItems = tabsHeader.map((tab: any, index: any) =>
-        {return <div data-tab={index} onClick={clickTab} className="tab wave">{tab}</div>}
+        {return <div key={tab} data-tab={index} onClick={clickTab} className="tab wave">{tab}</div>}
     );
 
     return (
