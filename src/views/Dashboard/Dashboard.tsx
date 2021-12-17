@@ -65,7 +65,6 @@ const Dashboard = (props: Props) => {
                             </div>
                         </>
                 </TabsContainer>
-
             </section>
         </>
     )
