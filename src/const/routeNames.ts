@@ -27,5 +27,9 @@ export const ROUTES = {
     },
     DASHBOARD: {
         url: '/dashboard'
+    },
+    UNLOCK: {
+        title: 'Unlock',
+        url:'/unlock'
     }
 }
