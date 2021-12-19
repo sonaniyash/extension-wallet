@@ -5,11 +5,9 @@ import './CreateAccount.scss';
 import { useNavigate } from 'react-router-dom';
 import ProgressBar from '../../components/common/ProgressBar';
 import CloseCreateAccnt from '../../components/common/CloseCreateAccnt';
-import { isEmpty } from 'lodash';
-import { stringify } from 'querystring';
 import { ROUTES } from '../../const/routeNames';
 import { ContextMain } from '../../context/store';
-import { CreateAccountData, STATUS_CREATE_ACCT } from '../../context/models';
+import { CreateAccountData } from '../../context/models';
 
 interface Props {
 
@@ -17,18 +15,18 @@ interface Props {
 
 const CreateAccount = (props: Props) => {
     const navigate = useNavigate();
-    const [ state, dispatch ] = React.useContext(ContextMain)
+    const [state, dispatch] = React.useContext(ContextMain)
 
     const clickContinue = () => {
         let data: CreateAccountData = state;
         data.firstName = nameAccount;
         data.nearAccountId = nameAccountID;
-        dispatch({type: 'SET_CREATE_ACCT', payload: data});
+        dispatch({ type: 'SET_CREATE_ACCT', payload: data });
         navigate('/secure');
     }
-    
-    useEffect(()=>{
-        dispatch({type: 'SET_UI', payload: ROUTES.CREATE_ACCT.url});
+
+    useEffect(() => {
+        dispatch({ type: 'SET_UI', payload: ROUTES.CREATE_ACCT.url });
     }, [])
 
     const [wrongAccount, setWrongAccount] = useState(false);
@@ -68,7 +66,7 @@ const CreateAccount = (props: Props) => {
             <ProgressBar percentage={30} />
             <section className="createAccount">
                 <p> Enter an Account ID to use with your NEAR account. Your Account ID will be used for all NEAR operations, including sending and receiving assets.</p>
-                <InputWithLabel label="Full Name" onChange={onChangeNameHandler} />
+                <InputWithLabel type='text' label="Full Name" onChange={onChangeNameHandler} />
                 <div className="accountId_after">
                     <label className='accountId_label'>Account ID</label>
                     <input className={`accountId_input ${wrongAccount ? 'wrong' : ''}`} onChange={onChangeIDHandler} />
@@ -86,7 +84,4 @@ const CreateAccount = (props: Props) => {
 }
 
 export default CreateAccount;
-function dispatch(arg0: { type: string; payload: any; }) {
-    throw new Error('Function not implemented.');
-}
 

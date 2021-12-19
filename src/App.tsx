@@ -11,6 +11,7 @@ import Secure from './views/Secure/Secure';
 import SeedPhrasePage from "./views/SeedPhrase/SeedPhraseCreation";
 import { ROUTES } from "./const/routeNames";
 import Dashboard from "./views/Dashboard/Dashboard";
+import Unlock from "./views/Unlock/Unlock";
 
 const App = () => {
 
@@ -30,6 +31,7 @@ const App = () => {
           <Route path={ROUTES.SECURE.url} element={<Secure />} />
           <Route path={ROUTES.SEED_PHRASE.url} element={<SeedPhrasePage />} />
           <Route path={ROUTES.DASHBOARD.url} element={<Dashboard />} />
+          <Route path={ROUTES.UNLOCK.url} element={<Unlock />} />
         </Routes>
       </Store>
     </div>

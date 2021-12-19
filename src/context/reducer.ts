@@ -31,6 +31,11 @@ const Reducer = (state: State, action: any) => {
                 ...state,
                 account: action.payload
             };
+        case 'SET_UNLOCK':
+            return {
+                ...state,
+                avtivePage: action.payload
+            }
         default:
             return state;
     }
