@@ -6,6 +6,7 @@ import { ROUTES } from '../../const/routeNames';
 import { ContextMain } from '../../context/store';
 import SeedPhraseContainer from '../../components/common/SeedPhraseContainer';
 import CloseCreateAccnt from '../../components/common/CloseCreateAccnt';
+import { ReducerTypes } from '../../context/reducer';
 
 const SeedPhrasePage = ({ }) => {
 
@@ -20,10 +21,10 @@ const SeedPhrasePage = ({ }) => {
     const navigate = useNavigate();
 
     const clickContinue = () => {
-        navigate(ROUTES.SEED_PHRASE.url);
+        navigate(ROUTES.UNLOCK.url);
     }
     useEffect(() => {
-        dispatch({ type: 'SET_UI', payload: ROUTES.SEED_PHRASE.url });
+        dispatch({ type: 'SET_UI', payload: ROUTES.SEED_PHRASE.url, reducer: ReducerTypes.Main });
     }, [])
 
     return (

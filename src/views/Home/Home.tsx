@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import HeaderBg from '../../components/layouts/HeaderBg'
 import { ROUTES } from '../../const/routeNames';
 import { CreateAccountData, STATUS_CREATE_ACCT } from '../../context/models';
+import { ReducerTypes } from '../../context/reducer';
 import { ContextMain } from '../../context/store';
 import './Home.scss';
 
@@ -66,7 +67,7 @@ const Home = (props: Props) => {
         if( state.activePage ) {
             navigate(state.activePage);
         }
-        dispatch({type: 'SET_UI', payload: ROUTES.HOME.url});
+        dispatch({type: 'SET_UI', payload: ROUTES.HOME.url, reducer: ReducerTypes.Main});
         setInput('');
         setButtonDisabled(true);
     }, [])
@@ -79,7 +80,7 @@ const Home = (props: Props) => {
             status: STATUS_CREATE_ACCT.PENDING_VERIFICATION,
         };
 
-        dispatch({type: 'SET_CREATE_ACCT', payload: data});
+        dispatch({type: 'SET_CREATE_ACCT', payload: data, reducer: ReducerTypes.CreateAccount});
         navigate('/verification');
     }
 

@@ -8,6 +8,7 @@ import { ROUTES } from '../../const/routeNames';
 import { ContextMain } from '../../context/store';
 import ProgressBar from '../../components/common/ProgressBar';
 import CloseCreateAccnt from '../../components/common/CloseCreateAccnt';
+import { ReducerTypes } from '../../context/reducer';
 
 const Secure = ({}) => {
     interface Password {
@@ -48,7 +49,7 @@ const Secure = ({}) => {
         navigate(ROUTES.SEED_PHRASE.url);
     }
     useEffect(()=>{
-        dispatch({type: 'SET_UI', payload: ROUTES.SECURE.url});
+        dispatch({type: 'SET_UI', payload: ROUTES.SECURE.url, reducer: ReducerTypes.Main});
     }, [])
 
     return (
