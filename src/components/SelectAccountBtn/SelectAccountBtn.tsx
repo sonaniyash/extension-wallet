@@ -4,6 +4,7 @@ import { CSSTransition } from 'react-transition-group';
 import { ContextMain } from '../../context/store';
 import './SelectAccountBtn.scss';
 import Modal from 'react-modal';
+import { ROUTES } from '../../const/routeNames';
 
 interface Props {
 }
@@ -18,15 +19,6 @@ interface Accounts {
 Modal.setAppElement('#popup');
 
 const SelectAccountBtn = (props : Props) => {
-    const customStyles = {
-        overlay: {
-            backgroundColor: 'rgba(51, 55, 59, 0.4)',
-          },
-      };
-    const openModal = () => {
-        setIsOpen(!modalIsOpen);
-    }
-
     const TEST_ACCOUNTS = [
         {   
             image: './assets/account-1.png',
@@ -48,14 +40,16 @@ const SelectAccountBtn = (props : Props) => {
         },
         
     ]
+    const customStyles = {
+        overlay: {
+            backgroundColor: 'rgba(51, 55, 59, 0.4)',
+          },
+      };
     
     const [ state, dispatch ] = React.useContext(ContextMain)
     const [accounts, setAccounts] = useState<Array<Accounts>>(TEST_ACCOUNTS)
     const [modalIsOpen, setIsOpen] = React.useState(false);
-    const afterOpenModal = ()=> {
-
-    }
-    
+    const nav = useNavigate();
     const clickAccount = (e: any, accountName: any)=> {
         const newAct = accounts.map( (act)=>{
             act.selected = act.name === accountName ? true : false;
@@ -64,13 +58,21 @@ const SelectAccountBtn = (props : Props) => {
 
         setAccounts(newAct);
     }
+    const openModal = () => {
+        setIsOpen(!modalIsOpen);
+    }
+    const afterOpenModal = ()=> {
 
+    }
     const closeModal = ()=> {
         setIsOpen(false);
     }
-
-
-    
+    const goToCreateNEAR = () => {
+        nav(ROUTES.CREATE_ACCT.url);
+    }
+    const goToCreateHome = () => {
+        nav(ROUTES.HOME.url);
+    }
 
     return (
         <>
@@ -114,8 +116,8 @@ const SelectAccountBtn = (props : Props) => {
                 }
 
                 <div className="account-select-actions">
-                    <a className="account-select-actions__link"><img src="./assets/create-act.png" alt="" />Create Account</a>
-                    <a className="account-select-actions__link"><img src="./assets/import-act.png" alt="" />Import Account</a>
+                    <a className="account-select-actions__link" onClick={goToCreateNEAR}><img src="./assets/create-act.png" alt="" />Create Account</a>
+                    <a className="account-select-actions__link" onClick={goToCreateHome}><img src="./assets/import-act.png" alt="" />Import Account</a>
 
                 </div>
             </Modal>
