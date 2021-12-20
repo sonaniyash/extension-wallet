@@ -1,17 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../const/routeNames';
 import { ContextMain } from '../../context/store';
 import InputWithLabel from '../../components/common/InputWithLabel';
 
 import './Unlock.scss'
+import { ReducerTypes } from '../../context/reducer';
 
 export default function Unlock() {
     const navigate = useNavigate();
     const [isValid, setIsValid] = useState(false)
     const [state, dispatch] = React.useContext(ContextMain)
 
+    useEffect(() => {
+        dispatch({type: 'SET_UI', payload: ROUTES.UNLOCK.url, reducer: ReducerTypes.Main});
+    }, [])
+
     const onChangeNameHandler = ((e: React.ChangeEvent<HTMLInputElement>): void => {
+        // testing Only - REPLACE for backend validation
         if (e.target.value == "Test") {
             setIsValid(true);
         } else {
@@ -20,7 +26,7 @@ export default function Unlock() {
 
     })
     const clickContinue = () => {
-        dispatch({ type: 'SET_UNLOCK', payload: ROUTES.DASHBOARD.url });
+        dispatch({ type: 'SET_UNLOCK', payload: ROUTES.DASHBOARD.url, reducer: ReducerTypes.Main });
         navigate(ROUTES.DASHBOARD.url);
     }
 

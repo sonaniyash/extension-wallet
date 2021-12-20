@@ -5,6 +5,7 @@ import InputVerification from '../../components/common/InputVerification';
 import HeaderBg from '../../components/layouts/HeaderBg'
 import { ROUTES } from '../../const/routeNames';
 import { CreateAccountData, STATUS_CREATE_ACCT } from '../../context/models';
+import { ReducerTypes } from '../../context/reducer';
 import { ContextMain } from '../../context/store';
 import { CREATE_TYPE } from '../Home/Home';
 import './Verification.scss';
@@ -25,14 +26,14 @@ const Verification = (props: Props) => {
 
     const navigate = useNavigate();
     const clickContinue = () => {
-        let data: CreateAccountData = state;
+        let data: CreateAccountData = state.createAccountData;
         data.status = STATUS_CREATE_ACCT.PENDING_NEAR_ACCT;
-        dispatch({type: 'SET_CREATE_ACCT', payload: data});
+        dispatch({type: 'SET_CREATE_ACCT', payload: data, reducer: ReducerTypes.CreateAccount});
         navigate('/createAccount');
     }
 
     useEffect(()=>{
-        dispatch({type: 'SET_UI', payload: ROUTES.VERIFICATION.url});
+        dispatch({type: 'SET_UI', payload: ROUTES.VERIFICATION.url, reducer: ReducerTypes.Main});
     }, [])
 
     useEffect(()=>{

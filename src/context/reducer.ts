@@ -1,44 +1,23 @@
+import AccountReducer from "./reducers/AccountReducer";
+import MainReducer from "./reducers/MainReducer";
 import { State } from "./store";
+
+export const ReducerTypes = {
+    Main: 'MAIN',
+    CreateAccount: 'CREATE-ACCOUNT'
+}
 
 const Reducer = (state: State, action: any) => {
 
-    switch (action.type) {
-        case 'SET_UI':
-            return {
-                ...state,
-                activePage: action.payload
-            };
-        case 'SET_CREATE_ACCT':
-            return {
-                ...state,
-                createAccountData: action.payload
-            };
-        case 'CLEAR_CREATE_ACCT':
-            return {
-                ...state,
-                createAccountData: {
-                    email: '',
-                    phone: '',
-                    type: 0,
-                    firstName: '',
-                    nearAccountId: '',
-                    phrase: '',
-                    status: 0,
-                }
-            };
-        case 'SET_ACCT':
-            return {
-                ...state,
-                account: action.payload
-            };
-        case 'SET_UNLOCK':
-            return {
-                ...state,
-                avtivePage: action.payload
-            }
+    switch (action.reducer) {
+        case ReducerTypes.CreateAccount:
+            return AccountReducer(state,action);
         default:
-            return state;
+            return MainReducer(state,action);
     }
 };
 
 export default Reducer;
+
+
+

@@ -8,6 +8,7 @@ import CloseCreateAccnt from '../../components/common/CloseCreateAccnt';
 import { ROUTES } from '../../const/routeNames';
 import { ContextMain } from '../../context/store';
 import { CreateAccountData } from '../../context/models';
+import { ReducerTypes } from '../../context/reducer';
 
 interface Props {
 
@@ -18,15 +19,15 @@ const CreateAccount = (props: Props) => {
     const [state, dispatch] = React.useContext(ContextMain)
 
     const clickContinue = () => {
-        let data: CreateAccountData = state;
+        let data: CreateAccountData = state.createAccountData;
         data.firstName = nameAccount;
         data.nearAccountId = nameAccountID;
-        dispatch({ type: 'SET_CREATE_ACCT', payload: data });
+        dispatch({ type: 'SET_CREATE_ACCT', payload: data, reducer: ReducerTypes.CreateAccount });
         navigate('/secure');
     }
 
     useEffect(() => {
-        dispatch({ type: 'SET_UI', payload: ROUTES.CREATE_ACCT.url });
+        dispatch({ type: 'SET_UI', payload: ROUTES.CREATE_ACCT.url, reducer: ReducerTypes.Main });
     }, [])
 
     const [wrongAccount, setWrongAccount] = useState(false);

@@ -1,6 +1,7 @@
 import React, { FormEvent, KeyboardEvent, SetStateAction, useRef, useState } from 'react'
 import { useNavigate } from 'react-router';
 import { ROUTES } from '../../const/routeNames';
+import { ReducerTypes } from '../../context/reducer';
 import { ContextMain } from '../../context/store';
 import './CloseCreateAccnt.scss';
 
@@ -13,8 +14,8 @@ const CloseCreateAccnt = (props: Props) => {
 
     const navigate = useNavigate();
     const onClick = () => {
-        dispatch({type: 'CLEAR_CREATE_ACCT'});
-        dispatch({type: 'SET_UI', payload: ROUTES.HOME.url});
+        dispatch({type: 'CLEAR_CREATE_ACCT', reducer: ReducerTypes.CreateAccount});
+        dispatch({type: 'SET_UI', payload: ROUTES.HOME.url, reducer: ReducerTypes.Main});
         navigate(ROUTES.HOME.url);
     }
 
