@@ -94,7 +94,7 @@ const Home = (props: Props) => {
               onPaste={formik.handleChange}
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
-              placeholder={"jhondoe@gmail.com"}
+              placeholder={"johndoe@gmail.com"}
               className="home__selectors__input"
             />
             {!!formik.errors.email && !!formik.touched.email && (
