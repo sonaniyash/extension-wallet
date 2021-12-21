@@ -33,6 +33,7 @@ $btn-padding: 20px;
             &.contact-btn {
                 position: relative;
                 display: block;
+                overflow: hidden;
                 width: calc( 50% - calc($spacing * 2) - calc($btn-padding * 2));
                 height: calc(99px - $btn-padding *2);
                 border-radius: 6px;

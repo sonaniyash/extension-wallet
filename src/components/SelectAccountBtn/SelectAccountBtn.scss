@@ -6,7 +6,7 @@
   padding: 0 10px;
   justify-content: space-between;
   background: #FFFFFF;
-  border: 1px solid #DFDFE0;
+  border: 1px solid $grey-light-3;
   box-sizing: border-box;
   border-radius: 30px;
   position: relative;
@@ -46,7 +46,7 @@
     font-weight: 600;
     font-size: 14px;
     line-height: 19px;
-    color: #A0A0A2;
+    color: $text-400;
   }
 }
 
@@ -106,7 +106,7 @@
 }
 
 .account-select-actions {
-  border-top: 1px solid #DFDFE0;
+  border-top: 1px solid $grey-light-3;
   margin-top: 30px;
   padding: 15px 0px;
   &__link {

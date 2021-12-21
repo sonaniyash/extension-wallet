@@ -31,5 +31,9 @@ export const ROUTES = {
     UNLOCK: {
         title: 'Unlock',
         url:'/unlock'
-    }
+    },
+    CONTACTS: {
+        title: 'Contacts',
+        url: '/contacts'
+    },
 }
