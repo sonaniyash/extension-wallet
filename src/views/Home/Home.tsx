@@ -25,8 +25,8 @@ const Home = (props: Props) => {
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: loginSchema,
-    validateOnMount: false,
-    validateOnBlur: false,
+    validateOnMount: true,
+    validateOnBlur: true,
     validateOnChange: false,
     onSubmit: (values) => {
       dispatch({
@@ -52,9 +52,8 @@ const Home = (props: Props) => {
   }, []);
 
   const changeType = (type: CREATE_TYPE) => {
+    formik.resetForm();
     formik.setFieldValue("type", type);
-    formik.setFieldValue("email", "", false);
-    formik.setFieldValue("phone", "", false);
   };
 
   return (
@@ -121,8 +120,8 @@ const Home = (props: Props) => {
             )}
           </>
         )}
-
         <button
+          disabled={!!formik.touched && !formik.isValid}
           className="button home__button"
           type="submit"
           onClick={(e: any) => formik.handleSubmit(e)}
