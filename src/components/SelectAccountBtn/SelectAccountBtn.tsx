@@ -1,6 +1,5 @@
-import React, { MouseEventHandler, useState } from 'react'
+import React, {  useState } from 'react'
 import { useNavigate } from 'react-router';
-import { CSSTransition } from 'react-transition-group';
 import { ContextMain } from '../../context/store';
 import './SelectAccountBtn.scss';
 import Modal from 'react-modal';
@@ -38,7 +37,6 @@ const SelectAccountBtn = (props : Props) => {
             ammount: 3.33,
             selected: false
         },
-        
     ]
     const customStyles = {
         overlay: {
