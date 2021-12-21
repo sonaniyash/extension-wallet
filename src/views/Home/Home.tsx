@@ -1,109 +1,145 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom';
-import HeaderBg from '../../components/layouts/HeaderBg'
-import { ROUTES } from '../../const/routeNames';
-import { CreateAccountData, STATUS_CREATE_ACCT } from '../../context/models';
-import { ReducerTypes } from '../../context/reducer';
-import { ContextMain } from '../../context/store';
-import './Home.scss';
+import React, { useEffect } from "react";
+import { useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
 
-interface Props {
+import HeaderBg from "../../components/layouts/HeaderBg";
+import { ROUTES } from "../../const/routeNames";
+import { CreateAccountData, STATUS_CREATE_ACCT } from "../../context/models";
+import { ReducerTypes } from "../../context/reducer";
+import { ContextMain } from "../../context/store";
+import { CREATE_TYPE } from "../../const/forms";
+import loginSchema from "../../validation/loginSchema";
 
-}
+import "./Home.scss";
 
-export enum CREATE_TYPE {
-    EMAIL,
-    PHONE
-}
+interface Props {}
 
 const Home = (props: Props) => {
+  const initialValues: CreateAccountData = {
+    type: CREATE_TYPE.EMAIL,
+    email: "",
+    phone: "",
+    status: STATUS_CREATE_ACCT.PENDING_VERIFICATION,
+  };
 
-    const ERROR_MESSAGE: any = {
-        EMAIL: 'Please enter a valid email!',
-        PHONE: 'Please enter a valid phone number!'
-    };
+  const formik = useFormik({
+    initialValues: initialValues,
+    validationSchema: loginSchema,
+    validateOnMount: false,
+    validateOnBlur: false,
+    validateOnChange: false,
+    onSubmit: (values) => {
+      dispatch({
+        type: "SET_CREATE_ACCT",
+        payload: values,
+        reducer: ReducerTypes.CreateAccount,
+      });
+      navigate("/verification");
+    },
+  });
 
-    const [isValid, setIsValid] = useState<boolean | null>(false);
-    const [errorMessage, setErrorMessage] = useState<string | null>('');
-    const [typeLogin, setTypeLogin] = useState<any | null>(CREATE_TYPE.EMAIL);
-    const [buttonDisabled, setButtonDisabled] = useState<boolean | null>(false);
-    const [inputSt, setInput] = useState<string>('');
-    const emailRegex = /\S+@\S+\.\S+/;
-    const phoneRegex = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
-
-    const onChangeInput = (e: any) => {
-        const input = e.target.value;
-        setErrorMessage('');
-        setInput(input);
-        checkTypeValidation(typeLogin);
-        setButtonDisabled(e.currentTarget.value === '');
+  const [state, dispatch] = React.useContext(ContextMain);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (state.activePage) {
+      navigate(state.activePage);
     }
+    dispatch({
+      type: "SET_UI",
+      payload: ROUTES.HOME.url,
+      reducer: ReducerTypes.Main,
+    });
+  }, []);
 
-    const checkTypeValidation = (type: number) => {
-        switch (type) {
-            case CREATE_TYPE.EMAIL:
-                emailRegex.test(inputSt) ? setIsValid(true) : setIsValid(false)
-                break;
-            case CREATE_TYPE.PHONE:
-                phoneRegex.test(inputSt) ? setIsValid(true) : setIsValid(false)
-                break;
-        }
+  const changeType = (type: CREATE_TYPE) => {
+    formik.setFieldValue("type", type);
+    formik.setFieldValue("email", "", false);
+    formik.setFieldValue("phone", "", false);
+  };
 
-        if (!isValid) {
-            setErrorMessage(ERROR_MESSAGE[CREATE_TYPE[type]]);
-        }
-    }
+  return (
+    <main>
+      <HeaderBg>
+        <img className="header-bg__logo" src="./assets/logo.png" />
+      </HeaderBg>
+      <section className="home">
+        <div className="home__selectors">
+          <a
+            className={
+              (formik.values.type === CREATE_TYPE.EMAIL
+                ? " --btn-active"
+                : "") + " home__selectors__button"
+            }
+            onClick={() => changeType(CREATE_TYPE.EMAIL)}
+          >
+            Email
+          </a>
+          <a
+            className={
+              (formik.values.type === CREATE_TYPE.PHONE
+                ? " --btn-active"
+                : "") + " home__selectors__button"
+            }
+            onClick={() => changeType(CREATE_TYPE.PHONE)}
+          >
+            Phone
+          </a>
+        </div>
+        {formik.values.type === CREATE_TYPE.EMAIL && (
+          <>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              value={formik.values.email}
+              onPaste={formik.handleChange}
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              placeholder={"jhondoe@gmail.com"}
+              className="home__selectors__input"
+            />
+            {!!formik.errors.email && !!formik.touched.email && (
+              <p className="error-text"> {formik.errors.email}</p>
+            )}
+          </>
+        )}
+        {formik.values.type === CREATE_TYPE.PHONE && (
+          <>
+            <input
+              type="text"
+              id="phone"
+              name="phone"
+              value={formik.values.phone}
+              onPaste={formik.handleChange}
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              placeholder={"Ex. (373) 378 8383"}
+              className="home__selectors__input"
+            />
+            {!!formik.errors.phone && !!formik.touched.phone && (
+              <p className="error-text"> {formik.errors.phone}</p>
+            )}
+          </>
+        )}
 
-    const [ state, dispatch ] = React.useContext(ContextMain)
-    const navigate = useNavigate();
-    const clickOption = (type: number) => {
-        setErrorMessage('');
-        setInput('');
-        setTypeLogin(type);
-        checkTypeValidation(type);
-    }
+        <button
+          className="button home__button"
+          type="submit"
+          onClick={(e: any) => formik.handleSubmit(e)}
+        >
+          Continue
+        </button>
+        <p>
+          by clicking continue you must agree to near labs{" "}
+          <a> Terms & Conditions</a> ans <a> Privacy Policy</a>
+        </p>
+        <span className="home__question"> Already have NEAR account?</span>
+        <button className="button btn-dark home__button">
+          Login with NEAR
+        </button>
+      </section>
+    </main>
+  );
+};
 
-    useEffect(() => {
-        if( state.activePage ) {
-            navigate(state.activePage);
-        }
-        dispatch({type: 'SET_UI', payload: ROUTES.HOME.url, reducer: ReducerTypes.Main});
-        setInput('');
-        setButtonDisabled(true);
-    }, [])
-
-    const clickContinue = () => {
-        const data: CreateAccountData = {
-            type: typeLogin,
-            email: typeLogin === CREATE_TYPE.EMAIL ? inputSt : '',
-            phone: typeLogin === CREATE_TYPE.PHONE ? inputSt : '',
-            status: STATUS_CREATE_ACCT.PENDING_VERIFICATION,
-        };
-
-        dispatch({type: 'SET_CREATE_ACCT', payload: data, reducer: ReducerTypes.CreateAccount});
-        navigate('/verification');
-    }
-
-    return (
-        <main>
-            <HeaderBg>
-                <img className="header-bg__logo" src='./assets/logo.png' />
-            </HeaderBg>
-            <section className="home">
-                <div className="home__selectors"> 
-                    <a className={ (typeLogin === CREATE_TYPE.EMAIL ? ' --btn-active' : '') + " home__selectors__button"} onClick={()=> { clickOption(CREATE_TYPE.EMAIL) }}>Email</a>
-                    <a className={ (typeLogin === CREATE_TYPE.PHONE ? ' --btn-active' : '') + " home__selectors__button"} onClick={()=> { clickOption(CREATE_TYPE.PHONE)  }}>Phone</a>
-                </div>
-                <input type="text" value={inputSt} onPaste={onChangeInput} onBlur={onChangeInput} onChange={onChangeInput} placeholder={typeLogin === CREATE_TYPE.PHONE ? "Ex. (373) 378 8383" : "jhondoe@gmail.com"} className="home__selectors__input" />
-                {!isValid ? (<p className='error-text'> {errorMessage}</p>) : ''}
-                <button disabled={buttonDisabled || !isValid} className="button home__button" onClick={clickContinue} >Continue</button>
-                <p>by clicking continue you must agree to near labs <a> Terms & Conditions</a>  ans <a> Privacy Policy</a></p>
-                <span className="home__question"> Already have NEAR account?</span>
-                <button className="button btn-dark home__button" >Login with NEAR</button>
-            </section>
-        </main>
-    )
-}
-
-export default Home
-
+export default Home;
