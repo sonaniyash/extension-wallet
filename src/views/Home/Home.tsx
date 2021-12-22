@@ -9,12 +9,14 @@ import { ReducerTypes } from "../../context/reducer";
 import { ContextMain } from "../../context/store";
 import { CREATE_TYPE } from "../../const/forms";
 import loginSchema from "../../validation/loginSchema";
+import { useRegister } from "../../hooks/api/user";
 
 import "./Home.scss";
 
 interface Props {}
 
 const Home = (props: Props) => {
+  const { registerUser, isRegistering } = useRegister();
   const initialValues: CreateAccountData = {
     type: CREATE_TYPE.EMAIL,
     email: "",
@@ -27,8 +29,10 @@ const Home = (props: Props) => {
     validationSchema: loginSchema,
     validateOnMount: true,
     validateOnBlur: true,
-    validateOnChange: false,
-    onSubmit: (values) => {
+    validateOnChange: true,
+    onSubmit: async (values) => {
+      const newUser = await registerUser(values);
+      console.info({ newUser });
       dispatch({
         type: "SET_CREATE_ACCT",
         payload: values,
@@ -97,9 +101,11 @@ const Home = (props: Props) => {
               placeholder={"johndoe@gmail.com"}
               className="home__selectors__input"
             />
-            {!!formik.errors.email && !!formik.touched.email && (
-              <p className="error-text"> {formik.errors.email}</p>
-            )}
+            {!!formik.values.email &&
+              !!formik.touched.email &&
+              !!formik.errors.email && (
+                <p className="error-text"> {formik.errors.email}</p>
+              )}
           </>
         )}
         {formik.values.type === CREATE_TYPE.PHONE && (
@@ -115,18 +121,20 @@ const Home = (props: Props) => {
               placeholder={"Ex. (373) 378 8383"}
               className="home__selectors__input"
             />
-            {!!formik.errors.phone && !!formik.touched.phone && (
-              <p className="error-text"> {formik.errors.phone}</p>
-            )}
+            {!!formik.values.phone &&
+              !!formik.errors.phone &&
+              !!formik.touched.phone && (
+                <p className="error-text"> {formik.errors.phone}</p>
+              )}
           </>
         )}
         <button
-          disabled={!!formik.touched && !formik.isValid}
+          disabled={(!!formik.touched && !formik.isValid) || isRegistering}
           className="button home__button"
           type="submit"
           onClick={(e: any) => formik.handleSubmit(e)}
         >
-          Continue
+          Continue {isRegistering ? "..." : ""}
         </button>
         <p>
           by clicking continue you must agree to near labs{" "}

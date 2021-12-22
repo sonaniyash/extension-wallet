@@ -44,6 +44,7 @@
   },
   "dependencies": {
     "@types/react-router": "^5.1.17",
+    "axios": "^0.24.0",
     "buffer": "^6.0.3",
     "formik": "^2.2.9",
     "near-api-js": "^0.43.1",
@@ -51,6 +52,7 @@
     "react-dom": "^16.14.0",
     "react-hot-loader": "^4.13.0",
     "react-modal": "^3.14.4",
+    "react-query": "^3.34.5",
     "react-router-dom": "^6.0.2",
     "react-transition-group": "^4.4.2",
     "yup": "^0.32.11"
