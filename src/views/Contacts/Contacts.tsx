@@ -8,6 +8,8 @@ import { ReducerTypes } from '../../context/reducer';
 import SelectAccountBtn from '../../components/SelectAccountBtn/SelectAccountBtn';
 import { TEST_CONTACTS } from './ContactTestData';
 import ContactItem from '../../components/ContactItem/ContactItem';
+import { InputSearch } from '../../components/common/InputSearch/InputSearch';
+import { filterArrayObjectByValue } from '../../utils/utils';
 
 interface Props {
 
@@ -27,8 +29,6 @@ const Contacts = (props: Props) => {
     const selectContact = ()=> {}
 
     useEffect(() => {
-        console.log("contacts",contacts)
-
         dispatch({ type: 'SET_UI', payload: ROUTES.CONTACTS.url, reducer: ReducerTypes.Main });
     }, [])
 
@@ -38,12 +38,9 @@ const Contacts = (props: Props) => {
 
     const searchValueInput = (e :any) => {
         setsearchInput(e.target.value);
-        setContactsToShow( contacts.filter((item) => {
-            return JSON.stringify(item).toLowerCase().includes(searchInput.toLowerCase());
-        }) );
+        const contactToShow = filterArrayObjectByValue(searchInput.toLowerCase(), contacts)
+        setContactsToShow(contactToShow);
     }
-
-
 
     return (
         <>
@@ -67,10 +64,7 @@ const Contacts = (props: Props) => {
                 </header>
             </HeaderBg>
             <section className="contacts">
-                <div className="contacts__search">
-                    <input placeholder='Search Contact' onInput={searchValueInput} className="contacts__search__input" type="search" id="search-contacts" />
-                    <a className="contacts__search__add"><img src="./assets/plus.png" alt="" /></a>
-                </div>
+                <InputSearch searchHandler={searchValueInput} />
                 <div className="contacts__list">
                     { 
                         contactsToShow.map( (contact: any) => (<ContactItem key={contact.account} contact={contact} clickHandler={selectContact} />))
