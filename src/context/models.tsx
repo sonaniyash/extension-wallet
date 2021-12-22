@@ -1,6 +1,4 @@
-import { CREATE_TYPE } from "../views/Home/Home";
-
-
+import { CREATE_TYPE } from "../const/forms";
 
 export interface CreateAccountData {
     email?: string,

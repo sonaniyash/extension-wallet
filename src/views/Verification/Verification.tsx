@@ -7,7 +7,7 @@ import { ROUTES } from '../../const/routeNames';
 import { CreateAccountData, STATUS_CREATE_ACCT } from '../../context/models';
 import { ReducerTypes } from '../../context/reducer';
 import { ContextMain } from '../../context/store';
-import { CREATE_TYPE } from '../Home/Home';
+import { CREATE_TYPE } from "../../const/forms";
 import './Verification.scss';
 
 interface Props {

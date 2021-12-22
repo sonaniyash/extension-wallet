@@ -78,7 +78,7 @@ const SelectAccountBtn = (props : Props) => {
         <>
             <a className='select-act' onClick={openModal}>
                 <img className='select-act__img' src="./assets/account-1.png" alt="" />
-                <p className='select-act__name' > jhondoe.near </p>
+                <p className='select-act__name' > johndoe.near </p>
                 <img className='select-act__chevron' src="./assets/chevron-down.png" alt="" />                                            
             </a>
             <Modal
