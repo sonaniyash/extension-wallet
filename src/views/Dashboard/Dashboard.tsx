@@ -1,10 +1,14 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import HeaderBg from '../../components/layouts/HeaderBg';
 import SelectAccountBtn from '../../components/SelectAccountBtn/SelectAccountBtn';
 import TabsContainer from '../../components/common/TabsContainer/TabsContainer';
 import TabsHeader from '../../components/common/TabsHeader/TabsHeader';
 import './Dashboard.scss';
+import CollectibleItem from '../../components/common/CollectibleItem/CollectibleItem';
+import { ContextMain } from '../../context/store';
+import { ReducerTypes } from '../../context/reducer';
+import { ROUTES } from '../../const/routeNames';
 
 interface Props {
 
@@ -12,13 +16,15 @@ interface Props {
 
 const Dashboard = (props: Props) => {
     const navigate = useNavigate();
-
-    const clickContinue = () => {
-        navigate('/secure');
-    }
     const [activeTab, setActive] = useState(0)
     const tab1 = useRef<any>()
     const tab2 = useRef<any>()
+    const [ state, dispatch ] = React.useContext(ContextMain)
+
+    useEffect(() => {
+        dispatch({ type: 'SET_UI', payload: ROUTES.DASHBOARD.url, reducer: ReducerTypes.Main });
+
+    }, [])
 
     return (
         <>
@@ -58,7 +64,11 @@ const Dashboard = (props: Props) => {
                 <TabsContainer tabs={[tab1, tab2]} activeTabId={activeTab}>
                         <>  
                             <div data-tab="0" ref={tab1} className="tab-text">
-                                text tab 1
+                                <CollectibleItem item={0} />
+                                <CollectibleItem item={0} />
+                                <CollectibleItem item={0} />
+                                <CollectibleItem item={0} />
+
                             </div>
                             <div data-tab="1" ref={tab2} className="tab-text">
                                 text tab 2
