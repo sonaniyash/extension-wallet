@@ -1,4 +1,4 @@
-import React, { FormEvent, KeyboardEvent, SetStateAction, useRef, useState } from 'react'
+import React, { FormEvent, KeyboardEvent, SetStateAction, useRef, useState, ClipboardEvent } from 'react'
 import './InputVerification.scss';
 
 interface Props {
@@ -58,23 +58,79 @@ const InputVerification = (props: Props) => {
                 inputs[i].setAttribute("type", "password");
             }, 1000); */
         }
-        
     }   
 
+    const handlePaste = (event: ClipboardEvent<HTMLInputElement>) => {
+      event.clipboardData
+        .getData("Text")
+        .split("")
+        .forEach((val: string, i: number) => {
+          inputs[i].current.value = val;
+          inputs[i].current.focus();
+        });
+    };
+
     return (
-        <div className="code-ver">
-            <label htmlFor="Enter verification code">Enter verification code</label>
-            <div className="input-verification" id="OTPInput">
-                <input className="code-ver__input-container__input"  ref={char1} onInput={inputPress} onKeyDown={keyDownEvent} id="chart0" maxLength={1} />
-                <input className="code-ver__input-container__input"  ref={char2} onInput={inputPress} onKeyDown={keyDownEvent} id="chart1" maxLength={1} />
-                <input className="code-ver__input-container__input"  ref={char3} onInput={inputPress} onKeyDown={keyDownEvent} id="chart2" maxLength={1} />
-                <input className="code-ver__input-container__input"  ref={char4} onInput={inputPress} onKeyDown={keyDownEvent} id="chart3" maxLength={1} />
-                <input className="code-ver__input-container__input"  ref={char5} onInput={inputPress} onKeyDown={keyDownEvent} id="chart4" maxLength={1} />
-                <input className="code-ver__input-container__input"  ref={char6} onInput={inputPress} onKeyDown={keyDownEvent} id="chart5" maxLength={1} />
-            </div>
-                   
+      <div className="code-ver">
+        <label htmlFor="Enter verification code">Enter verification code</label>
+        <div className="input-verification" id="OTPInput">
+          <input
+            className="code-ver__input-container__input"
+            ref={char1}
+            onInput={inputPress}
+            onKeyDown={keyDownEvent}
+            onPaste={handlePaste}
+            id="chart0"
+            maxLength={1}
+          />
+          <input
+            className="code-ver__input-container__input"
+            ref={char2}
+            onInput={inputPress}
+            onKeyDown={keyDownEvent}
+            onPaste={handlePaste}
+            id="chart1"
+            maxLength={1}
+          />
+          <input
+            className="code-ver__input-container__input"
+            ref={char3}
+            onInput={inputPress}
+            onKeyDown={keyDownEvent}
+            onPaste={handlePaste}
+            id="chart2"
+            maxLength={1}
+          />
+          <input
+            className="code-ver__input-container__input"
+            ref={char4}
+            onInput={inputPress}
+            onKeyDown={keyDownEvent}
+            onPaste={handlePaste}
+            id="chart3"
+            maxLength={1}
+          />
+          <input
+            className="code-ver__input-container__input"
+            ref={char5}
+            onInput={inputPress}
+            onKeyDown={keyDownEvent}
+            onPaste={handlePaste}
+            id="chart4"
+            maxLength={1}
+          />
+          <input
+            className="code-ver__input-container__input"
+            ref={char6}
+            onInput={inputPress}
+            onKeyDown={keyDownEvent}
+            onPaste={handlePaste}
+            id="chart5"
+            maxLength={1}
+          />
         </div>
-    )
+      </div>
+    );
 }
 
 export default InputVerification
