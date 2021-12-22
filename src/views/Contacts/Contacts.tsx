@@ -17,6 +17,8 @@ const Contacts = (props: Props) => {
     const navigate = useNavigate();
     const [, dispatch] = React.useContext(ContextMain);
     const [contacts, setContacts] = useState(TEST_CONTACTS);
+    const [searchInput, setsearchInput] = useState('');
+    const [contactsToShow, setContactsToShow] = useState(contacts);
 
     const back = ()=> {
         navigate(ROUTES.DASHBOARD.url);
@@ -29,6 +31,17 @@ const Contacts = (props: Props) => {
 
         dispatch({ type: 'SET_UI', payload: ROUTES.CONTACTS.url, reducer: ReducerTypes.Main });
     }, [])
+
+    useEffect( ()=>{
+       
+    } ,[searchInput])
+
+    const searchValueInput = (e :any) => {
+        setsearchInput(e.target.value);
+        setContactsToShow( contacts.filter((item) => {
+            return JSON.stringify(item).toLowerCase().includes(searchInput.toLowerCase());
+        }) );
+    }
 
 
 
@@ -55,12 +68,12 @@ const Contacts = (props: Props) => {
             </HeaderBg>
             <section className="contacts">
                 <div className="contacts__search">
-                    <input placeholder='Search Contact' className="contacts__search__input" type="search" id="search-contacts" />
+                    <input placeholder='Search Contact' onInput={searchValueInput} className="contacts__search__input" type="search" id="search-contacts" />
                     <a className="contacts__search__add"><img src="./assets/plus.png" alt="" /></a>
                 </div>
                 <div className="contacts__list">
                     { 
-                        contacts.map( (contact: any) => (<ContactItem key={contact.account} contact={contact} clickHandler={selectContact} />))
+                        contactsToShow.map( (contact: any) => (<ContactItem key={contact.account} contact={contact} clickHandler={selectContact} />))
                     }
                 </div>
             </section>
