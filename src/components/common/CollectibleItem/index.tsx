@@ -2,7 +2,12 @@ import React, { useEffect } from "react";
 
 import "./styles.scss";
 
-const CollectibleItem = () => {
+interface Props {
+  item: any;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const CollectibleItem = ({ item }: Props) => {
   useEffect(() => {}, []);
 
   const clickItem = () => {};
