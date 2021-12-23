@@ -1,6 +1,7 @@
+@import './../../styles/variables.scss';
 
 $bg:#F5F5F5;
-$border: #DFDFE0;
+$border: $grey-light-3;
 
 .header-bg {
     position: relative;

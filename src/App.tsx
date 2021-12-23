@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Home from "./views/Home/Home";
 import CreateAccount from "./views/CreateAccount/CreateAccount";
-import Login from "./views/Login/Login";
 import Store from "./context/store";
 import Verification from "./views/Verification/Verification";
 import Secure from "./views/Secure/Secure";
@@ -13,6 +12,7 @@ import SeedPhrasePage from "./views/SeedPhrase/SeedPhraseCreation";
 import { ROUTES } from "./const/routeNames";
 import Dashboard from "./views/Dashboard/Dashboard";
 import Unlock from "./views/Unlock/Unlock";
+import Contacts from "./views/Contacts/Contacts";
 
 const App = () => {
   const navigate = useNavigate();
@@ -42,6 +42,7 @@ const App = () => {
             <Route path={ROUTES.SEED_PHRASE.url} element={<SeedPhrasePage />} />
             <Route path={ROUTES.DASHBOARD.url} element={<Dashboard />} />
             <Route path={ROUTES.UNLOCK.url} element={<Unlock />} />
+            <Route path={ROUTES.CONTACTS.url} element={<Contacts />} />
           </Routes>
         </Store>
       </QueryClientProvider>
