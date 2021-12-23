@@ -11,7 +11,7 @@ import { CREATE_TYPE } from "../../const/forms";
 import loginSchema from "../../validation/loginSchema";
 import { useRegister } from "../../hooks/api/user";
 
-import "./Home.scss";
+import "./styles.scss";
 
 interface Props {}
 

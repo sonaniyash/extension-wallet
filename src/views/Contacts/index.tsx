@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react'
+
 import HeaderBg from '../../components/layouts/HeaderBg'
-import './Contacts.scss';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../const/routeNames';
 import { ContextMain } from '../../context/store';
 import { ReducerTypes } from '../../context/reducer';
-import SelectAccountBtn from '../../components/SelectAccountBtn/SelectAccountBtn';
-import { TEST_CONTACTS } from './ContactTestData';
-import ContactItem from '../../components/ContactItem/ContactItem';
-import { InputSearch } from '../../components/common/InputSearch/InputSearch';
+import SelectAccountBtn from '../../components/SelectAccountBtn';
+import { TEST_CONTACTS } from './mock';
+import ContactItem from '../../components/ContactItem';
+import { InputSearch } from '../../components/common/InputSearch';
 import { filterArrayObjectByValue } from '../../utils/utils';
+
+import './styles.scss';
 
 interface Props {
 

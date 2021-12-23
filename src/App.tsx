@@ -1,18 +1,20 @@
 import * as React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
-import "./App.scss";
 import { useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import Home from "./views/Home/Home";
-import CreateAccount from "./views/CreateAccount/CreateAccount";
+
+import Home from "./views/Home";
+import CreateAccount from "./views/CreateAccount";
 import Store from "./context/store";
-import Verification from "./views/Verification/Verification";
-import Secure from "./views/Secure/Secure";
-import SeedPhrasePage from "./views/SeedPhrase/SeedPhraseCreation";
+import Verification from "./views/Verification";
+import Secure from "./views/Secure";
+import SeedPhrasePage from "./views/SeedPhrase";
 import { ROUTES } from "./const/routeNames";
-import Dashboard from "./views/Dashboard/Dashboard";
-import Unlock from "./views/Unlock/Unlock";
-import Contacts from "./views/Contacts/Contacts";
+import Dashboard from "./views/Dashboard";
+import Unlock from "./views/Unlock";
+import Contacts from "./views/Contacts";
+
+import "./styles.scss";
 
 const App = () => {
   const navigate = useNavigate();

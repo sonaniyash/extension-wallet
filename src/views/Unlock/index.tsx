@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+
 import { ROUTES } from '../../const/routeNames';
 import { ContextMain } from '../../context/store';
 import InputWithLabel from '../../components/common/InputWithLabel';
-
-import './Unlock.scss'
 import { ReducerTypes } from '../../context/reducer';
+
+import './styles.scss'
 
 export default function Unlock() {
     const navigate = useNavigate();

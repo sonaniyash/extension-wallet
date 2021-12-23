@@ -7,8 +7,8 @@ import "./popup.scss";
 
 var mountNode = document.getElementById("popup");
 ReactDOM.render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>,
-    mountNode
-  );
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  mountNode
+);
