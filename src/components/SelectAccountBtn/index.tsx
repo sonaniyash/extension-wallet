@@ -2,12 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import Modal from "react-modal";
 
-import { ContextMain } from "../../context/store";
 import { ROUTES } from "../../const/routeNames";
 
 import "./styles.scss";
-
-interface Props {}
 
 interface Accounts {
   image: string;
@@ -18,7 +15,7 @@ interface Accounts {
 
 Modal.setAppElement("#popup");
 
-const SelectAccountBtn = (props: Props) => {
+const SelectAccountBtn = () => {
   const TEST_ACCOUNTS = [
     {
       image: "./assets/account-1.png",
@@ -45,7 +42,6 @@ const SelectAccountBtn = (props: Props) => {
     },
   };
 
-  const [state, dispatch] = React.useContext(ContextMain);
   const [accounts, setAccounts] = useState<Array<Accounts>>(TEST_ACCOUNTS);
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const nav = useNavigate();
@@ -57,16 +53,21 @@ const SelectAccountBtn = (props: Props) => {
 
     setAccounts(newAct);
   };
+
   const openModal = () => {
     setIsOpen(!modalIsOpen);
   };
+
   const afterOpenModal = () => {};
+
   const closeModal = () => {
     setIsOpen(false);
   };
+
   const goToCreateNEAR = () => {
     nav(ROUTES.CREATE_ACCT.url);
   };
+
   const goToCreateHome = () => {
     nav(ROUTES.HOME.url);
   };

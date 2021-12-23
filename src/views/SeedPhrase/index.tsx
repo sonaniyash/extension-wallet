@@ -10,10 +10,10 @@ import { ReducerTypes } from "../../context/reducer";
 
 import "./styles.scss";
 
-const SeedPhrasePage = ({}) => {
+const SeedPhrasePage = () => {
   const [, dispatch] = React.useContext(ContextMain);
 
-  const [seed, setseed] = useState<any>([
+  const [seed] = useState<any>([
     "house",
     "engage",
     "fethear",

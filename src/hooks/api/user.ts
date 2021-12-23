@@ -6,7 +6,7 @@ export const useRegister = () => {
   const { mutateAsync, isLoading } = useMutation(
     (accountData: CreateAccountData) => api.registerUser(accountData),
     {
-      onSuccess: (user) => {
+      onSuccess: () => {
         console.log("User registered successfully");
       },
       onError: (e) => {

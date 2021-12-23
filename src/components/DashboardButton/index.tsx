@@ -1,7 +1,4 @@
 import React, { MouseEventHandler } from "react";
-import { useNavigate } from "react-router";
-
-import { ContextMain } from "../../context/store";
 
 import "./styles.scss";
 
@@ -11,11 +8,7 @@ interface Props {
   type: string;
 }
 
-const DashboardButton = ({ label, onClick, type }: Props) => {
-  const [state, dispatch] = React.useContext(ContextMain);
-
-  const navigate = useNavigate();
-
+const DashboardButton = ({ onClick, type }: Props) => {
   return (
     <>
       {type === "contact" ? (

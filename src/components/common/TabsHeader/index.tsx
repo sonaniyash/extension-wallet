@@ -12,7 +12,7 @@ const TabsHeader = ({ setActive, tabsHeader }: Props) => {
   const indicator = useRef<HTMLInputElement | any>();
   const tabContainer = useRef<any>();
 
-  let indi = 0;
+  const indi = 0;
 
   useEffect(() => {
     indicator.current.style.marginLeft = indi + "px";

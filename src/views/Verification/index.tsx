@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import CloseCreateAccnt from "../../components/common/CloseCreateAccnt";
@@ -12,16 +12,14 @@ import { CREATE_TYPE } from "../../const/forms";
 
 import "./styles.scss";
 
-interface Props {}
-
-const Verification = (props: Props) => {
+const Verification = () => {
   const TITLE_NAME = ROUTES.VERIFICATION.title;
 
   const [state, dispatch] = React.useContext(ContextMain);
   const [isValid, setisValid] = useState(false);
-  const [code, setCode] = useState<any>(0);
-  const [type, settype] = useState(state.createAccountData.type);
-  const [emailPhone, setemailPhone] = useState(
+  const [code, setCode] = useState<string>("");
+  const [type] = useState(state.createAccountData.type);
+  const [emailPhone] = useState(
     type === CREATE_TYPE.EMAIL
       ? state.createAccountData.email
       : state.createAccountData.phone
@@ -29,7 +27,7 @@ const Verification = (props: Props) => {
 
   const navigate = useNavigate();
   const clickContinue = () => {
-    let data: CreateAccountData = state.createAccountData;
+    const data: CreateAccountData = state.createAccountData;
     data.status = STATUS_CREATE_ACCT.PENDING_NEAR_ACCT;
     dispatch({
       type: "SET_CREATE_ACCT",

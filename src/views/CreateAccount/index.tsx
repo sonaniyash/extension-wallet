@@ -12,14 +12,12 @@ import { ReducerTypes } from "../../context/reducer";
 
 import "./styles.scss";
 
-interface Props {}
-
-const CreateAccount = (props: Props) => {
+const CreateAccount = () => {
   const navigate = useNavigate();
   const [state, dispatch] = React.useContext(ContextMain);
 
   const clickContinue = () => {
-    let data: CreateAccountData = state.createAccountData;
+    const data: CreateAccountData = state.createAccountData;
     data.firstName = nameAccount;
     data.nearAccountId = nameAccountID;
     dispatch({

@@ -33,7 +33,7 @@ const InputVerification = (props: Props) => {
 
   const inputPress = (event: FormEvent<HTMLInputElement>) => {
     const i = parseInt(event.currentTarget.id.substring(5, 6));
-    let upper = inputs[i].current.value;
+    const upper = inputs[i].current.value;
     inputs[i].current.value = upper.toUpperCase(); // Converts to Upper case. Remove .toUpperCase() if conversion isnt required.
     if (i === inputs.length - 1 && inputs[i].current.value !== "") {
       // return true;

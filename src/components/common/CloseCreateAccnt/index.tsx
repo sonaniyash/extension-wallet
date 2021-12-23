@@ -6,10 +6,9 @@ import { ContextMain } from "../../../context/store";
 
 import "./styles.scss";
 
-interface Props {}
 
-const CloseCreateAccnt = (props: Props) => {
-  const [state, dispatch] = React.useContext(ContextMain);
+const CloseCreateAccnt = () => {
+  const [, dispatch] = React.useContext(ContextMain);
 
   const navigate = useNavigate();
   const onClick = () => {

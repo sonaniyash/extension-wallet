@@ -13,9 +13,7 @@ import { useRegister } from "../../hooks/api/user";
 
 import "./styles.scss";
 
-interface Props {}
-
-const Home = (props: Props) => {
+const Home = () => {
   const { registerUser, isRegistering } = useRegister();
   const initialValues: CreateAccountData = {
     type: CREATE_TYPE.EMAIL,

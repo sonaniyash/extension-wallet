@@ -12,14 +12,12 @@ import { ROUTES } from "../../const/routeNames";
 
 import "./styles.scss";
 
-interface Props {}
-
-const Dashboard = (props: Props) => {
+const Dashboard = () => {
   const navigate = useNavigate();
 
-  const clickContinue = () => {
-    navigate("/secure");
-  };
+  // const clickContinue = () => {
+  //   navigate("/secure");
+  // };
 
   const goToContacts = () => {
     navigate(ROUTES.CONTACTS.url);
@@ -28,7 +26,7 @@ const Dashboard = (props: Props) => {
   const [activeTab, setActive] = useState(0);
   const tab1 = useRef<any>();
   const tab2 = useRef<any>();
-  const [state, dispatch] = React.useContext(ContextMain);
+  const [, dispatch] = React.useContext(ContextMain);
 
   useEffect(() => {
     dispatch({

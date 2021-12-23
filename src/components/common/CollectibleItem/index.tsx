@@ -2,11 +2,7 @@ import React, { useEffect } from "react";
 
 import "./styles.scss";
 
-interface Props {
-  item: any;
-}
-
-const CollectibleItem = ({ item }: Props) => {
+const CollectibleItem = () => {
   useEffect(() => {}, []);
 
   const clickItem = () => {};

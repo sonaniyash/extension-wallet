@@ -12,13 +12,13 @@ import { ReducerTypes } from "../../context/reducer";
 
 import "./styles.scss";
 
-const Secure = ({}) => {
+const Secure = () => {
   interface Password {
     password: string;
     repeatPassword: string;
   }
 
-  const [state, dispatch] = React.useContext(ContextMain);
+  const [, dispatch] = React.useContext(ContextMain);
   const [isValid, setIsValid] = useState<boolean | null>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>("");
   const [buttonDisabled, setButtonDisabled] = useState<boolean | null>(false);
