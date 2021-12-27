@@ -26,7 +26,7 @@ const Dashboard = () => {
   const [activeTab, setActive] = useState(0);
   const tab1 = useRef<any>();
   const tab2 = useRef<any>();
-  const [state, dispatch] = React.useContext(ContextMain);
+  const [, dispatch] = React.useContext(ContextMain);
 
   useEffect(() => {
     dispatch({
