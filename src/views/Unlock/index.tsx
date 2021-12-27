@@ -61,7 +61,7 @@ export default function Unlock() {
       />
       <button
         disabled={!isValid}
-        className="button unlock__button"
+        className="button"
         onClick={clickContinue}
       >
         Unlock
