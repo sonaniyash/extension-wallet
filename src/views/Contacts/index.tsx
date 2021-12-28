@@ -118,7 +118,7 @@ const Contacts = () => {
       >
         <ModalContent>
             <CreateButton onClick={createContact} > New Contact</CreateButton>
-            <ImportButton onClick={importContact} > Import Account</ImportButton>
+            <ImportButton onClick={importContact} > Import Contacts</ImportButton>
         </ModalContent>
       </Modal>
     </>
