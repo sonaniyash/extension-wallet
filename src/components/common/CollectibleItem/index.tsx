@@ -14,7 +14,7 @@ const CollectibleItem = ({ item }: Props) => {
 
   return (
     <>
-      <a className="collectible" onClick={clickItem}>
+      <div className="collectible" onClick={clickItem}>
         <img className="collectible__img" />
         <div className="collectible__body">
           <span className="collectible__body__title">Digital Ninja</span>
@@ -27,7 +27,7 @@ const CollectibleItem = ({ item }: Props) => {
           src="./assets/chevron-r-black.svg"
           alt=""
         />
-      </a>
+      </div>
     </>
   );
 };

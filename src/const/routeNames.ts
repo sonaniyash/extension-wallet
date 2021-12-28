@@ -34,4 +34,10 @@ export const ROUTES = {
     title: "Contacts",
     url: "/contacts",
   },
+  CREATE_CONTACT: {
+    url: "/create-contact",
+  },
+  IMPORT_CONTACT: {
+    url: "/import-contact",
+  }
 };

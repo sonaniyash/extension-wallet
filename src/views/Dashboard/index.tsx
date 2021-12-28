@@ -155,7 +155,7 @@ const Dashboard = () => {
             <img
               className="chevron"
               src="./assets/chevron-r-black.svg"
-              alt=""
+              alt="chevron go to page"
             />
           </a>
           <a className="web3-btn dash-btn">
@@ -163,7 +163,7 @@ const Dashboard = () => {
             <img
               className="chevron"
               src="./assets/chevron-r-white.svg"
-              alt=""
+              alt="chevron go to page"
             />
             <span className="web3-btn__notification">12 Connected</span>
           </a>
