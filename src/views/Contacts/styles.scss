@@ -5,3 +5,17 @@
     @include page-padding();
 
 }
+
+.modal-create-account {
+    width: 259px;
+    top: 24%;
+    position: absolute;
+    padding: 17px;
+    margin: 66px 30px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgb(204, 204, 204);
+    overflow: auto;
+    outline: none;
+}
