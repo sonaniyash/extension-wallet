@@ -13,7 +13,7 @@ import SelectAccountBtn from "../../components/SelectAccountBtn";
 
 import { ContactIcon, DetailSection, EditContact, HeaderContact, SeeTransContact, SubtitleEmail, NameH2 } from "./styles";
 import { Contact } from "../../components/ContactItem";
-import { TEST_CONTACTS } from "../Contacts/mock";
+import { TEST_CONTACTS } from "../../mock/mock";
 import TabsHeader from "../../components/common/TabsHeader";
 import TabsContainer from "../../components/common/TabsContainer";
 import CollectibleItem from "../../components/common/CollectibleItem";
@@ -24,6 +24,9 @@ const DetailContacts = () => {
   const navigate = useNavigate();
   const back = () => {
     navigate(ROUTES.CONTACTS.url);
+  };
+  const home = () => {
+    navigate(ROUTES.DASHBOARD.url);
   };
 
   const [contact, setcontact] = useState<Contact | null>(TEST_CONTACTS[0])
@@ -50,7 +53,7 @@ const DetailContacts = () => {
           <a onClick={back}>
             <img src={backIcon} alt="" />
           </a>
-          <a>
+          <a onClick={home}>
             <img src={homeIcon} alt="" />
           </a>
           <SelectAccountBtn />

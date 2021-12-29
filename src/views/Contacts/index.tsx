@@ -7,25 +7,32 @@ import { ROUTES } from "../../const/routeNames";
 import { ContextMain } from "../../context/store";
 import { ReducerTypes } from "../../context/reducer";
 import SelectAccountBtn from "../../components/SelectAccountBtn";
-import { TEST_CONTACTS } from "./mock";
 import ContactItem from "../../components/ContactItem";
 import { InputSearch } from "../../components/common/InputSearch";
 import { filterArrayObjectByValue } from "../../utils/utils";
+import { useGetContacts } from "../../hooks/api/contacts";
 
 import "./styles.scss";
 import { CreateButton, ImportButton, ModalContent } from "./styles";
+
 
 Modal.setAppElement("#popup");
 
 const Contacts = () => {
   const navigate = useNavigate();
   const [, dispatch] = React.useContext(ContextMain);
-  const [contacts] = useState(TEST_CONTACTS);
+
+  const {contacts, isSearching} = useGetContacts();
+
   const [searchInput, setsearchInput] = useState("");
   const [contactsToShow, setContactsToShow] = useState(contacts);
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   const back = () => {
+    navigate(ROUTES.DASHBOARD.url);
+  };
+
+  const home = () => {
     navigate(ROUTES.DASHBOARD.url);
   };
 
@@ -45,7 +52,7 @@ const Contacts = () => {
     setsearchInput(e.target.value);
     const contactToShow = filterArrayObjectByValue(
       searchInput.toLowerCase(),
-      contacts
+      contacts && contacts ? contacts : []
     );
     setContactsToShow(contactToShow);
   };
@@ -76,7 +83,9 @@ const Contacts = () => {
     });
   }, []);
 
-  useEffect(() => {}, [searchInput]);
+  useEffect(() => {
+    setContactsToShow(contacts);
+  }, [contacts]);
 
   return (
     <>
@@ -85,7 +94,7 @@ const Contacts = () => {
           <a onClick={back}>
             <img src="./assets/back-icon.png" alt="" />
           </a>
-          <a>
+          <a onClick={home}>
             <img src="./assets/home-icon.png" alt="" />
           </a>
           <SelectAccountBtn />
@@ -102,16 +111,18 @@ const Contacts = () => {
       <section className="contacts">
         <InputSearch addHandler={addContactHandler} searchHandler={searchValueInput} />
         <div className="contacts__list">
-          {contactsToShow.map((contact: any) => (
+          { isSearching ? "Searching..." : ""}
+          {contactsToShow ? contactsToShow.map((contact: any) => (
             <ContactItem
               key={contact.account}
               contact={contact}
               clickHandler={selectContact}
             />
-          ))}
+          )) : ''}
         </div>
       </section>
       <Modal
+        id="selectContact"
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}

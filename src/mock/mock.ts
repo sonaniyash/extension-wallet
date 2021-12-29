@@ -1,4 +1,4 @@
-import { Contact } from "../../components/ContactItem";
+import { Contact } from "../components/ContactItem";
 
 export const TEST_CONTACTS: Array<Contact> = [
   {
@@ -42,5 +42,26 @@ export const TEST_CONTACTS: Array<Contact> = [
     lastName: "Mendez",
     imgUrl: "",
     account: "mendezgd.near",
+  },
+];
+
+export  const TEST_ACCOUNTS = [
+  {
+    image: "./assets/account-1.png",
+    name: "jhonsdoe.near",
+    ammount: 0.13,
+    selected: true,
+  },
+  {
+    image: "./assets/account-2.png",
+    name: "jhons.near",
+    ammount: 2.24,
+    selected: false,
+  },
+  {
+    image: "./assets/account-3.png",
+    name: "mikse.near",
+    ammount: 3.33,
+    selected: false,
   },
 ];
