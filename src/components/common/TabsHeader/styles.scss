@@ -1,6 +1,6 @@
 @import '../../../styles/variables.scss';
 
-.tab-bar {
+.tabbar {
   margin: 30px auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -12,7 +12,7 @@
 }
 
 .tab {
-  max-width: 181px;
+  max-width: attr(data-width);
   padding: 17px 0;
   background: white;
   color: #607D8B;
@@ -31,7 +31,7 @@
 }
 
 .indicator {
-  width: 181px;
+  width: attr(data-width);
   height: 3px;
   background: #33373B;
   position: absolute;

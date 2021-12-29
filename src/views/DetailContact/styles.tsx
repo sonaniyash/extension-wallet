@@ -63,7 +63,6 @@ const NameH2 = styled.h2`
 
 const SubtitleEmail = styled.span`
     align-self: flex-start;
-    margin: 10px 0 2px 0;
     font-weight: 500;
     font-size: 14px;
     line-height: 19px;
