@@ -8,6 +8,7 @@ export interface CreateAccountData {
   nearAccountId?: string;
   phrase?: string;
   status?: STATUS_CREATE_ACCT;
+  passcode?: string;
 }
 
 export enum STATUS_CREATE_ACCT {
