@@ -15,6 +15,7 @@ import Unlock from "./views/Unlock";
 import Contacts from "./views/Contacts";
 
 import "./styles.scss";
+import DetailContacts from "./views/DetailContact";
 
 const App = () => {
   const navigate = useNavigate();
@@ -45,6 +46,8 @@ const App = () => {
             <Route path={ROUTES.DASHBOARD.url} element={<Dashboard />} />
             <Route path={ROUTES.UNLOCK.url} element={<Unlock />} />
             <Route path={ROUTES.CONTACTS.url} element={<Contacts />} />
+            <Route path={ROUTES.DETAIL_CONTACT.url} element={<DetailContacts/>}
+            />
           </Routes>
         </Store>
       </QueryClientProvider>

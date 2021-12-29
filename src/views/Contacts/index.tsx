@@ -29,17 +29,17 @@ const Contacts = () => {
     navigate(ROUTES.DASHBOARD.url);
   };
 
-  const selectContact = () => {};
+  const selectContact = (id: string) => {
+    navigate(ROUTES.DETAIL_CONTACT.url.replace(':id', id));
+  };
 
-  useEffect(() => {
-    dispatch({
-      type: "SET_UI",
-      payload: ROUTES.CONTACTS.url,
-      reducer: ReducerTypes.Main,
-    });
-  }, []);
+  const importContact = ()=> {
+    navigate(ROUTES.IMPORT_CONTACT.url);
+  }
 
-  useEffect(() => {}, [searchInput]);
+  const createContact = ()=> {
+    navigate(ROUTES.CREATE_CONTACT.url);
+  }
 
   const searchValueInput = (e: any) => {
     setsearchInput(e.target.value);
@@ -67,14 +67,16 @@ const Contacts = () => {
       backgroundColor: "rgba(51, 55, 59, 0.4)",
     },
   };
+  
+  useEffect(() => {
+    dispatch({
+      type: "SET_UI",
+      payload: ROUTES.CONTACTS.url,
+      reducer: ReducerTypes.Main,
+    });
+  }, []);
 
-  const importContact = ()=> {
-    navigate(ROUTES.IMPORT_CONTACT.url);
-  }
-
-  const createContact = ()=> {
-    navigate(ROUTES.CREATE_CONTACT.url);
-  }
+  useEffect(() => {}, [searchInput]);
 
   return (
     <>

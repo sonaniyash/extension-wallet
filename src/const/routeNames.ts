@@ -39,5 +39,8 @@ export const ROUTES = {
   },
   IMPORT_CONTACT: {
     url: "/import-contact",
+  },
+  DETAIL_CONTACT: {
+    url: "/detail-contact/:id",
   }
 };

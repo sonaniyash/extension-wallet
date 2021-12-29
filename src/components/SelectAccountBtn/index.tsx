@@ -4,6 +4,8 @@ import Modal from "react-modal";
 
 import { ROUTES } from "../../const/routeNames";
 
+import accountImg from "../../public/assets/account-1.png";
+import chevronImg from "../../public/assets/chevron-down.png";
 import "./styles.scss";
 
 interface Accounts {
@@ -75,11 +77,11 @@ const SelectAccountBtn = () => {
   return (
     <>
       <a className="select-act" onClick={openModal}>
-        <img className="select-act__img" src="./assets/account-1.png" alt="" />
+        <img className="select-act__img" src={accountImg} alt="" />
         <p className="select-act__name"> johndoe.near </p>
         <img
           className="select-act__chevron"
-          src="./assets/chevron-down.png"
+          src={chevronImg}
           alt=""
         />
       </a>
