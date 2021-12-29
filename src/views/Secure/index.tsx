@@ -11,6 +11,8 @@ import CloseCreateAccnt from "../../components/common/CloseCreateAccnt";
 import { ReducerTypes } from "../../context/reducer";
 
 import "./styles.scss";
+import InputVerification from "../../components/common/InputVerification";
+import { CreateAccountData } from "../../context/models";
 
 const Secure = () => {
   interface Password {
@@ -18,10 +20,16 @@ const Secure = () => {
     repeatPassword: string;
   }
 
-  const [, dispatch] = React.useContext(ContextMain);
+  const [state, dispatch] = React.useContext(ContextMain);
   const [isValid, setIsValid] = useState<boolean | null>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>("");
   const [buttonDisabled, setButtonDisabled] = useState<boolean | null>(false);
+  const [code, setCode] = useState<string>("");
+  const [repeatCode, setRepeatCode] = useState<string>("");
+  const email = useState(
+    state.createAccountData.email
+  );
+
   const initialState: Password = {
     password: "",
     repeatPassword: "",
@@ -47,10 +55,22 @@ const Secure = () => {
     }
   }, [formState]);
 
+  useEffect(() => {
+    setIsValid(code === repeatCode && code.length === 6);
+  }, [code, repeatCode]);
+
   const navigate = useNavigate();
 
   const clickContinue = () => {
-    navigate(ROUTES.SEED_PHRASE.url);
+    const data: CreateAccountData = state.createAccountData;
+    data.passcode = code;
+    dispatch({
+      type: "SET_CREATE_ACCT",
+      payload: data,
+      reducer: ReducerTypes.CreateAccount,
+    });
+    navigate("/secure");
+    navigate(ROUTES.DASHBOARD.url);
   };
   useEffect(() => {
     dispatch({
@@ -75,31 +95,13 @@ const Secure = () => {
             Keep your apps safe from other with access to your computer.
           </p>
           <label htmlFor="password" className="secure__label">
-            Password
+            Passcode
           </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formState.password}
-            onBlur={onChange}
-            onChange={onChange}
-            placeholder=""
-            className="secure__selectors__input"
-          />
+          <InputVerification codeSet={setCode} />
           <label htmlFor="repeatPassword" className="secure__label">
-            Repeat Password
+            Repeat Passcode
           </label>
-          <input
-            type="password"
-            id="password"
-            name="repeatPassword"
-            value={formState.repeatPassword}
-            onBlur={onChange}
-            onChange={onChange}
-            placeholder=""
-            className="secure__selectors__input"
-          />
+          <InputVerification codeSet={setRepeatCode} />
           {!isValid ? <p className="error-text"> {errorMessage}</p> : ""}
           <button
             disabled={buttonDisabled || !isValid}
@@ -108,9 +110,11 @@ const Secure = () => {
           >
             Continue
           </button>
+          <div className="email-label"> {email}</div>
+
           <p>
-            by clicking continue you must agree to near labs{" "}
-            <a> Terms & Conditions</a> ans <a> Privacy Policy</a>
+            By creating a NEAR account, you agree to the NEAR<br />
+            Wallet <a>Terms of Service</a> and <a>Privacy Policy</a>.
           </p>
         </section>
       </form>

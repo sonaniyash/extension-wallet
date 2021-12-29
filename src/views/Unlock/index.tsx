@@ -3,15 +3,24 @@ import { useNavigate } from "react-router-dom";
 
 import { ROUTES } from "../../const/routeNames";
 import { ContextMain } from "../../context/store";
-import InputWithLabel from "../../components/common/InputWithLabel";
 import { ReducerTypes } from "../../context/reducer";
+import InputVerification from "../../components/common/InputVerification";
 
 import "./styles.scss";
 
 export default function Unlock() {
   const navigate = useNavigate();
   const [isValid, setIsValid] = useState(false);
-  const [, dispatch] = React.useContext(ContextMain);
+  const [state, dispatch] = React.useContext(ContextMain);
+  const [code, setCode] = useState<string>("");
+  const passcode = useState(
+    state.createAccountData.passcode
+  );
+
+  useEffect(() => {
+    setIsValid(code.length === 6 && code === String(passcode[0]));
+  }, [code]);
+
 
   useEffect(() => {
     dispatch({
@@ -21,16 +30,6 @@ export default function Unlock() {
     });
   }, []);
 
-  const onChangeNameHandler = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    // testing Only - REPLACE for backend validation
-    if (e.target.value == "Test") {
-      setIsValid(true);
-    } else {
-      setIsValid(false);
-    }
-  };
   const clickContinue = () => {
     dispatch({
       type: "SET_UNLOCK",
@@ -51,14 +50,9 @@ export default function Unlock() {
 
       <h1>Welcome back!</h1>
       <span className="unlock__text">
-        Please enter the password to <br /> unlock this wallet
+        Please enter the passcode to <br /> unlock this wallet
       </span>
-
-      <InputWithLabel
-        type={"password"}
-        label="Password"
-        onChange={onChangeNameHandler}
-      />
+      <InputVerification codeSet={setCode} />
       <button
         disabled={!isValid}
         className="button"
