@@ -6,43 +6,61 @@ export const TEST_CONTACTS: Array<Contact> = [
     id: "7",
     firstName: "Esther",
     lastName: "Howard",
+    fullName: "Esther Howard",
+    phone: "+3346 44446464",
     imgUrl: "",
     account: "ester.near",
+    email: "ester@test.com"
   },
   {
     id: "1",
     firstName: "Devon",
     lastName: "Lane",
+    fullName: "Devon Lane",
+    phone: "+3346 44446464",
     imgUrl: "",
     account: "devon.near",
+    email: "devon@test.com"
   },
   {
     id: "2",
     firstName: "Scott",
     lastName: "Pilgrim",
+    fullName: "Scott Pilgrim",
+    phone: "+3346 44446464",
     imgUrl: "",
     account: "scottyboy.near",
+    email: "scottyboy@test.com"
   },
   {
     id: "3",
     firstName: "Jhonny",
     lastName: "Wonder",
+    fullName: "Jhonny Wonder",
+    phone: "+3346 44446464",
     imgUrl: "",
     account: "jwonder.near",
+    email: "jwonder@test.com"
   },
   {
     id: "4",
     firstName: "Leslie",
     lastName: "Nope",
+    fullName: "Leslie Nope",
+    phone: "+3346 44446464",
     imgUrl: "",
     account: "npleslie.near",
+    email: "npleslie@test.com"
   },
   {
     id: "5",
     firstName: "Guadalupe",
     lastName: "Mendez",
+    fullName: "Guadalupe Mendez",
+    phone: "+3346 44446464",
     imgUrl: "",
     account: "mendezgd.near",
+    email: "mendezgd@test.com"
   },
 ];
 

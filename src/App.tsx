@@ -16,6 +16,7 @@ import Contacts from "./views/Contacts";
 import "./styles.scss";
 import DetailContacts from "./views/DetailContact";
 import CreateContacts from "./views/CreateContact";
+import EditContact from "./views/EditContact";
 
 const App = () => {
   const navigate = useNavigate();
@@ -48,6 +49,8 @@ const App = () => {
             <Route path={ROUTES.CONTACTS.url} element={<Contacts />} />
             <Route path={ROUTES.DETAIL_CONTACT.url} element={<DetailContacts/>} />
             <Route path={ROUTES.CREATE_CONTACT.url} element={<CreateContacts/>} />
+            <Route path={ROUTES.EDIT_CONTACT.url} element={<EditContact/>} />
+
           </Routes>
         </Store>
       </QueryClientProvider>

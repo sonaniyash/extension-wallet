@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Modal from "react-modal";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-import { ContactIcon, DetailSection, EditContact, HeaderContact, SeeTransContact, SubtitleEmail, NameH2, ConnectedCount } from "./styles";
 import { Contact } from "../../components/ContactItem";
 import { TEST_CONTACTS, TEST_EXPERIENCES } from "../../mock/mock";
 import TabsHeader from "../../components/common/TabsHeader";
@@ -11,6 +10,9 @@ import CollectibleItem from "../../components/common/CollectibleItem";
 import HeaderAccountSelect from "../../components/common/HeaderAccountSelect";
 
 import ConnectedExpItem, { ConnectedExp } from "../../components/ConnectedExpItem";
+
+import { ContactIcon, DetailSection, EditContact, HeaderContact, SeeTransContact, SubtitleEmail, NameH2, ConnectedCount } from "./styles";
+import { ROUTES } from "../../const/routeNames";
 
 Modal.setAppElement("#popup");
 
@@ -31,7 +33,14 @@ const DetailContacts = () => {
     const exps = TEST_EXPERIENCES.filter((exp: ConnectedExp) => exp.relatedAccounts?.find((coso) => id == coso.toString()));
     return exps ? exps : [];
   }
+  const nav = useNavigate();
   const { id } = useParams();
+
+  const editContact = ()=> {
+    if (id) {
+      nav(ROUTES.EDIT_CONTACT.url.replace(':id', id));
+    }
+  }
 
   useEffect(() => {
     if (id) {
@@ -50,7 +59,7 @@ const DetailContacts = () => {
           </ContactIcon>
           <div>
             <SeeTransContact></SeeTransContact>
-            <EditContact></EditContact>
+            <EditContact onClick={editContact} ></EditContact>
           </div>
         </HeaderContact>
         <NameH2> {contact ? `${contact.firstName} ${contact.lastName}` : ''}</NameH2>

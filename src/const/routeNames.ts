@@ -42,5 +42,8 @@ export const ROUTES = {
   },
   DETAIL_CONTACT: {
     url: "/detail-contact/:id",
+  },
+  EDIT_CONTACT: {
+    url: "/edit-contact/:id",
   }
 };
