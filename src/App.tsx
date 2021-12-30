@@ -8,7 +8,6 @@ import CreateAccount from "./views/CreateAccount";
 import Store from "./context/store";
 import Verification from "./views/Verification";
 import Secure from "./views/Secure";
-import SeedPhrasePage from "./views/SeedPhrase";
 import { ROUTES } from "./const/routeNames";
 import Dashboard from "./views/Dashboard";
 import Unlock from "./views/Unlock";
@@ -43,7 +42,7 @@ const App = () => {
             <Route path={ROUTES.CREATE_ACCT.url} element={<CreateAccount />} />
             <Route path={ROUTES.VERIFICATION.url} element={<Verification />} />
             <Route path={ROUTES.SECURE.url} element={<Secure />} />
-            <Route path={ROUTES.SEED_PHRASE.url} element={<SeedPhrasePage />} />
+            {/* <Route path={ROUTES. SEED_PHRASE.url} element={<SeedPhrasePage />} /> */}
             <Route path={ROUTES.DASHBOARD.url} element={<Dashboard />} />
             <Route path={ROUTES.UNLOCK.url} element={<Unlock />} />
             <Route path={ROUTES.CONTACTS.url} element={<Contacts />} />
