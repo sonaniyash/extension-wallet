@@ -132,16 +132,29 @@ const Home = () => {
           type="submit"
           onClick={(e: any) => formik.handleSubmit(e)}
         >
-          Continue {isRegistering ? "..." : ""}
+          Get Started {isRegistering ? "..." : ""}
         </button>
-        <p>
-          by clicking continue you must agree to near labs{" "}
-          <a> Terms & Conditions</a> ans <a> Privacy Policy</a>
-        </p>
-        <span className="home__question"> Already have NEAR account?</span>
-        <button className="button btn-dark home__button">
-          Login with NEAR
-        </button>
+        <div className="home__near-login">
+
+
+          <span className="home__question"> Already have NEAR account?</span>
+
+          <input
+            type="text"
+            name="near-account"
+            onPaste={formik.handleChange}
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+            className="home__selectors__input"
+          />
+          <button className="button btn-dark home__button">
+            Login
+          </button>
+          <p>
+            by clicking continue you must agree to near labs{" "}
+            <a> Terms & Conditions</a> ans <a> Privacy Policy</a>
+          </p>
+        </div>
       </section>
     </main>
   );
