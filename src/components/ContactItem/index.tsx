@@ -1,12 +1,16 @@
 import React from "react";
 
+import chevron from "../../public/assets/chevron-r-black.svg";
+
 import "./styles.scss";
 
 export interface Contact {
+  id: string;
   firstName: string;
   lastName: string;
   imgUrl: string;
   account: string;
+  email?: string;
 }
 
 interface Props {
@@ -17,7 +21,7 @@ interface Props {
 const ContactItem = ({ contact, clickHandler }: Props) => {
   return (
     <>
-      <a className="contact" onClick={clickHandler}>
+      <a className="contact"  onClick={()=> clickHandler(contact.id)}>
         <div className="contact__img">
           {contact.firstName.substring(0, 1).toUpperCase() +
             contact.lastName.substring(0, 1).toUpperCase()}
@@ -30,7 +34,7 @@ const ContactItem = ({ contact, clickHandler }: Props) => {
         </div>
         <img
           className="contact__chevron"
-          src="./assets/chevron-r-black.svg"
+          src={chevron}
           alt=""
         />
       </a>

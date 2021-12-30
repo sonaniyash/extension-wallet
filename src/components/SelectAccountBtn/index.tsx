@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import Modal from "react-modal";
 
 import { ROUTES } from "../../const/routeNames";
 
+import accountImg from "../../public/assets/account-1.png";
+import chevronImg from "../../public/assets/chevron-down.png";
 import "./styles.scss";
+import { useGetAccounts } from "../../hooks/api/accounts";
 
 interface Accounts {
   image: string;
@@ -16,36 +19,22 @@ interface Accounts {
 Modal.setAppElement("#popup");
 
 const SelectAccountBtn = () => {
-  const TEST_ACCOUNTS = [
-    {
-      image: "./assets/account-1.png",
-      name: "jhonsdoe.near",
-      ammount: 0.13,
-      selected: true,
-    },
-    {
-      image: "./assets/account-2.png",
-      name: "jhons.near",
-      ammount: 2.24,
-      selected: false,
-    },
-    {
-      image: "./assets/account-3.png",
-      name: "mikse.near",
-      ammount: 3.33,
-      selected: false,
-    },
-  ];
+ 
+  const {accounts: myAccounts, isSearching} = useGetAccounts();
+
   const customStyles = {
     overlay: {
       backgroundColor: "rgba(51, 55, 59, 0.4)",
     },
   };
 
-  const [accounts, setAccounts] = useState<Array<Accounts>>(TEST_ACCOUNTS);
+  const [accounts, setAccounts] = useState<Array<any>>();
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const nav = useNavigate();
+
   const clickAccount = (e: any, accountName: any) => {
+    if (!accounts) return;
+
     const newAct = accounts.map((act) => {
       act.selected = act.name === accountName ? true : false;
       return act;
@@ -72,18 +61,23 @@ const SelectAccountBtn = () => {
     nav(ROUTES.HOME.url);
   };
 
+  useEffect( ()=>{
+    setAccounts(myAccounts);
+  } ,[myAccounts])
+
   return (
     <>
       <a className="select-act" onClick={openModal}>
-        <img className="select-act__img" src="./assets/account-1.png" alt="" />
+        <img className="select-act__img" src={accountImg} alt="" />
         <p className="select-act__name"> johndoe.near </p>
         <img
           className="select-act__chevron"
-          src="./assets/chevron-down.png"
+          src={chevronImg}
           alt=""
         />
       </a>
-      <Modal
+      <Modal 
+        id="selectAccountModal"
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
@@ -92,8 +86,7 @@ const SelectAccountBtn = () => {
         contentLabel="Example Modal"
       >
         <h2>My Accounts</h2>
-
-        {accounts.map((account: Accounts) => {
+        {accounts ?  accounts.map((account: Accounts) => {
           return (
             <a
               key={account.name}
@@ -137,7 +130,7 @@ const SelectAccountBtn = () => {
               )}
             </a>
           );
-        })}
+        }): ''}
 
         <div className="account-select-actions">
           <a className="account-select-actions__link" onClick={goToCreateNEAR}>

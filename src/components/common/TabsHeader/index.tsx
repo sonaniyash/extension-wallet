@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import "./styles.scss";
+import { Tab, TabBar, TabIndicator} from "./styles";
 
 interface Props {
   setActive: any;
@@ -8,36 +9,37 @@ interface Props {
 }
 
 const TabsHeader = ({ setActive, tabsHeader }: Props) => {
-  const WIDTH_TAB = 181;
   const indicator = useRef<HTMLInputElement | any>();
-  const tabContainer = useRef<any>();
+  const tabbar = useRef<HTMLInputElement | any>();
+  const [width, setwidth] = useState(0);
 
   const indi = 0;
 
   useEffect(() => {
     indicator.current.style.marginLeft = indi + "px";
-  }, []);
+    setwidth(indicator.current.parentElement.offsetWidth / tabsHeader.length);
+  }, [width]);
 
   const clickTab = (e: any) => {
     setActive(e.target.dataset.tab);
     indicator.current.style.marginLeft =
-      indi + e.target.dataset.tab * WIDTH_TAB + "px";
+      indi + e.target.dataset.tab * width + "px";
   };
 
   const listItems = tabsHeader.map((tab: any, index: any) => {
     return (
-      <div key={tab} data-tab={index} onClick={clickTab} className="tab wave">
+      <Tab widthMax={width+'px'} key={tab} data-tab={index} onClick={clickTab}>
         {tab}
-      </div>
+      </Tab>
     );
   });
 
   return (
     <>
-      <div ref={tabContainer} className="tab-bar">
+      <TabBar ref={tabbar} className="tabbar">
         {listItems}
-        <div className="indicator" ref={indicator}></div>
-      </div>
+        <TabIndicator widthMax={width+'px'} className="indicator" ref={indicator}></TabIndicator>
+      </TabBar>
     </>
   );
 };

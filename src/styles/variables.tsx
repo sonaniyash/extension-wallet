@@ -12,7 +12,7 @@ export const VARIABLES: any = {
     $accent_3: "#3bd0ac",
     $black: "#414047",
     $blue_100: "#587be0",
-    $text_100: "#414047",
+    $text_100: "#33373B",
     $text_200: "#6f6e73",
     $text_400: "#a0a0a2",
     $line_color: "#e9e6e6"
