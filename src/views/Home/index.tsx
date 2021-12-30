@@ -134,7 +134,7 @@ const Home = () => {
         >
           Get Started {isRegistering ? "..." : ""}
         </button>
-        <div className="home__near-loggin">
+        <div className="home__near-login">
 
 
           <span className="home__question"> Already have NEAR account?</span>
