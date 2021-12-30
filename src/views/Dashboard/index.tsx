@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import HeaderBg from "../../components/layouts/HeaderBg";
-import SelectAccountBtn from "../../components/SelectAccountBtn";
 import TabsContainer from "../../components/common/TabsContainer";
 import TabsHeader from "../../components/common/TabsHeader";
 import CollectibleItem from "../../components/common/CollectibleItem";
@@ -11,6 +9,7 @@ import { ReducerTypes } from "../../context/reducer";
 import { ROUTES } from "../../const/routeNames";
 
 import "./styles.scss";
+import HeaderAccountSelect from "../../components/common/HeaderAccountSelect";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -38,22 +37,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <HeaderBg>
-        <header className="header-dash">
-          <a>
-            <img src="./assets/home-icon.png" alt="" />
-          </a>
-          <SelectAccountBtn />
-          <div>
-            <a>
-              <img src="./assets/notification.png" alt="" />
-            </a>
-            <a>
-              <img src="./assets/settings.png" alt="" />
-            </a>
-          </div>
-        </header>
-      </HeaderBg>
+      <HeaderAccountSelect noBack />
       <section className="dashboard">
         <div className="dashboard__btn-container">
           <a onClick={goToContacts} className="contact-btn dash-btn">

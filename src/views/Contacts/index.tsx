@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 
-import HeaderBg from "../../components/layouts/HeaderBg";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../const/routeNames";
 import { ContextMain } from "../../context/store";
 import { ReducerTypes } from "../../context/reducer";
-import SelectAccountBtn from "../../components/SelectAccountBtn";
 import ContactItem from "../../components/ContactItem";
 import { InputSearch } from "../../components/common/InputSearch";
 import { filterArrayObjectByValue } from "../../utils/utils";
@@ -14,6 +12,7 @@ import { useGetContacts } from "../../hooks/api/contacts";
 
 import "./styles.scss";
 import { CreateButton, ImportButton, ModalContent } from "./styles";
+import HeaderAccountSelect from "../../components/common/HeaderAccountSelect";
 
 
 Modal.setAppElement("#popup");
@@ -27,14 +26,6 @@ const Contacts = () => {
   const [searchInput, setsearchInput] = useState("");
   const [contactsToShow, setContactsToShow] = useState(contacts);
   const [modalIsOpen, setIsOpen] = React.useState(false);
-
-  const back = () => {
-    navigate(ROUTES.DASHBOARD.url);
-  };
-
-  const home = () => {
-    navigate(ROUTES.DASHBOARD.url);
-  };
 
   const selectContact = (id: string) => {
     navigate(ROUTES.DETAIL_CONTACT.url.replace(':id', id));
@@ -89,25 +80,7 @@ const Contacts = () => {
 
   return (
     <>
-      <HeaderBg>
-        <header className="header-dash">
-          <a onClick={back}>
-            <img src="./assets/back-icon.png" alt="" />
-          </a>
-          <a onClick={home}>
-            <img src="./assets/home-icon.png" alt="" />
-          </a>
-          <SelectAccountBtn />
-          <div>
-            <a>
-              <img src="./assets/notification.png" alt="" />
-            </a>
-            <a>
-              <img src="./assets/settings.png" alt="" />
-            </a>
-          </div>
-        </header>
-      </HeaderBg>
+      <HeaderAccountSelect/>
       <section className="contacts">
         <InputSearch addHandler={addContactHandler} searchHandler={searchValueInput} />
         <div className="contacts__list">

@@ -1,4 +1,4 @@
-import {  useQuery } from "react-query";
+import {  useMutation, useQuery } from "react-query";
 import api from "../../services";
 
 export const useGetContacts = () => {
@@ -13,5 +13,23 @@ export const useGetContacts = () => {
   return {
     contacts: data,
     isSearching: isLoading,
+  };
+};
+
+export const useContact = () => {
+  const { mutateAsync, isLoading } = useMutation(
+    (contactData: any) => api.createContact(contactData),
+    {
+      onSuccess: () => {
+        console.log("Contact created successfully");
+      },
+      onError: (e) => {
+        console.error(e);
+      },
+    }
+  );
+  return {
+    createContact: mutateAsync,
+    isCreating: isLoading,
   };
 };

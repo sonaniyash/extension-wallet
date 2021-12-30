@@ -1,33 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
 import Modal from "react-modal";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-import backIcon from '../../public/assets/back-icon.png';
-import homeIcon from '../../public/assets/home-icon.png';
-import notiIcon from '../../public/assets/notification.png';
-import settingsIcon from '../../public/assets/settings.png';
-
-import HeaderBg from "../../components/layouts/HeaderBg";
-import { ROUTES } from "../../const/routeNames";
-import SelectAccountBtn from "../../components/SelectAccountBtn";
-
-import { ContactIcon, DetailSection, EditContact, HeaderContact, SeeTransContact, SubtitleEmail, NameH2 } from "./styles";
 import { Contact } from "../../components/ContactItem";
 import { TEST_CONTACTS } from "../../mock/mock";
 import TabsHeader from "../../components/common/TabsHeader";
 import TabsContainer from "../../components/common/TabsContainer";
 import CollectibleItem from "../../components/common/CollectibleItem";
+import HeaderAccountSelect from "../../components/common/HeaderAccountSelect";
+
+import { ContactIcon, DetailSection, EditContact, HeaderContact, SeeTransContact, SubtitleEmail, NameH2 } from "./styles";
 
 Modal.setAppElement("#popup");
 
 const DetailContacts = () => {
-  const navigate = useNavigate();
-  const back = () => {
-    navigate(ROUTES.CONTACTS.url);
-  };
-  const home = () => {
-    navigate(ROUTES.DASHBOARD.url);
-  };
 
   const [contact, setcontact] = useState<Contact | null>(TEST_CONTACTS[0])
   const [activeTab, setActive] = useState(0);
@@ -48,25 +34,7 @@ const DetailContacts = () => {
 
   return (
     <>
-      <HeaderBg>
-        <header className="header-dash">
-          <a onClick={back}>
-            <img src={backIcon} alt="" />
-          </a>
-          <a onClick={home}>
-            <img src={homeIcon} alt="" />
-          </a>
-          <SelectAccountBtn />
-          <div>
-            <a>
-              <img src={notiIcon} alt="" />
-            </a>
-            <a>
-              <img src={settingsIcon} alt="" />
-            </a>
-          </div>
-        </header>
-      </HeaderBg>
+      <HeaderAccountSelect/>
       <DetailSection>
         <HeaderContact>
           <ContactIcon>
