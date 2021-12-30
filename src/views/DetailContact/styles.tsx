@@ -70,5 +70,12 @@ const SubtitleEmail = styled.span`
     color: ${VARIABLES.$text_200};
 `;
 
+const ConnectedCount = styled.div`
+    text-align: left;
+    margin-left: 20px;
+    color: ${VARIABLES.$text_200};
+`
 
-export { ContactIcon, DetailSection, HeaderContact, EditContact, SeeTransContact, NameH2 ,SubtitleEmail };
+
+
+export { ContactIcon, DetailSection, HeaderContact, EditContact, SeeTransContact, NameH2, SubtitleEmail, ConnectedCount };

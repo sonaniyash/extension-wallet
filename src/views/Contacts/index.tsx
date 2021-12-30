@@ -21,7 +21,7 @@ const Contacts = () => {
   const navigate = useNavigate();
   const [, dispatch] = React.useContext(ContextMain);
 
-  const {contacts, isSearching} = useGetContacts();
+  const { contacts, isSearching } = useGetContacts();
 
   const [searchInput, setsearchInput] = useState("");
   const [contactsToShow, setContactsToShow] = useState(contacts);
@@ -31,11 +31,11 @@ const Contacts = () => {
     navigate(ROUTES.DETAIL_CONTACT.url.replace(':id', id));
   };
 
-  const importContact = ()=> {
+  const importContact = () => {
     navigate(ROUTES.IMPORT_CONTACT.url);
   }
 
-  const createContact = ()=> {
+  const createContact = () => {
     navigate(ROUTES.CREATE_CONTACT.url);
   }
 
@@ -65,7 +65,7 @@ const Contacts = () => {
       backgroundColor: "rgba(51, 55, 59, 0.4)",
     },
   };
-  
+
   useEffect(() => {
     dispatch({
       type: "SET_UI",
@@ -84,14 +84,14 @@ const Contacts = () => {
       <section className="contacts">
         <InputSearch addHandler={addContactHandler} searchHandler={searchValueInput} />
         <div className="contacts__list">
-          { isSearching ? "Searching..." : ""}
-          {contactsToShow ? contactsToShow.map((contact: any) => (
+          {isSearching ? "Searching..." : ""}
+          {contactsToShow && contactsToShow.map((contact: any) => (
             <ContactItem
               key={contact.account}
               contact={contact}
               clickHandler={selectContact}
             />
-          )) : ''}
+          ))}
         </div>
       </section>
       <Modal
@@ -103,8 +103,8 @@ const Contacts = () => {
         contentLabel="Example Modal"
       >
         <ModalContent>
-            <CreateButton onClick={createContact} > New Contact</CreateButton>
-            <ImportButton onClick={importContact} > Import Contacts</ImportButton>
+          <CreateButton onClick={createContact} > New Contact</CreateButton>
+          <ImportButton onClick={importContact} > Import Contacts</ImportButton>
         </ModalContent>
       </Modal>
     </>
