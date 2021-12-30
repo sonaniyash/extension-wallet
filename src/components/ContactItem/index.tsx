@@ -9,6 +9,8 @@ export interface Contact {
   id: string;
   firstName: string;
   lastName: string;
+  fullName: string;
+  phone: string;
   imgUrl: string;
   account: string;
   email?: string;

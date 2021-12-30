@@ -1,52 +1,66 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Modal from "react-modal";
 
 import { Button, ChangePhoto, ChangePhotoBlock, Form, Label, PhotoContact, Title } from "./styles";
 import HeaderAccountSelect from "../../components/common/HeaderAccountSelect";
-import { useContact } from "../../hooks/api/contacts";
+import {  useEditContact, useGetContact } from "../../hooks/api/contacts";
 import { useFormik } from "formik";
 import createContactSchema from "../../validation/createContactSchema";
 import { useNavigate, useParams } from "react-router";
 import { ROUTES } from "../../const/routeNames";
-import { Contact } from "../../components/ContactItem";
-import { TEST_CONTACTS } from "../../mock/mock";
 
 Modal.setAppElement("#popup");
 
 const CreateContacts = () => {
   const navigate = useNavigate();
-  const { createContact, isCreating } = useContact();
+  const { editContact, isCreating } = useEditContact();
+  
+  const { id } = useParams();
+  if (!id){
+    navigate(-1);
+    console.info("no id selected to edit contact page");
+  }
+
+  const {contact} = useGetContact(id ? id : '');
+
   const initialValues: any = {
     fullName: "",
     email: "",
     phone: "",
     nearAccount: "",
   };
-  const { id } = useParams();
-
-  const getContactData = (id: string): Contact | null  => {
-    const contact = TEST_CONTACTS.find( (val: Contact)=> val.id === id );
-    return contact ? contact : null;
-  }
-
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: createContactSchema,
     validateOnMount: true,
+    enableReinitialize: true,
     validateOnBlur: true,
     validateOnChange: true,
     onSubmit: async (values) => {
-      const newContact = await createContact(values);
+      const newContact = await editContact(values);
       console.info({ newContact });
       navigate(ROUTES.CONTACTS.url);
     },
   });
+
+  useEffect(() => {
+    if(contact) {
+      const values = {
+        email: contact.email,
+        fullName: contact.fullName,
+        nearAccount: contact.account,
+        phone: contact.phone,
+      }
+      formik.setValues(values);
+    }
+  }, [contact]);
+
   return (
     <>
       <HeaderAccountSelect/>
       <Title>Edit Contact</Title>
       <ChangePhotoBlock>
-        <PhotoContact>LM</PhotoContact>
+        <PhotoContact>{contact && contact.fullName ? contact.fullName.substring(0,2).toUpperCase(): 'AA'}</PhotoContact>
         <ChangePhoto>Change photo</ChangePhoto>
       </ChangePhotoBlock>
       <Form>
@@ -121,7 +135,7 @@ const CreateContacts = () => {
           <p className="error-text"> {formik.errors.nearAccount}</p>
         )}
         <Button
-          disabled={(!!formik.touched && !formik.isValid) || isCreating}
+          disabled={!formik.isValid || isCreating}
           className="button"
           type="submit"
           onClick={(e: any) => formik.handleSubmit(e)}

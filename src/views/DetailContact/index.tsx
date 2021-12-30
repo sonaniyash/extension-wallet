@@ -35,8 +35,11 @@ const DetailContacts = () => {
   }
   const nav = useNavigate();
   const { id } = useParams();
+
   const editContact = ()=> {
-    nav(ROUTES.EDIT_CONTACT.url);
+    if (id) {
+      nav(ROUTES.EDIT_CONTACT.url.replace(':id', id));
+    }
   }
 
   useEffect(() => {

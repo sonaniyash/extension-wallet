@@ -16,6 +16,21 @@ export const useGetContacts = () => {
   };
 };
 
+export const useGetContact = (contactId: string) => {
+  const {data , isLoading} =  useQuery('contact',
+    () => api.getContact(contactId),
+    {
+      onError: (e) => {
+        console.error(e);
+      },
+    }
+  );
+  return {
+    contact: data,
+    isSearching: isLoading,
+  };
+};
+
 export const useContact = () => {
   const { mutateAsync, isLoading } = useMutation(
     (contactData: any) => api.createContact(contactData),
@@ -30,6 +45,24 @@ export const useContact = () => {
   );
   return {
     createContact: mutateAsync,
+    isCreating: isLoading,
+  };
+};
+
+export const useEditContact = () => {
+  const { mutateAsync, isLoading } = useMutation(
+    (contactData: any) => api.editContact(contactData),
+    {
+      onSuccess: () => {
+        console.log("Contact created successfully");
+      },
+      onError: (e) => {
+        console.error(e);
+      },
+    }
+  );
+  return {
+    editContact: mutateAsync,
     isCreating: isLoading,
   };
 };
