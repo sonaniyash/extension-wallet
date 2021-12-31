@@ -19,8 +19,8 @@ interface Accounts {
 Modal.setAppElement("#popup");
 
 const SelectAccountBtn = () => {
- 
-  const {accounts: myAccounts, isSearching} = useGetAccounts();
+
+  const { accounts: myAccounts, isSearching } = useGetAccounts();
 
   const customStyles = {
     overlay: {
@@ -47,7 +47,7 @@ const SelectAccountBtn = () => {
     setIsOpen(!modalIsOpen);
   };
 
-  const afterOpenModal = () => {};
+  const afterOpenModal = () => { };
 
   const closeModal = () => {
     setIsOpen(false);
@@ -61,9 +61,9 @@ const SelectAccountBtn = () => {
     nav(ROUTES.HOME.url);
   };
 
-  useEffect( ()=>{
+  useEffect(() => {
     setAccounts(myAccounts);
-  } ,[myAccounts])
+  }, [myAccounts])
 
   return (
     <>
@@ -76,7 +76,7 @@ const SelectAccountBtn = () => {
           alt=""
         />
       </a>
-      <Modal 
+      <Modal
         id="selectAccountModal"
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
@@ -86,7 +86,7 @@ const SelectAccountBtn = () => {
         contentLabel="Example Modal"
       >
         <h2>My Accounts</h2>
-        {accounts ?  accounts.map((account: Accounts) => {
+        {accounts ? accounts.map((account: Accounts) => {
           return (
             <a
               key={account.name}
@@ -95,9 +95,8 @@ const SelectAccountBtn = () => {
               className="account-item"
             >
               <img
-                className={`account-item__img  ${
-                  account.selected ? "active" : ""
-                }`}
+                className={`account-item__img  ${account.selected ? "active" : ""
+                  }`}
                 src={account.image}
                 alt=""
               />
@@ -130,7 +129,7 @@ const SelectAccountBtn = () => {
               )}
             </a>
           );
-        }): ''}
+        }) : ''}
 
         <div className="account-select-actions">
           <a className="account-select-actions__link" onClick={goToCreateNEAR}>
