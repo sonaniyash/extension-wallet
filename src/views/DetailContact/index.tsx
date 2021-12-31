@@ -59,10 +59,7 @@ const DetailContacts = () => {
       backgroundColor: "rgba(51, 55, 59, 0.4)",
     },
   };
-  const openModal = (entity: string) => {
-    entity === 'Send' ?
-      setSendIsOpen(true) : setReceiveIsOpen(true);
-  };
+
   const closeModal = () => {
     setSendIsOpen(false);
     setReceiveIsOpen(false);
@@ -99,7 +96,7 @@ const DetailContacts = () => {
           </div>
           <div data-tab="1" ref={tab2} className="tab-text">
             <ButtonWrapper onClick={() => {
-              openModal('Send')
+              setSendIsOpen(true);
             }}>
               <div className="body">
                 <span className="body__title">
@@ -112,7 +109,9 @@ const DetailContacts = () => {
                 alt=""
               />
             </ButtonWrapper>
-            <ButtonWrapper onClick={() => { openModal('Receive') }}>
+            <ButtonWrapper onClick={() => {
+              setReceiveIsOpen(true)
+            }}>
               <div className="body">
                 <span className="body__title">
                   Receive
