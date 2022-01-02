@@ -11,8 +11,11 @@ import HeaderAccountSelect from "../../components/common/HeaderAccountSelect";
 
 import ConnectedExpItem, { ConnectedExp } from "../../components/ConnectedExpItem";
 
-import { ContactIcon, DetailSection, EditContact, HeaderContact, SeeTransContact, SubtitleEmail, NameH2, ConnectedCount } from "./styles";
+import { ContactIcon, DetailSection, EditContact, HeaderContact, SeeTransContact, SubtitleEmail, NameH2, ConnectedCount, ButtonWrapper } from "./styles";
 import { ROUTES } from "../../const/routeNames";
+import arrowUp from "../../public/assets/arrow-up.png";
+import arrowDown from "../../public/assets/arrow-down.png";
+import SendModal from "../../components/SendModal";
 
 Modal.setAppElement("#popup");
 
@@ -20,6 +23,8 @@ const DetailContacts = () => {
 
   const [contact, setcontact] = useState<Contact | null>(TEST_CONTACTS[0])
   const [exps, setExps] = useState<ConnectedExp[]>()
+  const [sendIsOpen, setSendIsOpen] = React.useState(false);
+  const [receiveIsOpen, setReceiveIsOpen] = React.useState(false);
   const [activeTab, setActive] = useState(0);
   const tab1 = useRef<any>();
   const tab2 = useRef<any>();
@@ -36,7 +41,7 @@ const DetailContacts = () => {
   const nav = useNavigate();
   const { id } = useParams();
 
-  const editContact = ()=> {
+  const editContact = () => {
     if (id) {
       nav(ROUTES.EDIT_CONTACT.url.replace(':id', id));
     }
@@ -48,6 +53,18 @@ const DetailContacts = () => {
       setExps(getConnectedExpData(id));
     }
   }, [id])
+
+  const customStyles = {
+    overlay: {
+      backgroundColor: "rgba(51, 55, 59, 0.4)",
+    },
+  };
+
+  const closeModal = () => {
+    setSendIsOpen(false);
+    setReceiveIsOpen(false);
+  };
+
 
   return (
     <>
@@ -78,7 +95,54 @@ const DetailContacts = () => {
             <CollectibleItem item={0} />
           </div>
           <div data-tab="1" ref={tab2} className="tab-text">
-            text tab 2
+            <ButtonWrapper onClick={() => {
+              setSendIsOpen(true);
+            }}>
+              <div className="body">
+                <span className="body__title">
+                  Send
+                </span>
+              </div>
+              <img
+                className="icon"
+                src={arrowUp}
+                alt=""
+              />
+            </ButtonWrapper>
+            <ButtonWrapper onClick={() => {
+              setReceiveIsOpen(true)
+            }}>
+              <div className="body">
+                <span className="body__title">
+                  Receive
+                </span>
+              </div>
+              <img
+                className="icon"
+                src={arrowDown}
+                alt=""
+              />
+            </ButtonWrapper>
+            <div>
+              <Modal
+                id="customModal"
+                isOpen={sendIsOpen}
+                onRequestClose={closeModal}
+                style={customStyles}
+                className="open-modal"
+              >
+                <SendModal entity="send" />
+              </Modal>
+              <Modal
+                id="customModal"
+                isOpen={receiveIsOpen}
+                onRequestClose={closeModal}
+                style={customStyles}
+                className="open-modal"
+              >
+                <SendModal entity="receive" />
+              </Modal>
+            </div>
           </div>
           <div data-tab="2" ref={tab3} className="tab-text">
             {exps && exps?.length > 0 && (

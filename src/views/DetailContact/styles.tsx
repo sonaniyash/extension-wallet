@@ -74,8 +74,30 @@ const ConnectedCount = styled.div`
     text-align: left;
     margin-left: 20px;
     color: ${VARIABLES.$text_200};
+`;
+
+const ButtonWrapper = styled.a`
+    font-family: Manrope;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    height: 40px;
+    color: white; 
+    display: flex;
+    align-items: center;
+    margin: 17px 23px;
+    flex-direction: row;
+    background: #414047;
+    border-radius: 10px;
+    .body {
+        margin-left: auto;
+    }
+    .icon {
+        margin-left: auto;
+        margin-right: 10px;
+    }
+  
 `
 
-
-
-export { ContactIcon, DetailSection, HeaderContact, EditContact, SeeTransContact, NameH2, SubtitleEmail, ConnectedCount };
+export { ContactIcon, DetailSection, HeaderContact, EditContact, SeeTransContact, NameH2, SubtitleEmail, ConnectedCount, ButtonWrapper };
