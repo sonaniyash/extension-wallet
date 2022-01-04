@@ -12,6 +12,7 @@ import { ROUTES } from "./const/routeNames";
 import Dashboard from "./views/Dashboard";
 import Unlock from "./views/Unlock";
 import Contacts from "./views/Contacts";
+import Settings from "./views/Settings";
 
 import "./styles.scss";
 import DetailContacts from "./views/DetailContact";
@@ -47,10 +48,10 @@ const App = () => {
             <Route path={ROUTES.DASHBOARD.url} element={<Dashboard />} />
             <Route path={ROUTES.UNLOCK.url} element={<Unlock />} />
             <Route path={ROUTES.CONTACTS.url} element={<Contacts />} />
-            <Route path={ROUTES.DETAIL_CONTACT.url} element={<DetailContacts/>} />
-            <Route path={ROUTES.CREATE_CONTACT.url} element={<CreateContacts/>} />
-            <Route path={ROUTES.EDIT_CONTACT.url} element={<EditContact/>} />
-
+            <Route path={ROUTES.DETAIL_CONTACT.url} element={<DetailContacts />} />
+            <Route path={ROUTES.CREATE_CONTACT.url} element={<CreateContacts />} />
+            <Route path={ROUTES.EDIT_CONTACT.url} element={<EditContact />} />
+            <Route path={ROUTES.SETTINGS.url} element={<Settings />} />
           </Routes>
         </Store>
       </QueryClientProvider>

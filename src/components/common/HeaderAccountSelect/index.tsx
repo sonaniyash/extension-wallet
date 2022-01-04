@@ -9,36 +9,39 @@ import notiIcon from '../../../public/assets/notification.png';
 import settingsIcon from '../../../public/assets/settings.png';
 import SelectAccountBtn from '../../SelectAccountBtn';
 interface Props {
-    noBack? : boolean
+    noBack?: boolean
 }
 
-const HeaderAccountSelect = ({noBack}: Props) => {
+const HeaderAccountSelect = ({ noBack }: Props) => {
     const navigate = useNavigate();
     const back = () => {
         navigate(-1);
     };
     const home = () => {
-      navigate(ROUTES.DASHBOARD.url);
+        navigate(ROUTES.DASHBOARD.url);
     };
+    const settings = () => {
+        navigate(ROUTES.SETTINGS.url);
+    }
     return (
         <>
             <HeaderBg>
                 <header className="header-dash">
-                    { !noBack ?
-                    (<a onClick={back}>
-                        <img src={backIcon} alt="" />
-                    </a>): '' }
-                    
+                    {!noBack ?
+                        (<a onClick={back}>
+                            <img src={backIcon} alt="" />
+                        </a>) : ''}
+
                     <a onClick={home}>
                         <img src={homeIcon} alt="" />
                     </a>
                     <SelectAccountBtn />
                     <div>
                         <a>
-                        <img src={notiIcon} alt="" />
+                            <img src={notiIcon} alt="" />
                         </a>
-                        <a>
-                        <img src={settingsIcon} alt="" />
+                        <a onClick={settings}>
+                            <img src={settingsIcon} alt="" />
                         </a>
                     </div>
                 </header>
