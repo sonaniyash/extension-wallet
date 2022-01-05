@@ -46,6 +46,9 @@ export const ROUTES = {
   EDIT_CONTACT: {
     url: "/edit-contact/:id",
   },
+  NOTIFICATION: {
+    url: "/notifications",
+  },
   SETTINGS:{
     url: "/settings",
   }
