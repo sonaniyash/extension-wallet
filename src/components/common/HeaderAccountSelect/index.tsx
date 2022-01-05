@@ -45,7 +45,6 @@ const HeaderAccountSelect = ({ noBack }: Props) => {
                         <a onClick={notifications}>
                             <img src={notiIcon} alt="" />
                         </a>
-                        <a>
                         <a onClick={settings}>
                             <img src={settingsIcon} alt="" />
                         </a>
