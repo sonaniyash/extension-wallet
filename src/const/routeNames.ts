@@ -49,4 +49,7 @@ export const ROUTES = {
   NOTIFICATION: {
     url: "/notifications",
   },
+  SETTINGS:{
+    url: "/settings",
+  }
 };

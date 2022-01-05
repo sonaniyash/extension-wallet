@@ -9,10 +9,10 @@ import notiIcon from '../../../public/assets/notification.png';
 import settingsIcon from '../../../public/assets/settings.png';
 import SelectAccountBtn from '../../SelectAccountBtn';
 interface Props {
-    noBack? : boolean
+    noBack?: boolean
 }
 
-const HeaderAccountSelect = ({noBack}: Props) => {
+const HeaderAccountSelect = ({ noBack }: Props) => {
     const navigate = useNavigate();
     const back = () => {
         navigate(-1);
@@ -24,14 +24,19 @@ const HeaderAccountSelect = ({noBack}: Props) => {
         navigate(ROUTES.NOTIFICATION.url);
     }
 
+    const settings = () => {
+        navigate(ROUTES.SETTINGS.url);
+    }
     return (
         <>
             <HeaderBg>
                 <header className="header-dash">
-                    { !noBack ?
-                    (<a onClick={back}>
-                        <img src={backIcon} alt="" />
-                    </a>): '' }
+
+                    {!noBack ?
+                        (<a onClick={back}>
+                            <img src={backIcon} alt="" />
+                        </a>) : ''}
+
                     <a onClick={home}>
                         <img src={homeIcon} alt="" />
                     </a>
@@ -41,6 +46,7 @@ const HeaderAccountSelect = ({noBack}: Props) => {
                             <img src={notiIcon} alt="" />
                         </a>
                         <a>
+                        <a onClick={settings}>
                             <img src={settingsIcon} alt="" />
                         </a>
                     </div>
