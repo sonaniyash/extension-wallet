@@ -18,8 +18,12 @@ const HeaderAccountSelect = ({noBack}: Props) => {
         navigate(-1);
     };
     const home = () => {
-      navigate(ROUTES.DASHBOARD.url);
+        navigate(ROUTES.DASHBOARD.url);
     };
+    const notifications = ()=> {
+        navigate(ROUTES.NOTIFICATION.url);
+    }
+
     return (
         <>
             <HeaderBg>
@@ -28,17 +32,16 @@ const HeaderAccountSelect = ({noBack}: Props) => {
                     (<a onClick={back}>
                         <img src={backIcon} alt="" />
                     </a>): '' }
-                    
                     <a onClick={home}>
                         <img src={homeIcon} alt="" />
                     </a>
                     <SelectAccountBtn />
                     <div>
-                        <a>
-                        <img src={notiIcon} alt="" />
+                        <a onClick={notifications}>
+                            <img src={notiIcon} alt="" />
                         </a>
                         <a>
-                        <img src={settingsIcon} alt="" />
+                            <img src={settingsIcon} alt="" />
                         </a>
                     </div>
                 </header>
