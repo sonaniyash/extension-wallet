@@ -163,7 +163,7 @@ const Dashboard = () => {
         <TabsContainer tabs={[tab1, tab2]} activeTabId={activeTab}>
           <>
             <div data-tab="0" ref={tab1} className="tab-text">
-              <CollectibleItem item={0} />
+              <CollectibleItem item={0} onClick={() => navigate(ROUTES.DETAIL_COLLECTIBLE.url.replace(':id', "1"))} />
               <CollectibleItem item={0} />
               <CollectibleItem item={0} />
               <CollectibleItem item={0} />

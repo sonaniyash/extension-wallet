@@ -49,7 +49,10 @@ export const ROUTES = {
   NOTIFICATION: {
     url: "/notifications",
   },
-  SETTINGS:{
+  SETTINGS: {
     url: "/settings",
+  },
+  DETAIL_COLLECTIBLE: {
+    url: "/detailcollectible/:id"
   }
 };

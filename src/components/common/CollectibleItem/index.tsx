@@ -1,20 +1,19 @@
-import React, { useEffect } from "react";
+import React, { MouseEventHandler, useEffect } from "react";
 
 import "./styles.scss";
 
 interface Props {
   item: any;
+  onClick?: MouseEventHandler;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const CollectibleItem = ({ item }: Props) => {
-  useEffect(() => {}, []);
-
-  const clickItem = () => {};
+const CollectibleItem = ({ item, onClick }: Props) => {
+  useEffect(() => { }, []);
 
   return (
     <>
-      <div className="collectible" onClick={clickItem}>
+      <div className="collectible" onClick={onClick}>
         <img className="collectible__img" />
         <div className="collectible__body">
           <span className="collectible__body__title">Digital Ninja</span>
