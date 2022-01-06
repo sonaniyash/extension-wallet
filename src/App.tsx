@@ -19,6 +19,7 @@ import DetailContacts from "./views/DetailContact";
 import CreateContacts from "./views/CreateContact";
 import EditContact from "./views/EditContact";
 import Notifications from "./views/Notifications";
+import DetailCollectible from "./views/DetailCollectible";
 
 const App = () => {
   const navigate = useNavigate();
@@ -49,11 +50,12 @@ const App = () => {
             <Route path={ROUTES.DASHBOARD.url} element={<Dashboard />} />
             <Route path={ROUTES.UNLOCK.url} element={<Unlock />} />
             <Route path={ROUTES.CONTACTS.url} element={<Contacts />} />
-            <Route path={ROUTES.DETAIL_CONTACT.url} element={<DetailContacts/>} />
-            <Route path={ROUTES.CREATE_CONTACT.url} element={<CreateContacts/>} />
-            <Route path={ROUTES.EDIT_CONTACT.url} element={<EditContact/>} />
-            <Route path={ROUTES.NOTIFICATION.url} element={<Notifications/>} />
+            <Route path={ROUTES.DETAIL_CONTACT.url} element={<DetailContacts />} />
+            <Route path={ROUTES.CREATE_CONTACT.url} element={<CreateContacts />} />
+            <Route path={ROUTES.EDIT_CONTACT.url} element={<EditContact />} />
+            <Route path={ROUTES.NOTIFICATION.url} element={<Notifications />} />
             <Route path={ROUTES.SETTINGS.url} element={<Settings />} />
+            <Route path={ROUTES.DETAIL_COLLECTIBLE.url} element={<DetailCollectible />} />
           </Routes>
         </Store>
       </QueryClientProvider>

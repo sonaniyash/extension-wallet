@@ -1,5 +1,6 @@
 import { ConnectedExp } from "../components/ConnectedExpItem";
 import { Contact } from "../components/ContactItem";
+import { Collectibles } from "../views/DetailCollectible";
 
 export const TEST_CONTACTS: Array<Contact> = [
   {
@@ -64,7 +65,7 @@ export const TEST_CONTACTS: Array<Contact> = [
   },
 ];
 
-export  const TEST_ACCOUNTS = [
+export const TEST_ACCOUNTS = [
   {
     image: "/assets/account-1.png",
     name: "jhonsdoe.near",
@@ -85,27 +86,58 @@ export  const TEST_ACCOUNTS = [
   },
 ];
 
-export const TEST_EXPERIENCES : Array<ConnectedExp>= [
+export const TEST_EXPERIENCES: Array<ConnectedExp> = [
   {
     id: "1",
     imgUrl: "/assets/app-1.png",
-    name:"Docu sign",
-    metadata:"12/10/2021 12:30 PM",
-    relatedAccounts:[1,2,3]
+    name: "Docu sign",
+    metadata: "12/10/2021 12:30 PM",
+    relatedAccounts: [1, 2, 3]
   },
   {
     id: "2",
     imgUrl: "/assets/app-2.png",
-    name:"Defi swap",
-    metadata:"12/10/2021 12:30 PM",
-    relatedAccounts:[1,2,3,4,5,6,7]
-    
+    name: "Defi swap",
+    metadata: "12/10/2021 12:30 PM",
+    relatedAccounts: [1, 2, 3, 4, 5, 6, 7]
+
   },
   {
     id: "3",
     imgUrl: "/assets/account-1.png",
-    name:"Testing app",
-    metadata:"12/10/2021 12:45 PM",
-    relatedAccounts:[3]
+    name: "Testing app",
+    metadata: "12/10/2021 12:45 PM",
+    relatedAccounts: [3]
   }
+];
+
+export const TEST_COLLECTIBLES: Array<Collectibles> = [
+  {
+    id: "1",
+    name: "string",
+    imgUrl: "/assets/panda_collectible.png",
+    owner: "Fede123",
+    description: "string long long long"
+  },
+  {
+    id: "2",
+    name: "string",
+    imgUrl: "string",
+    owner: "Kun123",
+    description: "string long long long"
+  },
+  {
+    id: "3",
+    name: "string",
+    imgUrl: "string",
+    owner: "Lea123",
+    description: "string long long long"
+  },
+  {
+    id: "4",
+    name: "string",
+    imgUrl: "string",
+    owner: "Julio123",
+    description: "string long long long"
+  },
 ]
