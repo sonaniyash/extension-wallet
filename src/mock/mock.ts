@@ -114,29 +114,29 @@ export const TEST_EXPERIENCES: Array<ConnectedExp> = [
 export const TEST_COLLECTIBLES: Array<Collectibles> = [
   {
     id: "1",
-    name: "string",
+    name: "Panda",
     imgUrl: "/assets/panda_collectible.png",
     owner: "Fede123",
     description: "string long long long"
   },
   {
     id: "2",
-    name: "string",
-    imgUrl: "string",
+    name: "Other",
+    imgUrl: "/assets/app-2.png",
     owner: "Kun123",
     description: "string long long long"
   },
   {
     id: "3",
-    name: "string",
-    imgUrl: "string",
+    name: "NFT",
+    imgUrl: "/assets/nft_collectible.png",
     owner: "Lea123",
     description: "string long long long"
   },
   {
     id: "4",
-    name: "string",
-    imgUrl: "string",
+    name: "D3",
+    imgUrl: "/assets/d3.png",
     owner: "Julio123",
     description: "string long long long"
   },

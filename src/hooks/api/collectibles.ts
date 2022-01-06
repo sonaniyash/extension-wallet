@@ -3,7 +3,7 @@ import api from "../../services";
 
 export const useGetAllCollectibles = () => {
     const { data, isLoading } = useQuery('collectibles',
-        () => api.getAllCollectibles,
+        () => api.getAllCollectibles(),
         {
             onError: (e) => {
                 console.error(e);
