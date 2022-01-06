@@ -9,20 +9,24 @@ import { ROUTES } from "../../const/routeNames";
 import { ContextMain } from "../../context/store";
 import { CreateAccountData } from "../../context/models";
 import { ReducerTypes } from "../../context/reducer";
+import { useCreateAccount } from "../../hooks/api/user";
 
 import "./styles.scss";
 
 const CreateAccount = () => {
   const navigate = useNavigate();
   const [state, dispatch] = React.useContext(ContextMain);
+  const { createAccount, isCreatingAccount } = useCreateAccount();
 
-  const clickContinue = () => {
+  const clickContinue = async () => {
     const data: CreateAccountData = state.createAccountData;
-    data.firstName = nameAccount;
-    data.nearAccountId = nameAccountID;
+    data.fullName = nameAccount;
+    data.walletName = nameAccountID;
+    const session = await createAccount(data);
+
     dispatch({
       type: "SET_CREATE_ACCT",
-      payload: data,
+      payload: session,
       reducer: ReducerTypes.CreateAccount,
     });
     navigate("/secure");
@@ -93,7 +97,7 @@ const CreateAccount = () => {
           />
         </div>
         <button
-          disabled={buttonDisabled || wrongAccount}
+          disabled={buttonDisabled || wrongAccount || isCreatingAccount}
           className="button createAccount__button"
           onClick={clickContinue}
         >

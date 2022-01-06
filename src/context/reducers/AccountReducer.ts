@@ -15,7 +15,7 @@ const AccountReducer = (state: State, action: any) => {
           phone: "",
           type: 0,
           firstName: "",
-          nearAccountId: "",
+          walletName: "",
           phrase: "",
           status: 0,
         },

@@ -1,15 +1,18 @@
-// import axios from "axios";
-import { CreateAccountData } from "../context/models";
+import axios from "axios";
+import { CheckExistenceData, CreateAccountData } from "../context/models";
+
+const baseUrl = "https://xkfvqk07j4.execute-api.us-east-1.amazonaws.com"
 
 const api = {
-  registerUser: async (accountData: CreateAccountData) => {
-    // return axios
-    //   .post(`/register`, accountData)
-    //   .then((response) => response.data);
-    return new Promise(function (resolve) {
-      return setTimeout(() => resolve(accountData), 1500);
-      // return setTimeout(() => reject(), 1500);
-    });
+  checkExistence: async (data: CheckExistenceData) => {
+    return axios
+      .post(`${baseUrl}/api/user/check_existence`, data)
+      .then((response) => response.data);
+  },
+  createAccount: async (data: CreateAccountData) => {
+    return axios
+      .post(`${baseUrl}/api/user/registration`, data)
+      .then((response) => response.data);
   },
 };
 

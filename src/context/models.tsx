@@ -1,11 +1,14 @@
-import { CREATE_TYPE } from "../const/forms";
-
+export interface CheckExistenceData {
+  email?: string;
+  phone?: string;
+  mode?: string;
+}
 export interface CreateAccountData {
   email?: string;
   phone?: string;
-  type?: CREATE_TYPE;
-  firstName?: string;
-  nearAccountId?: string;
+  mode?: string;
+  fullName?: string;
+  walletName?: string;
   phrase?: string;
   status?: STATUS_CREATE_ACCT;
   passcode?: string;
