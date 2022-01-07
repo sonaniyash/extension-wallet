@@ -12,7 +12,7 @@ import { useCreateAccount } from "../../hooks/api/user";
 
 import "./styles.scss";
 import { useFormik } from "formik";
-import createContactSchema from "../../validation/createContactSchema";
+import createAccountSchema from "../../validation/createAccountSchema";
 
 const CreateAccount = () => {
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ const CreateAccount = () => {
 
   const formik = useFormik({
     initialValues: initialValues,
-    validationSchema: createContactSchema,
+    validationSchema: createAccountSchema,
     validateOnMount: true,
     enableReinitialize: true,
     validateOnBlur: true,
@@ -69,6 +69,7 @@ const CreateAccount = () => {
           assets.
         </p>
         <InputWithLabel
+          id="fullName"
           type="text"
           label="Full Name"
           value={formik.values.fullName}
@@ -79,6 +80,8 @@ const CreateAccount = () => {
         <div className="accountId_after">
           <label className="accountId_label">Account ID</label>
           <input
+            id="walletName"
+            name="walletName"
             className={`accountId_input ${formik.errors.walletName ? "wrong" : ""}`}
             value={formik.values.walletName}
             onPaste={formik.handleChange}
@@ -86,6 +89,9 @@ const CreateAccount = () => {
             onChange={formik.handleChange}
           />
         </div>
+        {console.log("formik", formik)}
+        {console.log("isCreatingAccount", isCreatingAccount)}
+
         <button
           disabled={!formik.isValid || isCreatingAccount}
           className="button createAccount__button"
