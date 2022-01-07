@@ -7,19 +7,17 @@ import { ROUTES } from "../../const/routeNames";
 import { CreateAccountData, STATUS_CREATE_ACCT } from "../../context/models";
 import { ReducerTypes } from "../../context/reducer";
 import { ContextMain } from "../../context/store";
-import { CREATE_TYPE } from "../../const/forms";
 import loginSchema from "../../validation/loginSchema";
-import { useRegister } from "../../hooks/api/user";
+import { useCheckExistence } from "../../hooks/api/user";
 
 import "./styles.scss";
 
 const Home = () => {
-  const { registerUser, isRegistering } = useRegister();
+  const { checkExistence, isCheckingExistence } = useCheckExistence();
   const initialValues: CreateAccountData = {
-    type: CREATE_TYPE.EMAIL,
+    mode: "email",
     email: "",
     phone: "",
-    status: STATUS_CREATE_ACCT.PENDING_VERIFICATION,
   };
 
   const formik = useFormik({
@@ -29,14 +27,22 @@ const Home = () => {
     validateOnBlur: true,
     validateOnChange: true,
     onSubmit: async (values) => {
-      const newUser = await registerUser(values);
-      console.info({ newUser });
-      dispatch({
-        type: "SET_CREATE_ACCT",
-        payload: values,
-        reducer: ReducerTypes.CreateAccount,
-      });
-      navigate("/verification");
+      const data: any = await checkExistence({ ...values });
+      if (!data.exists) {
+        dispatch({
+          type: "SET_CREATE_ACCT",
+          payload: values,
+          reducer: ReducerTypes.CreateAccount,
+        });
+        navigate("/createAccount");
+      } else {
+        if (formik.values.mode === "email") {
+          formik.errors.email = "The email has already been taken";
+        }
+        if (formik.values.mode === "phone") {
+          formik.errors.email = "The phone has already been taken";
+        }
+      }
     },
   });
 
@@ -53,9 +59,9 @@ const Home = () => {
     });
   }, []);
 
-  const changeType = (type: CREATE_TYPE) => {
+  const changeMode = (mode: string) => {
     formik.resetForm();
-    formik.setFieldValue("type", type);
+    formik.setFieldValue("mode", mode);
   };
 
   return (
@@ -67,26 +73,24 @@ const Home = () => {
         <div className="home__selectors">
           <a
             className={
-              (formik.values.type === CREATE_TYPE.EMAIL
-                ? " --btn-active"
-                : "") + " home__selectors__button"
+              (formik.values.mode === "email" ? " --btn-active" : "") +
+              " home__selectors__button"
             }
-            onClick={() => changeType(CREATE_TYPE.EMAIL)}
+            onClick={() => changeMode("email")}
           >
             Email
           </a>
           <a
             className={
-              (formik.values.type === CREATE_TYPE.PHONE
-                ? " --btn-active"
-                : "") + " home__selectors__button"
+              (formik.values.mode === "phone" ? " --btn-active" : "") +
+              " home__selectors__button"
             }
-            onClick={() => changeType(CREATE_TYPE.PHONE)}
+            onClick={() => changeMode("phone")}
           >
             Phone
           </a>
         </div>
-        {formik.values.type === CREATE_TYPE.EMAIL && (
+        {formik.values.mode === "email" && (
           <>
             <input
               type="text"
@@ -98,6 +102,7 @@ const Home = () => {
               onChange={formik.handleChange}
               placeholder={"johndoe@gmail.com"}
               className="home__selectors__input"
+              disabled={!!isCheckingExistence}
             />
             {!!formik.values.email &&
               !!formik.touched.email &&
@@ -106,7 +111,7 @@ const Home = () => {
               )}
           </>
         )}
-        {formik.values.type === CREATE_TYPE.PHONE && (
+        {formik.values.mode === "phone" && (
           <>
             <input
               type="text"
@@ -127,16 +132,16 @@ const Home = () => {
           </>
         )}
         <button
-          disabled={(!!formik.touched && !formik.isValid) || isRegistering}
+          disabled={
+            (!!formik.touched && !formik.isValid) || isCheckingExistence
+          }
           className="button home__button"
           type="submit"
           onClick={(e: any) => formik.handleSubmit(e)}
         >
-          Get Started {isRegistering ? "..." : ""}
+          Get Started
         </button>
         <div className="home__near-login">
-
-
           <span className="home__question"> Already have NEAR account?</span>
 
           <input
@@ -147,9 +152,7 @@ const Home = () => {
             onChange={formik.handleChange}
             className="home__selectors__input"
           />
-          <button className="button btn-dark home__button">
-            Login
-          </button>
+          <button className="button btn-dark home__button">Login</button>
           <p>
             by clicking continue you must agree to near labs{" "}
             <a> Terms & Conditions</a> ans <a> Privacy Policy</a>

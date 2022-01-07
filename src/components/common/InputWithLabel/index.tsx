@@ -5,15 +5,25 @@ import "./styles.scss";
 interface Props {
   label: string;
   type: string;
+  id: string;
   onChange?: ChangeEventHandler;
   className?: string;
+  value?: any,
+  onPaste?: any,
+  onBlur?: any,
 }
+
+
 
 export default function InputWithLabel({
   label,
   type,
   onChange,
   className,
+  value,
+  onPaste,
+  onBlur,
+  id,
 }: Props): ReactElement {
   const [isPasswordShown, setIsPasswordShown] = useState(false);
   const [initialType, setInitialType] = useState(type);
@@ -55,9 +65,13 @@ export default function InputWithLabel({
     <span className={`input-with-label`}>
       <div>{label}</div>
       <input
+        id={id}
         type={initialType}
         onChange={onChange}
         className={`${className}`}
+        value={value}
+        onPaste={onPaste}
+        onBlur={onBlur}
       />
       {type === "password" && (
         <a className="password-icon" onClick={toggleSwitchVisibility}>

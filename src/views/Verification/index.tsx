@@ -18,9 +18,9 @@ const Verification = () => {
   const [state, dispatch] = React.useContext(ContextMain);
   const [isValid, setisValid] = useState(false);
   const [code, setCode] = useState<string>("");
-  const [type] = useState(state.createAccountData.type);
+  const [type] = useState(state.createAccountData.mode);
   const [emailPhone] = useState(
-    type === CREATE_TYPE.EMAIL
+    type === "email"
       ? state.createAccountData.email
       : state.createAccountData.phone
   );
@@ -60,7 +60,7 @@ const Verification = () => {
       <section className="verification">
         <div className="verification__text">
           We've sent a 6-digit verification code to{" "}
-          {type === CREATE_TYPE.EMAIL ? "the email address" : "your phone"}{" "}
+          {type === "email" ? "the email address" : "your phone"}{" "}
         </div>
         <div className="verification__type"> {emailPhone}</div>
         <InputVerification codeSet={setCode} />

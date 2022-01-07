@@ -1,4 +1,4 @@
 export enum CREATE_TYPE {
-  EMAIL,
-  PHONE,
+  email,
+  phone,
 }
