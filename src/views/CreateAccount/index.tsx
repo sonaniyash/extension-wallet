@@ -16,7 +16,7 @@ import createAccountSchema from "../../validation/createAccountSchema";
 
 const CreateAccount = () => {
   const navigate = useNavigate();
-  const [, dispatch] = React.useContext(ContextMain);
+  const [state, dispatch] = React.useContext(ContextMain);
   const { createAccount, isCreatingAccount } = useCreateAccount();
   
 
@@ -33,7 +33,15 @@ const CreateAccount = () => {
     validateOnBlur: true,
     validateOnChange: true,
     onSubmit: async (values) => {
-      const session = await createAccount({...values, walletName : values.walletName +'.near' });
+      const payload = {
+        ...values,
+        walletName : values.walletName +'.near',
+        mode: state.createAccountData.mode,
+        email: state.createAccountData.email,
+        phone: state.createAccountData.phone,
+      }
+
+      const session = await createAccount(payload);
       dispatch({
         type: "SET_CREATE_ACCT",
         payload: session,
@@ -89,9 +97,6 @@ const CreateAccount = () => {
             onChange={formik.handleChange}
           />
         </div>
-        {console.log("formik", formik)}
-        {console.log("isCreatingAccount", isCreatingAccount)}
-
         <button
           disabled={!formik.isValid || isCreatingAccount}
           className="button createAccount__button"
