@@ -10,13 +10,17 @@ import { ROUTES } from "../../const/routeNames";
 
 import "./styles.scss";
 import HeaderAccountSelect from "../../components/common/HeaderAccountSelect";
+import { useGetAllCollectibles } from "../../hooks/api/collectibles";
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const { collectibles, isSearching } = useGetAllCollectibles();
+  const [collectiblesToShow, setCollectiblesToShow] = useState(collectibles);
 
-  // const clickContinue = () => {
-  //   navigate("/secure");
-  // };
+  useEffect(() => {
+    setCollectiblesToShow(collectibles);
+  }, [collectibles]);
+
 
   const goToContacts = () => {
     navigate(ROUTES.CONTACTS.url);
@@ -163,10 +167,10 @@ const Dashboard = () => {
         <TabsContainer tabs={[tab1, tab2]} activeTabId={activeTab}>
           <>
             <div data-tab="0" ref={tab1} className="tab-text">
-              <CollectibleItem item={0} onClick={() => navigate(ROUTES.DETAIL_COLLECTIBLE.url.replace(':id', "1"))} />
-              <CollectibleItem item={0} />
-              <CollectibleItem item={0} />
-              <CollectibleItem item={0} />
+              {isSearching ? "Searching..." : ""}
+              {collectiblesToShow && collectiblesToShow.map((collectible: any) => (
+                <CollectibleItem item={collectible} onClick={() => navigate(ROUTES.DETAIL_COLLECTIBLE.url.replace(':id', collectible.id))} />
+              ))}
             </div>
             <div data-tab="1" ref={tab2} className="tab-text">
               text tab 2

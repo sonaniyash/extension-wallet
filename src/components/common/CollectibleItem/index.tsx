@@ -14,11 +14,11 @@ const CollectibleItem = ({ item, onClick }: Props) => {
   return (
     <>
       <div className="collectible" onClick={onClick}>
-        <img className="collectible__img" />
+        <img className="collectible__img" src={item.imgUrl} />
         <div className="collectible__body">
-          <span className="collectible__body__title">Digital Ninja</span>
+          <span className="collectible__body__title">{item.name}</span>
           <span>
-            by <a className="collectible__body__link"> jhondoe.near</a>
+            by <a className="collectible__body__link">{item.owner}</a>
           </span>
         </div>
         <img
