@@ -140,4 +140,12 @@ export const TEST_COLLECTIBLES: Array<Collectibles> = [
     owner: "Julio123",
     description: "string long long long"
   },
+];
+
+export const TEST_OFFERS: Array<any> = [
+  {
+    id: "994654",
+    ammount: "0.3255",
+    date: "2/22/2022"
+  },
 ]

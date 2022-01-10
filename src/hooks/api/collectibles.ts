@@ -30,3 +30,18 @@ export const useGetCollectibleById = (collectibleId: string) => {
         isSearching: isLoading,
     };
 };
+
+export const useGetMyoffers = () => {
+    const { data, isLoading } = useQuery('myOffers',
+        () => api.getMyOffers(),
+        {
+            onError: (e) => {
+                console.error(e);
+            },
+        }
+    );
+    return {
+        collectibles: data,
+        isSearching: isLoading,
+    };
+};
