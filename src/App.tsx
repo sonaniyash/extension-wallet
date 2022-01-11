@@ -20,6 +20,7 @@ import CreateContacts from "./views/CreateContact";
 import EditContact from "./views/EditContact";
 import Notifications from "./views/Notifications";
 import DetailCollectible from "./views/DetailCollectible";
+import CreateNTFs from "./views/CreateNTFs";
 
 const App = () => {
   const navigate = useNavigate();
@@ -56,6 +57,7 @@ const App = () => {
             <Route path={ROUTES.NOTIFICATION.url} element={<Notifications />} />
             <Route path={ROUTES.SETTINGS.url} element={<Settings />} />
             <Route path={ROUTES.DETAIL_COLLECTIBLE.url} element={<DetailCollectible />} />
+            <Route path={ROUTES.CREATE_NFT.url} element={<CreateNTFs />} />
           </Routes>
         </Store>
       </QueryClientProvider>

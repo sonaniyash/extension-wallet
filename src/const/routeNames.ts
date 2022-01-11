@@ -54,5 +54,8 @@ export const ROUTES = {
   },
   DETAIL_COLLECTIBLE: {
     url: "/detailcollectible/:id"
-  }
+  },
+  CREATE_NFT: {
+    url: "/createnft"
+  },
 };

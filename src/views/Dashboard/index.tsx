@@ -11,6 +11,7 @@ import { ROUTES } from "../../const/routeNames";
 import "./styles.scss";
 import HeaderAccountSelect from "../../components/common/HeaderAccountSelect";
 import { useGetAllCollectibles } from "../../hooks/api/collectibles";
+import MyNFTList from "../../components/MyNFTList";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -24,6 +25,10 @@ const Dashboard = () => {
 
   const goToContacts = () => {
     navigate(ROUTES.CONTACTS.url);
+  };
+
+  const goToCreateNFT = () => {
+    navigate(ROUTES.CREATE_NFT.url);
   };
 
   const [activeTab, setActive] = useState(0);
@@ -157,7 +162,7 @@ const Dashboard = () => {
           </a>
           <a className="createNFT-btn dash-btn">
             <span>Start Creating your NFT Today</span>
-            <button className="button">Create NFT</button>
+            <button onClick={goToCreateNFT} className="button">Create NFT</button>
           </a>
         </div>
         <TabsHeader
@@ -167,10 +172,7 @@ const Dashboard = () => {
         <TabsContainer tabs={[tab1, tab2]} activeTabId={activeTab}>
           <>
             <div data-tab="0" ref={tab1} className="tab-text">
-              {isSearching ? "Searching..." : ""}
-              {collectiblesToShow && collectiblesToShow.map((collectible: any) => (
-                <CollectibleItem item={collectible} onClick={() => navigate(ROUTES.DETAIL_COLLECTIBLE.url.replace(':id', collectible.id))} />
-              ))}
+              <MyNFTList/>
             </div>
             <div data-tab="1" ref={tab2} className="tab-text">
               text tab 2
