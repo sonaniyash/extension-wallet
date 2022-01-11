@@ -1,8 +1,10 @@
 import React, { useRef, useState } from 'react'
+import Modal from "react-modal";
 import { useParams } from 'react-router';
 import HeaderAccountSelect from '../../components/common/HeaderAccountSelect';
 import TabsContainer from '../../components/common/TabsContainer';
 import TabsHeader from '../../components/common/TabsHeader';
+import MakeOfferModal from '../../components/MakeOfferModal';
 import { useGetCollectibleById } from '../../hooks/api/collectibles';
 import { StyledButton, StyledDetailCollectible } from './styled';
 
@@ -17,8 +19,23 @@ export default function DetailCollectible() {
     const { id } = useParams();
     const { collectible, isSearching } = useGetCollectibleById(id ? id : '');
     const [activeTab, setActive] = useState(0);
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+
     const tab1 = useRef<any>();
     const tab2 = useRef<any>();
+
+    const closeModal = () => {
+        setModalIsOpen(false);
+    };
+
+    const customStyles = {
+        overlay: {
+            backgroundColor: "rgba(51, 55, 59, 0.4)",
+        },
+        content: {
+            top: '30%'
+        }
+    };
 
     return (
         <>
@@ -49,7 +66,7 @@ export default function DetailCollectible() {
                                 </div>
                             </div>
                         </div>
-                        <StyledButton>
+                        <StyledButton onClick={() => setModalIsOpen(true)}>
                             <img
                                 className="icon"
                                 src="/assets/offer.png"
@@ -60,6 +77,15 @@ export default function DetailCollectible() {
                             </span>
 
                         </StyledButton>
+                        <Modal
+                            id="customModal"
+                            isOpen={modalIsOpen}
+                            onRequestClose={closeModal}
+                            style={customStyles}
+                            className="open-modal"
+                        >
+                            <MakeOfferModal onClose={closeModal} collectible={collectible} />
+                        </Modal>
                         <div className='tabs-wrapper'>
                             <TabsHeader
                                 tabsHeader={["Info", "Trade History"]}
