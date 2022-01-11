@@ -26,9 +26,7 @@ const Secure = () => {
   const [buttonDisabled, setButtonDisabled] = useState<boolean | null>(false);
   const [code, setCode] = useState<string>("");
   const [repeatCode, setRepeatCode] = useState<string>("");
-  const email = useState(
-    state.createAccountData.email
-  );
+  const email = useState(state.createAccountData.email);
 
   const initialState: Password = {
     password: "",
@@ -97,11 +95,11 @@ const Secure = () => {
           <label htmlFor="password" className="secure__label">
             Passcode
           </label>
-          <InputVerification codeSet={setCode} />
+          <InputVerification fieldName="code" />
           <label htmlFor="repeatPassword" className="secure__label">
             Repeat Passcode
           </label>
-          <InputVerification codeSet={setRepeatCode} />
+          <InputVerification fieldName="repeatCode" />
           {!isValid ? <p className="error-text"> {errorMessage}</p> : ""}
           <button
             disabled={buttonDisabled || !isValid}
@@ -113,7 +111,8 @@ const Secure = () => {
           <div className="email-label"> {email}</div>
 
           <p>
-            By creating a NEAR account, you agree to the NEAR<br />
+            By creating a NEAR account, you agree to the NEAR
+            <br />
             Wallet <a>Terms of Service</a> and <a>Privacy Policy</a>.
           </p>
         </section>

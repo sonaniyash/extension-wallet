@@ -1,41 +1,64 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
 
 import CloseCreateAccnt from "../../components/common/CloseCreateAccnt";
 import InputVerification from "../../components/common/InputVerification";
 import HeaderBg from "../../components/layouts/HeaderBg";
 import { ROUTES } from "../../const/routeNames";
-import { CreateAccountData, STATUS_CREATE_ACCT } from "../../context/models";
 import { ReducerTypes } from "../../context/reducer";
 import { ContextMain } from "../../context/store";
-import { CREATE_TYPE } from "../../const/forms";
 
 import "./styles.scss";
+import { useVerifyUser } from "../../hooks/api/user";
+import { verificationSchema } from "./schema";
+
+interface VerificationValues {
+  walletName: string;
+  code: string;
+}
+
+
 
 const Verification = () => {
   const TITLE_NAME = ROUTES.VERIFICATION.title;
 
+  const { verifyUser, isVerifying } = useVerifyUser();
   const [state, dispatch] = React.useContext(ContextMain);
-  const [isValid, setisValid] = useState(false);
-  const [code, setCode] = useState<string>("");
-  const [type] = useState(state.createAccountData.mode);
-  const [emailPhone] = useState(
-    type === "email"
-      ? state.createAccountData.email
-      : state.createAccountData.phone
-  );
+
+  const initialValues: VerificationValues = {
+    walletName: state.walletName,
+    code: "",
+  };
+  const formik = useFormik({
+    initialValues,
+    validationSchema: verificationSchema,
+    validateOnMount: true,
+    validateOnBlur: true,
+    validateOnChange: true,
+    onSubmit: async (values: VerificationValues) => {
+      await verifyUser(values, {
+        onSuccess: (response: any) => {
+          dispatch({
+            type: "CREATE_SESSION",
+            payload: {
+              walletName: values.walletName,
+              token: response.jwt_access_token,
+              refreshToken: response.jwt_refresh_token,
+              nearAppsUser: response.user_info,
+            },
+            reducer: ReducerTypes.Auth,
+          });
+          navigate(ROUTES.DASHBOARD.url);
+        },
+        onError: () => {
+          formik.errors.walletName = "The account doesn't exist";
+        },
+      });
+    },
+  });
 
   const navigate = useNavigate();
-  const clickContinue = () => {
-    const data: CreateAccountData = state.createAccountData;
-    data.status = STATUS_CREATE_ACCT.PENDING_NEAR_ACCT;
-    dispatch({
-      type: "SET_CREATE_ACCT",
-      payload: data,
-      reducer: ReducerTypes.CreateAccount,
-    });
-    navigate("/createAccount");
-  };
 
   useEffect(() => {
     dispatch({
@@ -45,10 +68,6 @@ const Verification = () => {
     });
   }, []);
 
-  useEffect(() => {
-    setisValid(code.length === 6);
-  }, [code]);
-
   return (
     <main>
       <HeaderBg>
@@ -57,24 +76,29 @@ const Verification = () => {
           <CloseCreateAccnt />
         </>
       </HeaderBg>
-      <section className="verification">
-        <div className="verification__text">
-          We've sent a 6-digit verification code to{" "}
-          {type === "email" ? "the email address" : "your phone"}{" "}
-        </div>
-        <div className="verification__type"> {emailPhone}</div>
-        <InputVerification codeSet={setCode} />
-        <button
-          disabled={!isValid}
-          className="button home__button"
-          onClick={clickContinue}
-        >
-          Continue
-        </button>
-        <div className="verification__question">Didn't receive your code?</div>
-        <a className="verification__link">Send to a different email address</a>
-        <a className="verification__link">Resend your code </a>
-      </section>
+      <form onSubmit={formik.handleSubmit}>
+        <section className="verification">
+          <div className="verification__text">
+            We've sent a 6-digit verification code to{" "}
+            {state.type === "email" ? "you email address" : "your phone"}{" "}
+          </div>
+          <InputVerification fieldName="code" />
+          <button
+            disabled={!formik.isValid || isVerifying}
+            className="button home__button"
+            type="submit"
+          >
+            Continue {isVerifying ? "..." : ""}
+          </button>
+          <div className="verification__question">
+            Didn't receive your code?
+          </div>
+          <a className="verification__link">
+            Send to a different email address
+          </a>
+          <a className="verification__link">Resend your code </a>
+        </section>
+      </form>
     </main>
   );
 };

@@ -1,12 +1,14 @@
+import { useFormikContext } from "formik";
 import React, { FormEvent, KeyboardEvent, useRef, ClipboardEvent } from "react";
 
 import "./styles.scss";
 
 interface Props {
-  codeSet: React.Dispatch<React.SetStateAction<any>>;
+  fieldName: string;
 }
 
-const InputVerification = (props: Props) => {
+const InputVerification = ({ fieldName }: Props) => {
+  const formik = useFormikContext();
   const char1 = useRef<HTMLInputElement | any>();
   const char2 = useRef<HTMLInputElement | any>();
   const char3 = useRef<HTMLInputElement | any>();
@@ -40,7 +42,7 @@ const InputVerification = (props: Props) => {
     } else if (inputs[i].current.value !== "") {
       inputs[i + 1].current.focus();
     }
-    props.codeSet(getCompleteCode());
+    formik.setFieldValue(fieldName, getCompleteCode());
   };
 
   const keyDownEvent = (event: KeyboardEvent) => {

@@ -1,24 +1,7 @@
 import { useMutation } from "react-query";
-import { CheckExistenceData, CreateAccountData } from "../../context/models";
+import { CreateAccountData } from "../../context/models";
 import api from "../../services";
 
-export const useCheckExistence = () => {
-  const { mutateAsync, isLoading } = useMutation(
-    (accountData: CheckExistenceData) => api.checkExistence(accountData),
-    {
-      onSuccess: () => {
-        console.log("email/phone checked successfully");
-      },
-      onError: (e) => {
-        console.error(e);
-      },
-    }
-  );
-  return {
-    checkExistence: mutateAsync,
-    isCheckingExistence: isLoading,
-  };
-};
 
 export const useCreateAccount = () => {
   const { mutateAsync, isLoading } = useMutation(
@@ -35,5 +18,41 @@ export const useCreateAccount = () => {
   return {
     createAccount: mutateAsync,
     isCreatingAccount: isLoading,
+  };
+};
+
+export const useLoginWithWallet = () => {
+  const { mutateAsync, isLoading } = useMutation(
+    (walletName: string) => api.loginWithWallet(walletName),
+    {
+      onSuccess: () => {
+        console.log("User logged in successfully");
+      },
+      onError: (e) => {
+        console.error(e);
+      },
+    }
+  );
+  return {
+    loginWithWallet: mutateAsync,
+    isLoggingIn: isLoading,
+  };
+};
+
+export const useVerifyUser = () => {
+  const { mutateAsync, isLoading } = useMutation(
+    ({ walletName, code }: any) => api.useVerifyUser(walletName, code),
+    {
+      onSuccess: () => {
+        console.log("User verified in successfully");
+      },
+      onError: (e) => {
+        console.error(e);
+      },
+    }
+  );
+  return {
+    verifyUser: mutateAsync,
+    isVerifying: isLoading,
   };
 };

@@ -5,6 +5,30 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    .accountId_after {
+        position: relative;
+        &::after {
+            content: ".near";
+            top: 0;
+            height: 41px;
+            width: 45px;
+            right: 15px;
+            padding: 0 0 0 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-left: 1px solid #BEBEC2;
+            z-index: 9999;
+            color: black;
+            position: absolute;
+            font-weight: 600;
+            font-size: 16px;
+        }
+    }
+    .AccountId {
+        position: relative;
+        padding: 0 30px 0px 0;
+    }
     &__selectors {
         text-align: center;
         display: flex;
