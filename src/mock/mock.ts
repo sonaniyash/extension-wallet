@@ -144,8 +144,23 @@ export const TEST_COLLECTIBLES: Array<Collectibles> = [
 
 export const TEST_OFFERS: Array<any> = [
   {
+    id: "136516",
+    ammount: "20.055",
+    date: "2021-06-07 09:22:06"
+  },
+  {
     id: "994654",
-    ammount: "0.3255",
-    date: "2/22/2022"
+    ammount: "0.325",
+    date: "2021-12-07 09:22:06"
+  },
+  {
+    id: "55111",
+    ammount: "1.231",
+    date: "2022-01-07 09:22:06"
+  },
+  {
+    id: "123561",
+    ammount: "12.221",
+    date: "2022-01-01 09:22:06"
   },
 ]

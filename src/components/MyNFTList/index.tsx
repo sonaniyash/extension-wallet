@@ -18,7 +18,7 @@ const MyNFTList = () => {
         <>
             {isSearching ? "Searching..." : ""}
               {collectiblesToShow && collectiblesToShow.map((collectible: any) => (
-                <CollectibleItem item={collectible} onClick={() => navigate(ROUTES.DETAIL_COLLECTIBLE.url.replace(':id', collectible.id))} />
+                <CollectibleItem key={collectible.name} item={collectible} onClick={() => navigate(ROUTES.DETAIL_COLLECTIBLE.url.replace(':id', collectible.id))} />
               ))}
         </>
     )

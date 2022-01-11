@@ -10,6 +10,7 @@ import TabsHeader from '../../components/common/TabsHeader';
 import HeaderAccountSelect from "../../components/common/HeaderAccountSelect";
 import { Button, CreateNFTSection } from "./styles";
 import MyNFTList from "../../components/MyNFTList";
+import OffersList from "../../components/OffersList";
 
 const CreateNTFs = () => {
   const navigate = useNavigate();
@@ -44,7 +45,7 @@ const CreateNTFs = () => {
               <MyNFTList/>
             </div>
             <div data-tab="1" ref={tab2} className="tab-text">
-
+              <OffersList/>
             </div>
             <div data-tab="2" ref={tab3} className="tab-text">
 
