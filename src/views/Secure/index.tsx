@@ -9,69 +9,43 @@ import { ContextMain } from "../../context/store";
 import ProgressBar from "../../components/common/ProgressBar";
 import CloseCreateAccnt from "../../components/common/CloseCreateAccnt";
 import { ReducerTypes } from "../../context/reducer";
+import { useFormik, FormikProvider } from "formik";
 
 import "./styles.scss";
+import passcodeSchema from "./schema";
 import InputVerification from "../../components/common/InputVerification";
-import { CreateAccountData } from "../../context/models";
+import { useCreatePasscode, useGetAccountDetails } from "../../hooks/api/user";
 
 const Secure = () => {
-  interface Password {
-    password: string;
-    repeatPassword: string;
-  }
-
-  const [state, dispatch] = React.useContext(ContextMain);
-  const [isValid, setIsValid] = useState<boolean | null>(false);
-  const [errorMessage, setErrorMessage] = useState<string | null>("");
-  const [buttonDisabled, setButtonDisabled] = useState<boolean | null>(false);
-  const [code, setCode] = useState<string>("");
-  const [repeatCode, setRepeatCode] = useState<string>("");
-  const email = useState(
-    state.createAccountData.email
-  );
-
-  const initialState: Password = {
-    password: "",
-    repeatPassword: "",
+  const { createPasscode, isCreatingPasscode } = useCreatePasscode();
+  const { accountDetails, isGettingDetails } = useGetAccountDetails();
+  const [, dispatch] = React.useContext(ContextMain);
+  const initialValues: any = {
+    code: "",
+    repeatCode: "",
   };
 
-  const validateForm = () => {
-    const validform =
-      !isEmpty(formState.password) &&
-      formState.password === formState.repeatPassword;
-    setIsValid(validform);
-    setButtonDisabled(!validform);
-    if (!validform) {
-      setErrorMessage("The password confirmation does not match");
-    }
-  };
-  const { formState, onChange } = useForm<Password>(initialState);
-
-  useEffect(() => {
-    if (!isEmpty(formState.password) && !isEmpty(formState.repeatPassword)) {
-      setErrorMessage("");
-      setButtonDisabled(true);
-      validateForm();
-    }
-  }, [formState]);
-
-  useEffect(() => {
-    setIsValid(code === repeatCode && code.length === 6);
-  }, [code, repeatCode]);
+  const formik = useFormik({
+    initialValues: initialValues,
+    validationSchema: passcodeSchema,
+    validateOnBlur: true,
+    validateOnChange: true,
+    validateOnMount: true,
+    onSubmit: async (values) => {
+      await createPasscode(values.code, {
+        onSuccess: () => {
+          navigate(ROUTES.DASHBOARD.url);
+        },
+        onError: () => {
+          formik.setFieldError("code", "Could not generate passcode");
+        },
+      });
+    },
+  });
 
   const navigate = useNavigate();
+  const [state] = React.useContext(ContextMain);
 
-  const clickContinue = () => {
-    const data: CreateAccountData = state.createAccountData;
-    data.passcode = code;
-    dispatch({
-      type: "SET_CREATE_ACCT",
-      payload: data,
-      reducer: ReducerTypes.CreateAccount,
-    });
-    navigate("/secure");
-    navigate(ROUTES.DASHBOARD.url);
-  };
   useEffect(() => {
     dispatch({
       type: "SET_UI",
@@ -80,44 +54,54 @@ const Secure = () => {
     });
   }, []);
 
+  console.info({ values: formik.values, errors: formik.errors });
+
   return (
     <main>
-      <form>
-        <HeaderBg>
-          <>
-            <p className="header-title">{ROUTES.SECURE.title}</p>
-            <CloseCreateAccnt />
-          </>
-        </HeaderBg>
-        <ProgressBar percentage={70} />
-        <section className="secure">
-          <p className="secure__description">
-            Keep your apps safe from other with access to your computer.
-          </p>
-          <label htmlFor="password" className="secure__label">
-            Passcode
-          </label>
-          <InputVerification codeSet={setCode} />
-          <label htmlFor="repeatPassword" className="secure__label">
-            Repeat Passcode
-          </label>
-          <InputVerification codeSet={setRepeatCode} />
-          {!isValid ? <p className="error-text"> {errorMessage}</p> : ""}
-          <button
-            disabled={buttonDisabled || !isValid}
-            className="button secure__button"
-            onClick={clickContinue}
-          >
-            Continue
-          </button>
-          <div className="email-label"> {email}</div>
+      <FormikProvider value={formik}>
+        <form onSubmit={formik.handleSubmit}>
+          <HeaderBg>
+            <>
+              <p className="header-title">{ROUTES.SECURE.title}</p>
+              <CloseCreateAccnt />
+            </>
+          </HeaderBg>
+          <ProgressBar percentage={70} />
+          <section className="secure">
+            <p className="secure__description">
+              Keep your apps safe from other with access to your computer.
+            </p>
+            <label htmlFor="password" className="secure__label">
+              Passcode
+            </label>
+            <InputVerification fieldName="code" />
+            {formik.touched.code && formik.errors.code && (
+              <p className="error-text"> {formik.errors.code}</p>
+            )}
+            <label htmlFor="repeatPassword" className="secure__label">
+              Repeat Passcode
+            </label>
+            <InputVerification fieldName="repeatCode" />
+            {formik.touched.repeatCode && formik.errors.repeatCode && (
+              <p className="error-text"> {formik.errors.repeatCode}</p>
+            )}
+            <button
+              disabled={!formik.isValid || isCreatingPasscode}
+              className="button secure__button"
+              onClick={() => formik.handleSubmit()}
+            >
+              Continue {isCreatingPasscode ? "..." : ""}
+            </button>
+            <div className="email-label"> {state.createAccountData.email}</div>
 
-          <p>
-            By creating a NEAR account, you agree to the NEAR<br />
-            Wallet <a>Terms of Service</a> and <a>Privacy Policy</a>.
-          </p>
-        </section>
-      </form>
+            <p>
+              By creating a NEAR account, you agree to the NEAR
+              <br />
+              Wallet <a>Terms of Service</a> and <a>Privacy Policy</a>.
+            </p>
+          </section>
+        </form>
+      </FormikProvider>
     </main>
   );
 };

@@ -1,8 +1,3 @@
-export interface CheckExistenceData {
-  email?: string;
-  phone?: string;
-  mode?: string;
-}
 export interface CreateAccountData {
   email?: string;
   phone?: string;

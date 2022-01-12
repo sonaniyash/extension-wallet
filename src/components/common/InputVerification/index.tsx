@@ -1,12 +1,14 @@
+import { useFormikContext } from "formik";
 import React, { FormEvent, KeyboardEvent, useRef, ClipboardEvent } from "react";
 
 import "./styles.scss";
 
 interface Props {
-  codeSet: React.Dispatch<React.SetStateAction<any>>;
+  fieldName: string;
 }
 
-const InputVerification = (props: Props) => {
+const InputVerification = ({ fieldName }: Props) => {
+  const formik = useFormikContext();
   const char1 = useRef<HTMLInputElement | any>();
   const char2 = useRef<HTMLInputElement | any>();
   const char3 = useRef<HTMLInputElement | any>();
@@ -28,6 +30,7 @@ const InputVerification = (props: Props) => {
     inputs.forEach((val) => {
       code += val?.current?.value;
     });
+    formik.setFieldValue(fieldName, code);
     return code;
   };
 
@@ -40,7 +43,9 @@ const InputVerification = (props: Props) => {
     } else if (inputs[i].current.value !== "") {
       inputs[i + 1].current.focus();
     }
-    props.codeSet(getCompleteCode());
+    console.info({ fieldName, code: getCompleteCode() });
+    formik.setFieldValue(fieldName, getCompleteCode());
+    formik.setFieldTouched(fieldName, true);
   };
 
   const keyDownEvent = (event: KeyboardEvent) => {
@@ -65,6 +70,8 @@ const InputVerification = (props: Props) => {
                 inputs[i].setAttribute("type", "password");
             }, 1000); */
     }
+    formik.setFieldValue(fieldName, getCompleteCode());
+    formik.setFieldTouched(fieldName, true);
   };
 
   const handlePaste = (event: ClipboardEvent<HTMLInputElement>) => {

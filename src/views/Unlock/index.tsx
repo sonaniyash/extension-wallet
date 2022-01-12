@@ -52,7 +52,7 @@ export default function Unlock() {
       <span className="unlock__text">
         Please enter the passcode to <br /> unlock this wallet
       </span>
-      <InputVerification codeSet={setCode} />
+      <InputVerification fieldName="code" />
       <button
         disabled={!isValid}
         className="button"

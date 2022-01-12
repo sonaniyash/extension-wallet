@@ -1,17 +1,32 @@
 import axios from "axios";
-import { CheckExistenceData, CreateAccountData } from "../context/models";
+import { CreateAccountData } from "../context/models";
 
-const baseUrl = "https://xkfvqk07j4.execute-api.us-east-1.amazonaws.com"
+const baseUrl = "http://localhost:3001/api";
 
 const api = {
-  checkExistence: async (data: CheckExistenceData) => {
+  getAccountDetails: async () => {
     return axios
-      .post(`${baseUrl}/api/user/check_existence`, data)
+      .get(`${baseUrl}/user/details`)
       .then((response) => response.data);
   },
   createAccount: async (data: CreateAccountData) => {
     return axios
-      .post(`${baseUrl}/api/user/registration`, data)
+      .post(`${baseUrl}/user/registration`, data)
+      .then((response) => response.data);
+  },
+  loginWithWallet: async (walletName: string) => {
+    return axios
+      .post(`${baseUrl}/user/login`, { walletName })
+      .then((response) => response.data);
+  },
+  verifyUser: async (walletName: string, code: string) => {
+    return axios
+      .post(`${baseUrl}/user/verify`, { walletName, nonce: code })
+      .then((response) => response.data);
+  },
+  createPasscode: async (code: string) => {
+    return axios
+      .post(`${baseUrl}/user/passcode`, { code })
       .then((response) => response.data);
   },
 };
