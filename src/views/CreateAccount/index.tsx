@@ -1,4 +1,4 @@
-import React, {  useEffect } from "react";
+import React, { useEffect } from "react";
 
 import InputWithLabel from "../../components/common/InputWithLabel";
 import HeaderBg from "../../components/layouts/HeaderBg";
@@ -13,12 +13,12 @@ import { useCreateAccount } from "../../hooks/api/user";
 import "./styles.scss";
 import { useFormik } from "formik";
 import createAccountSchema from "../../validation/createAccountSchema";
+import axios from "axios";
 
 const CreateAccount = () => {
   const navigate = useNavigate();
   const [state, dispatch] = React.useContext(ContextMain);
   const { createAccount, isCreatingAccount } = useCreateAccount();
-  
 
   const initialValues: any = {
     fullName: "",
@@ -35,19 +35,22 @@ const CreateAccount = () => {
     onSubmit: async (values) => {
       const payload = {
         ...values,
-        walletName : values.walletName +'.near',
+        walletName: values.walletName + ".near",
         mode: state.createAccountData.mode,
         email: state.createAccountData.email,
         phone: state.createAccountData.phone,
-      }
+      };
 
       const session = await createAccount(payload);
+      axios.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${session.token}`;
       dispatch({
-        type: "SET_CREATE_ACCT",
-        payload: session,
-        reducer: ReducerTypes.CreateAccount,
+        type: "CREATE_SESSION",
+        payload: session.token,
+        reducer: ReducerTypes.Auth,
       });
-      navigate("/secure");
+      navigate(ROUTES.SECURE.url);
     },
   });
 
@@ -58,7 +61,6 @@ const CreateAccount = () => {
       reducer: ReducerTypes.Main,
     });
   }, []);
-
 
   return (
     <React.Fragment>
@@ -90,7 +92,9 @@ const CreateAccount = () => {
           <input
             id="walletName"
             name="walletName"
-            className={`accountId_input ${formik.errors.walletName ? "wrong" : ""}`}
+            className={`accountId_input ${
+              formik.errors.walletName ? "wrong" : ""
+            }`}
             value={formik.values.walletName}
             onPaste={formik.handleChange}
             onBlur={formik.handleBlur}

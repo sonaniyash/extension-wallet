@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useFormik } from "formik";
+import { FormikProvider, useFormik } from "formik";
+import axios from "axios";
 
 import CloseCreateAccnt from "../../components/common/CloseCreateAccnt";
 import InputVerification from "../../components/common/InputVerification";
@@ -17,8 +18,6 @@ interface VerificationValues {
   walletName: string;
   code: string;
 }
-
-
 
 const Verification = () => {
   const TITLE_NAME = ROUTES.VERIFICATION.title;
@@ -38,14 +37,17 @@ const Verification = () => {
     validateOnChange: true,
     onSubmit: async (values: VerificationValues) => {
       await verifyUser(values, {
-        onSuccess: (response: any) => {
+        onSuccess: (session: any) => {
+          axios.defaults.headers.common[
+            "Authorization"
+          ] = `Bearer ${session.token}`;
+
           dispatch({
             type: "CREATE_SESSION",
             payload: {
-              walletName: values.walletName,
-              token: response.jwt_access_token,
-              refreshToken: response.jwt_refresh_token,
-              nearAppsUser: response.user_info,
+              id: session.id,
+              token: session.jwt_access_token,
+              refreshToken: session.jwt_refresh_token,
             },
             reducer: ReducerTypes.Auth,
           });
@@ -77,27 +79,29 @@ const Verification = () => {
         </>
       </HeaderBg>
       <form onSubmit={formik.handleSubmit}>
-        <section className="verification">
-          <div className="verification__text">
-            We've sent a 6-digit verification code to{" "}
-            {state.type === "email" ? "you email address" : "your phone"}{" "}
-          </div>
-          <InputVerification fieldName="code" />
-          <button
-            disabled={!formik.isValid || isVerifying}
-            className="button home__button"
-            type="submit"
-          >
-            Continue {isVerifying ? "..." : ""}
-          </button>
-          <div className="verification__question">
-            Didn't receive your code?
-          </div>
-          <a className="verification__link">
-            Send to a different email address
-          </a>
-          <a className="verification__link">Resend your code </a>
-        </section>
+        <FormikProvider value={formik}>
+          <section className="verification">
+            <div className="verification__text">
+              We've sent a 6-digit verification code to{" "}
+              {state.type === "email" ? "you email address" : "your phone"}{" "}
+            </div>
+            <InputVerification fieldName="code" />
+            <button
+              disabled={!formik.isValid || isVerifying}
+              className="button home__button"
+              type="submit"
+            >
+              Continue {isVerifying ? "..." : ""}
+            </button>
+            <div className="verification__question">
+              Didn't receive your code?
+            </div>
+            <a className="verification__link">
+              Send to a different email address
+            </a>
+            <a className="verification__link">Resend your code </a>
+          </section>
+        </FormikProvider>
       </form>
     </main>
   );

@@ -5,14 +5,12 @@ const LoginReducer = (state: State, action: any) => {
     case "CREATE_SESSION":
       return {
         ...state,
-        token: action.payload.token,
-        walletName: action.payload.walletName,
+        token: action.payload,
       };
     case "REMOVE_SESSION":
       return {
         ...state,
         token: "",
-        walletName: "",
       };
     default:
       return state;
