@@ -1,7 +1,7 @@
 import axios from "axios";
 import { CreateAccountData } from "../context/models";
 
-const baseUrl = "http://localhost:3001/api";
+const baseUrl = `${process.env.NEARAPI_ENDPOINT}/api`;
 
 const api = {
   getAccountDetails: async () => {

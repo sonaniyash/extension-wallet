@@ -1,7 +1,7 @@
 const webpack = require("webpack");
 const path = require("path");
+require('dotenv').config({ path: './.env' });
 const CopyPlugin = require("copy-webpack-plugin");
-
 const config = {
   entry: {
     popup: path.join(__dirname, "src/extension/popup.tsx"),
@@ -40,7 +40,7 @@ const config = {
       },
       {
         test: /\.(s(a|c)ss)$/,
-        use: ['style-loader','css-loader', 'sass-loader']
+        use: ['style-loader', 'css-loader', 'sass-loader']
       },
     ],
   },
@@ -56,6 +56,9 @@ const config = {
   plugins: [
     new CopyPlugin({
       patterns: [{ from: "src/public", to: "." }],
+    }),
+    new webpack.DefinePlugin({
+      "process.env": JSON.stringify(process.env)
     }),
   ],
 };
