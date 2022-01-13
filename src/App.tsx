@@ -21,9 +21,24 @@ import EditContact from "./views/EditContact";
 import Notifications from "./views/Notifications";
 import DetailCollectible from "./views/DetailCollectible";
 import CreateNTFs from "./views/CreateNTFs";
+import axios from "axios";
 
 const App = () => {
   const navigate = useNavigate();
+  // TODO Access the token from the dispatch
+  const accessToken = 'eyJraWQiOiJmdjZkSFwvQ05Bajk5bE10b2V2K2hrMFVBUWRZeGRyK2dlTGNJYWpqRTlCMD0iLCJhbGciOiJSUzI1NiJ9.eyJvcmlnaW5fanRpIjoiYTlmY2E4ZWEtNWY5MC00MGU2LTgwODMtZGQxZThjZmI0MGM4Iiwic3ViIjoiMjg2NDJhM2QtNWNiYy00ZTMxLWE5ZmEtMmM5MTg1YzNhZDdkIiwiZXZlbnRfaWQiOiIxNmQxNTIzMi04OTcyLTQ3NmYtYTM0Yi02NjE1NGNlODdjZmIiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNjQyMDk4MjYzLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9hSlUxRThUWVciLCJleHAiOjE2NDIxODQ2NjMsImlhdCI6MTY0MjA5ODI2MywianRpIjoiOWU1MmQzZTUtMmJlYS00NGRjLThjMmItMDllYzA5YzA1NTM3IiwiY2xpZW50X2lkIjoiMWg4ajM3ZW44ZXEwNGU0bnVsOGw3Z2U0YW4iLCJ1c2VybmFtZSI6InNlcmdpb2dhZ3Vlcm8ubmVhciJ9.7PStwOrFRa1ABeFK0tzBN15buBjeCJvjMi2551oLeF4tnlsczm4sIKpzfUXk7oMpH-0NLHMQrH-oZXFkEJuDYq1YQrVfjOzEiv3cc32E1e5mpbVVa6nY8pBBT19MIh7br2FzEa2SrUe64j2k2NnwBg3Wcq6MvLwC8EGj5oAlIeO1K4nnqUvOmsyjRZ6ZG6k1zHqflSxaR4jGo7uqbdXw5eg9BVB0D3BH6SJZI1FXbZGLDqkvWBGBjcoYVzz1WAUYUlkTL_cDrBwQvLnn5uHpTmxj1BGYXxe5RMq1VFIgvzP-dUHTnkwrsEiHFNGLjBnJo9gLb4Kqf7UGRheOklADrQ';
+  
+  axios.interceptors.request.use(
+    config => {
+        if (config && config.headers && accessToken) {
+            config.headers['Authorization'] = 'Bearer ' + accessToken;
+        }
+        // config.headers['Content-Type'] = 'application/json';
+        return config;
+    },
+    error => {
+        Promise.reject(error)
+    });
 
   useEffect(() => {
     navigate(ROUTES.HOME.url);

@@ -7,7 +7,6 @@ import { ContextMain } from "../../context/store";
 import { ReducerTypes } from "../../context/reducer";
 import ContactItem from "../../components/ContactItem";
 import { InputSearch } from "../../components/common/InputSearch";
-import { filterArrayObjectByValue } from "../../utils/utils";
 import { useGetContacts } from "../../hooks/api/contacts";
 
 import "./styles.scss";
@@ -20,11 +19,11 @@ Modal.setAppElement("#popup");
 const Contacts = () => {
   const navigate = useNavigate();
   const [, dispatch] = React.useContext(ContextMain);
-
-  const { contacts, isSearching } = useGetContacts();
-
   const [searchInput, setsearchInput] = useState("");
-  const [contactsToShow, setContactsToShow] = useState(contacts);
+
+  const { contacts, isSearching } = useGetContacts(searchInput);
+
+  //const [contactsToShow, setContactsToShow] = useState(contacts);
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   const selectContact = (id: string) => {
@@ -41,11 +40,11 @@ const Contacts = () => {
 
   const searchValueInput = (e: any) => {
     setsearchInput(e.target.value);
-    const contactToShow = filterArrayObjectByValue(
+   /* const contactToShow = filterArrayObjectByValue(
       searchInput.toLowerCase(),
       contacts && contacts ? contacts : []
     );
-    setContactsToShow(contactToShow);
+    setContactsToShow(contactToShow);*/
   };
 
   const addContactHandler = () => {
@@ -74,9 +73,9 @@ const Contacts = () => {
     });
   }, []);
 
-  useEffect(() => {
+ /* useEffect(() => {
     setContactsToShow(contacts);
-  }, [contacts]);
+  }, [contacts]);*/
 
   return (
     <>
@@ -85,9 +84,9 @@ const Contacts = () => {
         <InputSearch addHandler={addContactHandler} searchHandler={searchValueInput} />
         <div className="contacts__list">
           {isSearching ? "Searching..." : ""}
-          {contactsToShow && contactsToShow.map((contact: any) => (
+          {contacts && contacts.map((contact: any) => (
             <ContactItem
-              key={contact.account}
+              key={contact.contact_id}
               contact={contact}
               clickHandler={selectContact}
             />
