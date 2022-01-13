@@ -35,7 +35,7 @@ const LoginForm = () => {
           dispatch({
             type: "SET_LOGIN_ACCOUNT",
             payload: {
-              walletName: values.walletName,
+              walletName: `${values.walletName}.near`,
               type: response.type,
             },
             reducer: ReducerTypes.Login,

@@ -23,10 +23,6 @@ const Home = () => {
       payload: ROUTES.HOME.url,
       reducer: ReducerTypes.Main,
     });
-    dispatch({
-      type: "CLEAR_LOGIN_ACCOUNT",
-      reducer: ReducerTypes.Login,
-    });
   }, []);
 
   return (

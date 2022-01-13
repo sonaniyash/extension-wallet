@@ -21,7 +21,7 @@ const api = {
   },
   verifyUser: async (walletName: string, code: string) => {
     return axios
-      .post(`${baseUrl}/user/verify`, { walletName, nonce: code })
+      .post(`${baseUrl}/user/verify`, { walletName, code })
       .then((response) => response.data);
   },
   createPasscode: async (code: string) => {
