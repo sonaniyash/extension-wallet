@@ -28,9 +28,9 @@ const Secure = () => {
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: passcodeSchema,
-    validateOnBlur: true,
-    validateOnChange: true,
-    validateOnMount: true,
+    validateOnBlur: false,
+    validateOnChange: false,
+    validateOnMount: false,
     onSubmit: async (values) => {
       await createPasscode(values.code, {
         onSuccess: () => {
@@ -86,7 +86,7 @@ const Secure = () => {
               <p className="error-text"> {formik.errors.repeatCode}</p>
             )}
             <button
-              disabled={!formik.isValid || isCreatingPasscode}
+              disabled={isCreatingPasscode}
               className="button secure__button"
               onClick={() => formik.handleSubmit()}
             >
