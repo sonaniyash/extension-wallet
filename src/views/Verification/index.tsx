@@ -24,6 +24,7 @@ const Verification = () => {
 
   const { verifyUser, isVerifying } = useVerifyUser();
   const [state, dispatch] = React.useContext(ContextMain);
+  console.info({ state });
 
   const initialValues: VerificationValues = {
     walletName: state.walletName,
@@ -32,9 +33,9 @@ const Verification = () => {
   const formik = useFormik({
     initialValues,
     validationSchema: verificationSchema,
-    validateOnMount: true,
-    validateOnBlur: true,
-    validateOnChange: true,
+    validateOnMount: false,
+    validateOnBlur: false,
+    validateOnChange: false,
     onSubmit: async (values: VerificationValues) => {
       await verifyUser(values, {
         onSuccess: (session: any) => {
@@ -44,11 +45,7 @@ const Verification = () => {
 
           dispatch({
             type: "CREATE_SESSION",
-            payload: {
-              id: session.id,
-              token: session.jwt_access_token,
-              refreshToken: session.jwt_refresh_token,
-            },
+            payload: session.token,
             reducer: ReducerTypes.Auth,
           });
           navigate(ROUTES.DASHBOARD.url);
@@ -86,8 +83,11 @@ const Verification = () => {
               {state.type === "email" ? "you email address" : "your phone"}{" "}
             </div>
             <InputVerification fieldName="code" />
+            {formik.errors.code && (
+              <p className="error-text"> {formik.errors.code}</p>
+            )}
             <button
-              disabled={!formik.isValid || isVerifying}
+              disabled={isVerifying}
               className="button home__button"
               type="submit"
             >

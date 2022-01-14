@@ -1,7 +1,7 @@
 import axios from "axios";
 import { CreateAccountData } from "../context/models";
 
-const baseUrl = "http://localhost:3001/api";
+const baseUrl = `${process.env.NEARAPI_ENDPOINT}/api`;
 
 const api = {
   getAccountDetails: async () => {
@@ -21,7 +21,7 @@ const api = {
   },
   verifyUser: async (walletName: string, code: string) => {
     return axios
-      .post(`${baseUrl}/user/verify`, { walletName, nonce: code })
+      .post(`${baseUrl}/user/verify`, { walletName, code })
       .then((response) => response.data);
   },
   createPasscode: async (code: string) => {
