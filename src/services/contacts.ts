@@ -1,13 +1,15 @@
 import axios from "axios";
+export const apiNearUrl = 'https://api.nearlogin.io';
 
-const apiNearUrl = 'https://api.nearlogin.io';
-const userId = 'UaLh5zaWZSUzjZLl6bV6L'
+// const userId = 'UaLh5zaWZSUzjZLl6bV6L'
+
 const api = {
-  getContacts: async (): Promise<Array<any>> => {
+  getContacts: async (userId: any): Promise<Array<any>> => {
     return axios
       .get(`${apiNearUrl}/contacts/list/${userId}`)
       .then((response: any) => response.data.data);
   },
+
   getContact: async (id: string | undefined): Promise<any> => {
     return axios
       .get(`${apiNearUrl}/contacts/${id}`)

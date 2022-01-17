@@ -2,9 +2,9 @@ import {  useMutation, useQuery } from "react-query";
 import api from "../../services";
 import { filterArrayObjectByValue } from "../../utils/utils";
 
-export const useGetContacts = ( filterString: string) => {
+export const useGetContacts = ( filterString: string, userId: string) => {
   const {data , isLoading} =  useQuery('contacts',
-    () => api.getContacts(),
+    () => api.getContacts(userId),
     {
       onError: (e) => {
         console.error(e);

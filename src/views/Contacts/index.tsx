@@ -12,16 +12,21 @@ import { useGetContacts } from "../../hooks/api/contacts";
 import "./styles.scss";
 import { CreateButton, ImportButton, ModalContent } from "./styles";
 import HeaderAccountSelect from "../../components/common/HeaderAccountSelect";
+import decode from 'jwt-decode' // import dependency
 
 
 Modal.setAppElement("#popup");
 
 const Contacts = () => {
   const navigate = useNavigate();
-  const [, dispatch] = React.useContext(ContextMain);
+  const [state, dispatch] = React.useContext(ContextMain);
   const [searchInput, setsearchInput] = useState("");
 
-  const { contacts, isSearching } = useGetContacts(searchInput);
+  const accessToken = state && state.token ? state.token : '';
+  const nearToken = accessToken && decode(accessToken);
+  const userId = nearToken.near_api.user_info.user_id;
+
+  const { contacts, isSearching } = useGetContacts(searchInput, userId);
 
   //const [contactsToShow, setContactsToShow] = useState(contacts);
   const [modalIsOpen, setIsOpen] = React.useState(false);
