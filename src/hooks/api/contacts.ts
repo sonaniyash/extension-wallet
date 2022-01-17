@@ -1,28 +1,38 @@
 import {  useMutation, useQuery } from "react-query";
 import api from "../../services";
+import { filterArrayObjectByValue } from "../../utils/utils";
 
-export const useGetContacts = () => {
+export const useGetContacts = ( filterString: string, userId: string) => {
   const {data , isLoading} =  useQuery('contacts',
-    () => api.getContacts(),
+    () => api.getContacts(userId),
     {
       onError: (e) => {
         console.error(e);
       },
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
     }
   );
+
+  const dataFiltered = filterString ? filterArrayObjectByValue(
+    filterString.toLowerCase(),
+    data && data ? data : []
+  ) : data;
+
   return {
-    contacts: data,
+    contacts: dataFiltered,
     isSearching: isLoading,
   };
 };
 
-export const useGetContact = (contactId: string) => {
-  const {data , isLoading} =  useQuery('contact',
+export const useGetContact = (contactId: string | undefined) => {
+  const {data , isLoading} =  useQuery(['contact', contactId],
     () => api.getContact(contactId),
     {
       onError: (e) => {
         console.error(e);
       },
+      enabled: !!contactId
     }
   );
   return {
