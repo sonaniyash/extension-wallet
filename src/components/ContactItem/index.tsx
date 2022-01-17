@@ -39,7 +39,7 @@ const ContactItem = ({ contact, clickHandler }: Props) => {
           <span className="contact__body__title">
             {contact.first_name} {contact.last_name}
           </span>
-          <span className="contact__body__acct">{contact.account ? contact.account : ''}</span>
+          <span className="contact__body__acct">{contact.wallet_id ? contact.wallet_id : ''}</span>
         </div>
         <img
           onClick={()=> clickHandler(contact.contact_id)}

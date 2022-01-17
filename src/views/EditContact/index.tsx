@@ -8,20 +8,24 @@ import { useFormik } from "formik";
 import createContactSchema from "../../validation/createContactSchema";
 import { useNavigate, useParams } from "react-router";
 import { ROUTES } from "../../const/routeNames";
+import { getUserIdFromToken } from "../../utils/utils";
+import { ContextMain } from "../../context/store";
 
 Modal.setAppElement("#popup");
 
 const CreateContacts = () => {
   const navigate = useNavigate();
-  const { editContact, isCreating } = useEditContact();
-  
+  const [state] = React.useContext(ContextMain);
+  const userId = getUserIdFromToken(state)
   const { id } = useParams();
+  const {contact} = useGetContact(id);
+
+  const { editContact, isCreating } = useEditContact(id, userId);
+  
   if (!id){
     navigate(-1);
     console.info("no id selected to edit contact page");
   }
-
-  const {contact} = useGetContact(id ? id : '');
 
   const initialValues: any = {
     fullName: "",
@@ -47,9 +51,11 @@ const CreateContacts = () => {
     if(contact) {
       const values = {
         email: contact.email,
-        fullName: contact.fullName,
-        nearAccount: contact.account,
-        phone: contact.phone,
+        first_name: contact.first_name,
+        last_name: contact.last_name,
+        address: contact.address && contact.address[0],
+        nearAccount: contact.wallet_id,
+        phone: contact.phone[0] && contact.phone[0].number,
       }
       formik.setValues(values);
     }
@@ -60,26 +66,61 @@ const CreateContacts = () => {
       <HeaderAccountSelect/>
       <Title>Edit Contact</Title>
       <ChangePhotoBlock>
-        <PhotoContact>{contact && contact.fullName ? contact.fullName.substring(0,2).toUpperCase(): 'AA'}</PhotoContact>
+        <PhotoContact>{contact && contact.first_name && contact.last_name ? contact.first_name.substring(0, 1).toUpperCase() +
+            contact.last_name.substring(0, 1).toUpperCase(): 'AA'}</PhotoContact>
         <ChangePhoto>Change photo</ChangePhoto>
       </ChangePhotoBlock>
       <Form>
-      <Label htmlFor="full name">Full Name</Label>
+      <Label htmlFor="full name">First Name</Label>
       <input
         type="text"
-        id="fullName"
-        name="fullName"
-        value={formik.values.fullName}
+        id="firstname"
+        name="firstname"
+        value={formik.values.first_name}
         onPaste={formik.handleChange}
         onBlur={formik.handleBlur}
         onChange={formik.handleChange}
         placeholder={"Ex. John doe"}
         className="home__selectors__input"
       />
-      {!!formik.values.fullName &&
-        !!formik.touched.fullName &&
-        !!formik.errors.fullName && (
-          <p className="error-text"> {formik.errors.fullName}</p>
+      {!!formik.values.first_name &&
+        !!formik.touched.first_name &&
+        !!formik.errors.first_name && (
+          <p className="error-text"> {formik.errors.first_name}</p>
+        )}
+      <Label htmlFor="full name">Last Name</Label>
+      <input
+        type="text"
+        id="lastname"
+        name="lastname"
+        value={formik.values.last_name}
+        onPaste={formik.handleChange}
+        onBlur={formik.handleBlur}
+        onChange={formik.handleChange}
+        placeholder={"Ex. John doe"}
+        className="home__selectors__input"
+      />
+      {!!formik.values.last_name &&
+        !!formik.touched.last_name &&
+        !!formik.errors.last_name && (
+          <p className="error-text"> {formik.errors.last_name}</p>
+        )}
+      <Label htmlFor="full name">Address</Label>
+      <input
+        type="text"
+        id="address"
+        name="address"
+        value={formik.values.address}
+        onPaste={formik.handleChange}
+        onBlur={formik.handleBlur}
+        onChange={formik.handleChange}
+        placeholder={"Ex. John doe"}
+        className="home__selectors__input"
+      />
+      {!!formik.values.address &&
+        !!formik.touched.address &&
+        !!formik.errors.address && (
+          <p className="error-text"> {formik.errors.address}</p>
         )}
       <Label htmlFor="full name">Email</Label>
       <input

@@ -65,7 +65,7 @@ const DetailContacts = () => {
           </div>
         </HeaderContact>
         <NameH2> {contact ? `${contact.first_name} ${contact.last_name}` : ''}</NameH2>
-        <SubtitleEmail> {contact ? contact.account : ''}</SubtitleEmail>
+        <SubtitleEmail> {contact ? contact.wallet_id : ''}</SubtitleEmail>
       </DetailSection>
       <TabsHeader
         tabsHeader={["Collectibles", "Actions", "Connected expereinces"]}

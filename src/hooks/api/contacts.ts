@@ -41,9 +41,9 @@ export const useGetContact = (contactId: string | undefined) => {
   };
 };
 
-export const useContact = () => {
+export const useContact = (userId: any) => {
   const { mutateAsync, isLoading } = useMutation(
-    (contactData: any) => api.createContact(contactData),
+    (contactData: any) => api.createContact(contactData, userId),
     {
       onSuccess: () => {
         console.log("Contact created successfully");
@@ -59,9 +59,9 @@ export const useContact = () => {
   };
 };
 
-export const useEditContact = () => {
+export const useEditContact = (id: any, userId: any) => {
   const { mutateAsync, isLoading } = useMutation(
-    (contactData: any) => api.editContact(contactData),
+    (contactData: any) => api.editContact(contactData, userId, id),
     {
       onSuccess: () => {
         console.log("Contact created successfully");
