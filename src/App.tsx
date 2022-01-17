@@ -5,7 +5,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 
 import Home from "./views/Home";
 import CreateAccount from "./views/CreateAccount";
-import Store, { ContextMain } from "./context/store";
+import { ContextMain } from "./context/store";
 import Verification from "./views/Verification";
 import Secure from "./views/Secure";
 import { ROUTES } from "./const/routeNames";

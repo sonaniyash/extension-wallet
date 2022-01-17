@@ -1,5 +1,5 @@
 import axios from "axios";
-export const apiNearUrl = 'https://api.nearlogin.io';
+export const apiNearUrl = `${process.env.NEARAPI_BACKEND}`;'https://api.nearlogin.io';
 
 // const userId = 'UaLh5zaWZSUzjZLl6bV6L'
 

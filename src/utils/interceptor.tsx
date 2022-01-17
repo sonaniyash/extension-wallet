@@ -11,10 +11,11 @@ export const InitAxiosInterceptor = (context: any)=> {
             const [state,] = context;
 
             const accessToken = state && state.token ? state.token : '';
-            const nearTokenData = accessToken && decode(accessToken);
-            const nearToken = nearTokenData.near_api.jwt_access_token;
-
+        
             if (config && config.headers && accessToken) {
+                const nearTokenData: any = (accessToken && decode(accessToken) ? decode(accessToken) : '');
+                const nearToken = (nearTokenData && nearTokenData.near_api && nearTokenData.near_api.jwt_access_token) ? nearTokenData.near_api.jwt_access_token : '';
+
                 if (config.url?.includes(apiNearUrl))
                 {
                     config.headers['Authorization'] = 'Bearer ' + nearToken;

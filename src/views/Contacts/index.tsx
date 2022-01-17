@@ -28,7 +28,6 @@ const Contacts = () => {
 
   const { contacts, isSearching } = useGetContacts(searchInput, userId);
 
-  //const [contactsToShow, setContactsToShow] = useState(contacts);
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   const selectContact = (id: string) => {
@@ -45,11 +44,7 @@ const Contacts = () => {
 
   const searchValueInput = (e: any) => {
     setsearchInput(e.target.value);
-   /* const contactToShow = filterArrayObjectByValue(
-      searchInput.toLowerCase(),
-      contacts && contacts ? contacts : []
-    );
-    setContactsToShow(contactToShow);*/
+
   };
 
   const addContactHandler = () => {
@@ -78,10 +73,6 @@ const Contacts = () => {
     });
   }, []);
 
- /* useEffect(() => {
-    setContactsToShow(contacts);
-  }, [contacts]);*/
-
   return (
     <>
       <HeaderAccountSelect/>
@@ -89,6 +80,8 @@ const Contacts = () => {
         <InputSearch addHandler={addContactHandler} searchHandler={searchValueInput} />
         <div className="contacts__list">
           {isSearching ? "Searching..." : ""}
+          {!isSearching && contacts && contacts.length === 0 ? "No contacts found" : ""}
+
           {contacts && contacts.map((contact: any) => (
             <ContactItem
               key={contact.contact_id}
