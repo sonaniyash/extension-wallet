@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import Modal from "react-modal";
 import { useNavigate, useParams } from "react-router-dom";
 
-import {  TEST_EXPERIENCES } from "../../mock/mock";
 import TabsHeader from "../../components/common/TabsHeader";
 import TabsContainer from "../../components/common/TabsContainer";
 import CollectibleItem from "../../components/common/CollectibleItem";
@@ -23,7 +22,7 @@ const DetailContacts = () => {
   const { id } = useParams();
   const {contact} = useGetContact(id);
 
-  const [exps, setExps] = useState<ConnectedExp[]>()
+  const [exps] = useState<ConnectedExp[]>()
   const [sendIsOpen, setSendIsOpen] = React.useState(false);
   const [receiveIsOpen, setReceiveIsOpen] = React.useState(false);
   const [activeTab, setActive] = useState(0);

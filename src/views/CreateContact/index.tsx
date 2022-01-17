@@ -164,7 +164,4 @@ const CreateContacts = () => {
 };
 
 export default CreateContacts;
-function decode(accessToken: any) {
-  throw new Error("Function not implemented.");
-}
 

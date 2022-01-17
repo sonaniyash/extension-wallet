@@ -12,7 +12,6 @@ import { useGetContacts } from "../../hooks/api/contacts";
 import "./styles.scss";
 import { CreateButton, ImportButton, ModalContent } from "./styles";
 import HeaderAccountSelect from "../../components/common/HeaderAccountSelect";
-import decode from 'jwt-decode' // import dependency
 import { getUserIdFromToken } from "../../utils/utils";
 
 
