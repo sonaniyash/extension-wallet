@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import Modal from "react-modal";
 import { useNavigate, useParams } from "react-router-dom";
 
-import {  TEST_EXPERIENCES } from "../../mock/mock";
 import TabsHeader from "../../components/common/TabsHeader";
 import TabsContainer from "../../components/common/TabsContainer";
 import CollectibleItem from "../../components/common/CollectibleItem";
@@ -23,7 +22,7 @@ const DetailContacts = () => {
   const { id } = useParams();
   const {contact} = useGetContact(id);
 
-  const [exps, setExps] = useState<ConnectedExp[]>()
+  const [exps] = useState<ConnectedExp[]>()
   const [sendIsOpen, setSendIsOpen] = React.useState(false);
   const [receiveIsOpen, setReceiveIsOpen] = React.useState(false);
   const [activeTab, setActive] = useState(0);
@@ -65,7 +64,7 @@ const DetailContacts = () => {
           </div>
         </HeaderContact>
         <NameH2> {contact ? `${contact.first_name} ${contact.last_name}` : ''}</NameH2>
-        <SubtitleEmail> {contact ? contact.account : ''}</SubtitleEmail>
+        <SubtitleEmail> {contact ? contact.wallet_id : ''}</SubtitleEmail>
       </DetailSection>
       <TabsHeader
         tabsHeader={["Collectibles", "Actions", "Connected expereinces"]}

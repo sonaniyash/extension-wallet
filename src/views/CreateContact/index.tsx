@@ -8,12 +8,18 @@ import { useFormik } from "formik";
 import createContactSchema from "../../validation/createContactSchema";
 import { useNavigate } from "react-router";
 import { ROUTES } from "../../const/routeNames";
+import { ContextMain } from "../../context/store";
+import { getUserIdFromToken } from "../../utils/utils";
 
 Modal.setAppElement("#popup");
 
 const CreateContacts = () => {
   const navigate = useNavigate();
-  const { createContact, isCreating } = useContact();
+  const [state] = React.useContext(ContextMain);
+
+  const userId = getUserIdFromToken(state)
+
+  const { createContact, isCreating } = useContact(userId);
   const initialValues: any = {
     fullName: "",
     email: "",
@@ -38,22 +44,56 @@ const CreateContacts = () => {
       <HeaderAccountSelect/>
       <Title>New Contact</Title>
       <Form>
-      <Label htmlFor="full name">Full Name</Label>
+      <Label htmlFor="full name">First Name</Label>
       <input
         type="text"
-        id="fullName"
-        name="fullName"
-        value={formik.values.fullName}
+        id="first_name"
+        name="first_name"
+        value={formik.values.first_name}
         onPaste={formik.handleChange}
         onBlur={formik.handleBlur}
         onChange={formik.handleChange}
         placeholder={"Ex. John doe"}
         className="home__selectors__input"
       />
-      {!!formik.values.fullName &&
-        !!formik.touched.fullName &&
-        !!formik.errors.fullName && (
-          <p className="error-text"> {formik.errors.fullName}</p>
+      {!!formik.values.first_name &&
+        !!formik.touched.first_name &&
+        !!formik.errors.first_name && (
+          <p className="error-text"> {formik.errors.first_name}</p>
+        )}
+      <Label htmlFor="full name">Last Name</Label>
+      <input
+        type="text"
+        id="last_name"
+        name="last_name"
+        value={formik.values.last_name}
+        onPaste={formik.handleChange}
+        onBlur={formik.handleBlur}
+        onChange={formik.handleChange}
+        placeholder={"Ex. John doe"}
+        className="home__selectors__input"
+      />
+      {!!formik.values.last_name &&
+        !!formik.touched.last_name &&
+        !!formik.errors.last_name && (
+          <p className="error-text"> {formik.errors.last_name}</p>
+        )}
+      <Label htmlFor="full name">Address</Label>
+      <input
+        type="text"
+        id="address"
+        name="address"
+        value={formik.values.address}
+        onPaste={formik.handleChange}
+        onBlur={formik.handleBlur}
+        onChange={formik.handleChange}
+        placeholder={"Street Address"}
+        className="home__selectors__input"
+      />
+      { !!formik.values.address &&
+        !!formik.touched.address &&
+        !!formik.errors.address && (
+          <p className="error-text"> {formik.errors.address}</p>
         )}
       <Label htmlFor="full name">Email</Label>
       <input
@@ -124,3 +164,4 @@ const CreateContacts = () => {
 };
 
 export default CreateContacts;
+

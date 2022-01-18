@@ -32,7 +32,7 @@ const Label = styled.label`
 `;
 
 const Button = styled.button`
-    margin-top: 20px;
+    margin: 20px 0;
     align-self: center;
 `;
 

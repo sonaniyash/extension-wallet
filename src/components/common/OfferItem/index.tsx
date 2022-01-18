@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useEffect } from "react";
+import React, { MouseEventHandler } from "react";
 import { OfferItemContainer } from "./styles";
 import tagImg from "../../../public/assets/tag.png";
 import moment from 'moment';

@@ -12,7 +12,7 @@ import { useGetContacts } from "../../hooks/api/contacts";
 import "./styles.scss";
 import { CreateButton, ImportButton, ModalContent } from "./styles";
 import HeaderAccountSelect from "../../components/common/HeaderAccountSelect";
-import decode from 'jwt-decode' // import dependency
+import { getUserIdFromToken } from "../../utils/utils";
 
 
 Modal.setAppElement("#popup");
@@ -21,10 +21,7 @@ const Contacts = () => {
   const navigate = useNavigate();
   const [state, dispatch] = React.useContext(ContextMain);
   const [searchInput, setsearchInput] = useState("");
-
-  const accessToken = state && state.token ? state.token : '';
-  const nearToken = accessToken && decode(accessToken);
-  const userId = nearToken.near_api.user_info.user_id;
+  const userId = getUserIdFromToken(state);
 
   const { contacts, isSearching } = useGetContacts(searchInput, userId);
 
