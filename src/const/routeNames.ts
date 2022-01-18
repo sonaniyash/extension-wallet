@@ -66,5 +66,8 @@ export const ROUTES = {
   },
   CATEGORY: {
     url: '/category/:id',
-  }
+  },
+  SEND_TO_CONTACT: {
+    url: "/sendtocontact/:id"
+  },
 };

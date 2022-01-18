@@ -23,6 +23,7 @@ import DetailCollectible from "./views/DetailCollectible";
 import CreateNTFs from "./views/CreateNTFs";
 import { InitAxiosInterceptor } from "./utils/interceptor";
 import DetailApp from './views/DetailApp';
+import SendToContact from "./views/SendToContact";
 
 
 const App = () => {
@@ -61,6 +62,7 @@ const App = () => {
             <Route path={ROUTES.DETAIL_COLLECTIBLE.url} element={<DetailCollectible />} />
             <Route path={ROUTES.CREATE_NFT.url} element={<CreateNTFs />} />
             <Route path={ROUTES.DETAIL_APP.url} element={<DetailApp />} />
+            <Route path={ROUTES.SEND_TO_CONTACT.url} element={<SendToContact />} />
           </Routes>
       </QueryClientProvider>
     </div>

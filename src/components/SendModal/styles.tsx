@@ -15,7 +15,6 @@ export const StyledSendModal = styled.div`
     border-bottom: 1px solid #DFDFE0;
     padding: 12px 90px;
       .icon {
-        margin-left: auto;
         margin-right: 10px;
     }
     &:hover {

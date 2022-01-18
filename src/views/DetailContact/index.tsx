@@ -115,7 +115,7 @@ const DetailContacts = () => {
                 style={customStyles}
                 className="open-modal"
               >
-                <SendModal entity="send" />
+                <SendModal entity="send" id={id ? id : ''} />
               </Modal>
               <Modal
                 id="customModal"
@@ -124,7 +124,7 @@ const DetailContacts = () => {
                 style={customStyles}
                 className="open-modal"
               >
-                <SendModal entity="receive" />
+                <SendModal entity="receive" id={id ? id : ''}/>
               </Modal>
             </div>
           </div>
