@@ -72,9 +72,9 @@ const Contacts = () => {
 
   return (
     <>
-      <HeaderAccountSelect/>
+      <HeaderAccountSelect />
       <section className="contacts">
-        <InputSearch addHandler={addContactHandler} searchHandler={searchValueInput} />
+        <InputSearch placeholder="Search contacts" addHandler={addContactHandler} searchHandler={searchValueInput} />
         <div className="contacts__list">
           {isSearching ? "Searching..." : ""}
           {!isSearching && contacts && contacts.length === 0 ? "No contacts found" : ""}

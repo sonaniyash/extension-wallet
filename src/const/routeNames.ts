@@ -58,4 +58,7 @@ export const ROUTES = {
   CREATE_NFT: {
     url: "/createnft"
   },
+  EXPERIENCES_DASHBOARD: {
+    url: "/experiences-dashboard"
+  },
 };

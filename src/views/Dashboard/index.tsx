@@ -31,6 +31,10 @@ const Dashboard = () => {
     navigate(ROUTES.CREATE_NFT.url);
   };
 
+  const goToExperiencesDashboard = () => {
+    navigate(ROUTES.EXPERIENCES_DASHBOARD.url)
+  }
+
   const [activeTab, setActive] = useState(0);
   const tab1 = useRef<any>();
   const tab2 = useRef<any>();
@@ -151,7 +155,8 @@ const Dashboard = () => {
               alt="chevron go to page"
             />
           </a>
-          <a className="web3-btn dash-btn">
+
+          <a onClick={goToExperiencesDashboard} className="web3-btn dash-btn">
             <span>web3 Apps</span>
             <img
               className="chevron"
@@ -172,7 +177,7 @@ const Dashboard = () => {
         <TabsContainer tabs={[tab1, tab2]} activeTabId={activeTab}>
           <>
             <div data-tab="0" ref={tab1} className="tab-text">
-              <MyNFTList/>
+              <MyNFTList />
             </div>
             <div data-tab="1" ref={tab2} className="tab-text">
               text tab 2

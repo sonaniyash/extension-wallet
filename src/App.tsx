@@ -21,6 +21,7 @@ import EditContact from "./views/EditContact";
 import Notifications from "./views/Notifications";
 import DetailCollectible from "./views/DetailCollectible";
 import CreateNTFs from "./views/CreateNTFs";
+import ExperiencesDashboard from "./views/ExperiencesDashboard";
 import { InitAxiosInterceptor } from "./utils/interceptor";
 
 
@@ -43,23 +44,25 @@ const App = () => {
   return (
     <div className="App">
       <QueryClientProvider client={queryClient} contextSharing>
-          <Routes>
-            <Route path={ROUTES.HOME.url} element={<Home />} />
-            <Route path={ROUTES.CREATE_ACCT.url} element={<CreateAccount />} />
-            <Route path={ROUTES.VERIFICATION.url} element={<Verification />} />
-            <Route path={ROUTES.SECURE.url} element={<Secure />} />
-            {/* <Route path={ROUTES. SEED_PHRASE.url} element={<SeedPhrasePage />} /> */}
-            <Route path={ROUTES.DASHBOARD.url} element={<Dashboard />} />
-            <Route path={ROUTES.UNLOCK.url} element={<Unlock />} />
-            <Route path={ROUTES.CONTACTS.url} element={<Contacts />} />
-            <Route path={ROUTES.DETAIL_CONTACT.url} element={<DetailContacts />} />
-            <Route path={ROUTES.CREATE_CONTACT.url} element={<CreateContacts />} />
-            <Route path={ROUTES.EDIT_CONTACT.url} element={<EditContact />} />
-            <Route path={ROUTES.NOTIFICATION.url} element={<Notifications />} />
-            <Route path={ROUTES.SETTINGS.url} element={<Settings />} />
-            <Route path={ROUTES.DETAIL_COLLECTIBLE.url} element={<DetailCollectible />} />
-            <Route path={ROUTES.CREATE_NFT.url} element={<CreateNTFs />} />
-          </Routes>
+        <Routes>
+          <Route path={ROUTES.HOME.url} element={<Home />} />
+          <Route path={ROUTES.CREATE_ACCT.url} element={<CreateAccount />} />
+          <Route path={ROUTES.VERIFICATION.url} element={<Verification />} />
+          <Route path={ROUTES.SECURE.url} element={<Secure />} />
+          {/* <Route path={ROUTES. SEED_PHRASE.url} element={<SeedPhrasePage />} /> */}
+          <Route path={ROUTES.DASHBOARD.url} element={<Dashboard />} />
+          <Route path={ROUTES.UNLOCK.url} element={<Unlock />} />
+          <Route path={ROUTES.CONTACTS.url} element={<Contacts />} />
+          <Route path={ROUTES.DETAIL_CONTACT.url} element={<DetailContacts />} />
+          <Route path={ROUTES.CREATE_CONTACT.url} element={<CreateContacts />} />
+          <Route path={ROUTES.EDIT_CONTACT.url} element={<EditContact />} />
+          <Route path={ROUTES.NOTIFICATION.url} element={<Notifications />} />
+          <Route path={ROUTES.SETTINGS.url} element={<Settings />} />
+          <Route path={ROUTES.DETAIL_COLLECTIBLE.url} element={<DetailCollectible />} />
+          <Route path={ROUTES.CREATE_NFT.url} element={<CreateNTFs />} />
+
+          <Route path={ROUTES.EXPERIENCES_DASHBOARD.url} element={<ExperiencesDashboard />} />
+        </Routes>
       </QueryClientProvider>
     </div>
   );

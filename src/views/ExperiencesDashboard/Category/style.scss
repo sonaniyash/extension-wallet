@@ -1,0 +1,27 @@
+.category__root {
+  display: flex;
+  justify-content: flex-start;
+  height: 94px;
+  border-radius: 10px;
+  flex: 1 1 122px;
+  cursor: pointer;
+}
+
+.category__wrapper{
+  padding: 13px;
+
+  & > p {
+  color: rgba(51, 55, 59, 0.7);
+  font-size: 15px;
+  font-weight: 500;
+  }
+}
+
+.category__logo_wrapper {
+  margin-bottom: 13px;
+}
+
+.logo_wrapper {
+  display: flex;
+  justify-content: flex-start;
+}
