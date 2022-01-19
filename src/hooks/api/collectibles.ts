@@ -1,9 +1,9 @@
 import { useQuery } from "react-query";
 import api from "../../services";
 
-export const useGetAllCollectibles = () => {
+export const useGetAllCollectibles = (userId: string) => {
     const { data, isLoading } = useQuery('collectibles',
-        () => api.getAllCollectibles(),
+        () => api.getAllCollectibles(userId),
         {
             onError: (e) => {
                 console.error(e);

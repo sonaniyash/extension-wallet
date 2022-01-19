@@ -5,7 +5,9 @@ import HeaderAccountSelect from '../../components/common/HeaderAccountSelect';
 import TabsContainer from '../../components/common/TabsContainer';
 import TabsHeader from '../../components/common/TabsHeader';
 import MakeOfferModal from '../../components/MakeOfferModal';
+import OffersList from '../../components/OffersList';
 import { useGetCollectibleById } from '../../hooks/api/collectibles';
+import { getUserIdFromToken } from '../../utils/utils';
 import { StyledButton, StyledDetailCollectible } from './styled';
 
 export interface Collectibles {
@@ -17,12 +19,18 @@ export interface Collectibles {
 }
 export default function DetailCollectible() {
     const { id } = useParams();
+    const userId = getUserIdFromToken();
     const { collectible, isSearching } = useGetCollectibleById(id ? id : '');
     const [activeTab, setActive] = useState(0);
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [overView, setOverView] = useState(false);
+    const isOwner = () => {
+        return userId == collectible.owner_id
+    }
 
     const tab1 = useRef<any>();
     const tab2 = useRef<any>();
+    const tab3 = useRef<any>();
 
     const closeModal = () => {
         setModalIsOpen(false);
@@ -44,15 +52,16 @@ export default function DetailCollectible() {
                 {isSearching ? (<>LOADING</>) :
                     (<>
                         <div className='icon-section'>
-                            <img src={collectible.imgUrl} className='background' />
-                            <img src={collectible.imgUrl} className='icon' />
+                            <img src={collectible.file_url} className='background' use-credentials />
+                            <img src={collectible.file_url} className='icon' use-credentials />
                         </div>
                         <div className='detail-section'>
                             <div className='name'>
-                                {collectible.name}
+                                {collectible.title}
                             </div>
                             <div className='number'>
-                                # {collectible.id}
+
+                                # {collectible.nft_id}
                             </div>
                             <div className='owner-wrapper'>
                                 <img src="/assets/account-1.png" className='owner-icon' />
@@ -61,22 +70,24 @@ export default function DetailCollectible() {
                                         owned by
                                     </span>
                                     <span className='owner-name'>
-                                        {collectible.owner}
+                                        {collectible.owner.wallet_id}
                                     </span>
                                 </div>
                             </div>
                         </div>
-                        <StyledButton onClick={() => setModalIsOpen(true)}>
-                            <img
-                                className="icon"
-                                src="/assets/offer.png"
-                            />
+                        {
+                            !isOwner() && (<StyledButton onClick={() => setModalIsOpen(true)}>
+                                <img
+                                    className="icon"
+                                    src="/assets/offer.png"
+                                />
 
-                            <span className="body__title">
-                                Make an Offer
-                            </span>
+                                <span className="body__title">
+                                    Make an Offer
+                                </span>
 
-                        </StyledButton>
+                            </StyledButton>)
+                        }
                         <Modal
                             id="customModal"
                             isOpen={modalIsOpen}
@@ -86,25 +97,70 @@ export default function DetailCollectible() {
                         >
                             <MakeOfferModal onClose={closeModal} collectible={collectible} />
                         </Modal>
-                        <div className='tabs-wrapper'>
-                            <TabsHeader
-                                tabsHeader={["Info", "Trade History"]}
-                                setActive={setActive}
-                            />
-                            <TabsContainer tabs={[tab1, tab2]} activeTabId={activeTab}>
-                                <>
-                                    <div data-tab="0" ref={tab1} className="tab-text">
-                                        {collectible.description}
-                                    </div>
-                                    <div data-tab="1" ref={tab2} className="tab-text">
-                                        text tab 2
-                                    </div>
-                                </>
-                            </TabsContainer>
-                        </div>
+                        {!isOwner() ? (
+                            <div className='tabs-wrapper'>
+                                <TabsHeader
+                                    tabsHeader={["Info", "Trade History"]}
+                                    setActive={setActive}
+                                />
+                                <TabsContainer tabs={[tab1, tab2]} activeTabId={activeTab}>
+                                    <>
+                                        <div data-tab="0" ref={tab1} className="tab-text">
+                                            <div className='overview-section' onClick={() => setOverView(!overView)}>
+                                                <span> Overview</span>
+                                                <img
+                                                    className={`chevron-${!overView ? 'close' : 'open'}`}
+                                                    src="/assets/chevron-r-black.svg"
+                                                    alt=""
+                                                />
+                                            </div>
+                                            {overView ? (
+                                                <div className='description'>
+                                                    {collectible.description}
+                                                </div>
+                                            ) : null}
+                                        </div>
+                                        <div data-tab="1" ref={tab2} className="tab-text">
+                                            text tab 2
+                                        </div>
+                                    </>
+                                </TabsContainer>
+                            </div>
+                        ) : (
+                            <div className='tabs-wrapper-owner'>
+                                <TabsHeader
+                                    tabsHeader={["Info", "Pending Offers", "Trade History"]}
+                                    setActive={setActive}
+                                />
+                                <TabsContainer tabs={[tab1, tab2, tab3]} activeTabId={activeTab}>
+                                    <>
+                                        <div data-tab="0" ref={tab1} className="tab-text">
+                                            <div className='overview-section' onClick={() => setOverView(!overView)}>
+                                                <span> Overview</span>
+                                                <img
+                                                    className={`chevron-${!overView ? 'close' : 'open'}`}
+                                                    src="/assets/chevron-r-black.svg"
+                                                    alt=""
+                                                />
+                                            </div>
+                                            {overView ? (
+                                                <div className='description'>
+                                                    {collectible.description}
+                                                </div>
+                                            ) : null}
+                                        </div>
+                                        <div data-tab="1" ref={tab2} className="tab-text">
+                                            <OffersList fromNFT />
+                                        </div>
+                                        <div data-tab="2" ref={tab3} className="tab-text">
+                                            text tab 3
+                                        </div>
+                                    </>
+                                </TabsContainer>
+                            </div>
+                        )}
                     </>
                     )}
-
             </StyledDetailCollectible>
         </>
     )

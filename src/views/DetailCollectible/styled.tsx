@@ -59,9 +59,8 @@ export const StyledDetailCollectible = styled.div`
 .detail-section {
     .name{
         position: absolute;
-        width: 110px;
         height: 22px;
-        left: 5px;
+        left: 15px;
         top: 266px;
         font-family: Manrope;
         font-style: normal;
@@ -73,7 +72,6 @@ export const StyledDetailCollectible = styled.div`
     }
     .number {
         position: absolute;
-        width: 67px;
         height: 20px;
         left: 20px;
         top: 294px;
@@ -113,6 +111,25 @@ export const StyledDetailCollectible = styled.div`
 }
 .tabs-wrapper {
     padding-top: 313px;
+   }
+.overview-section{
+    cursor: pointer;
+    justify-content: space-between;
+    display:flex;
+    flex-direction: row;
+    margin: 0px 10px;
+    .chevron-close {
+        transform: rotate(90deg);
+    }
+    .chevron-open {
+        transform: rotate(270deg);
+    }
 }
-
+.description {
+    text-align: left;
+    margin: 0px 10px;
+}
+.tabs-wrapper-owner {
+    padding-top: 265px;
+}
 `

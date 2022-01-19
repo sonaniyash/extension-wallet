@@ -59,7 +59,13 @@ export const OfferItemContainer = styled.div`
                 color: white;
                 border-radius: 69px;
             }
-        }        
+        }    
+        .offer-item-amount-nft {
+            font-weight: 600;
+            font-size: 15px;
+            line-height: 20px;
+            color: black;
+        }    
     }
 
     .offer-item-ammount {
@@ -68,5 +74,6 @@ export const OfferItemContainer = styled.div`
         line-height: 20px;
         color: #1D2C3C;
     }
+  
     
 `

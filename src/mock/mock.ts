@@ -195,22 +195,26 @@ export const TEST_OFFERS: Array<any> = [
   {
     id: "136516",
     ammount: "20.055",
-    date: "2021-06-07 09:22:06"
+    date: "2021-06-07 09:22:06",
+    owner: 'El kun'
   },
   {
     id: "994654",
     ammount: "0.325",
-    date: "2021-12-07 09:22:06"
+    date: "2021-12-07 09:22:06",
+    owner: 'Lea'
   },
   {
     id: "55111",
     ammount: "1.231",
-    date: "2022-01-07 09:22:06"
+    date: "2022-01-07 09:22:06",
+    owner: 'Julio'
   },
   {
     id: "123561",
     ammount: "12.221",
-    date: "2022-01-01 09:22:06"
+    date: "2022-01-01 09:22:06",
+    owner: 'Fede'
   },
 ];
 

@@ -3,25 +3,16 @@ import { useNavigate } from "react-router-dom";
 
 import TabsContainer from "../../components/common/TabsContainer";
 import TabsHeader from "../../components/common/TabsHeader";
-import CollectibleItem from "../../components/common/CollectibleItem";
 import { ContextMain } from "../../context/store";
 import { ReducerTypes } from "../../context/reducer";
 import { ROUTES } from "../../const/routeNames";
 
 import "./styles.scss";
 import HeaderAccountSelect from "../../components/common/HeaderAccountSelect";
-import { useGetAllCollectibles } from "../../hooks/api/collectibles";
 import MyNFTList from "../../components/MyNFTList";
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const { collectibles, isSearching } = useGetAllCollectibles();
-  const [collectiblesToShow, setCollectiblesToShow] = useState(collectibles);
-
-  useEffect(() => {
-    setCollectiblesToShow(collectibles);
-  }, [collectibles]);
-
 
   const goToContacts = () => {
     navigate(ROUTES.CONTACTS.url);
