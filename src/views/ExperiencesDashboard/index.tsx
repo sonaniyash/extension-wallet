@@ -142,7 +142,7 @@ const ExperiencesDashboard = () => {
 
                     <div className="trending_container">
                         <div className="categories_header">
-                            <span className="title">Trending experiences</span>
+                            <span className="title">Popular experiences</span>
 
                             <span className="see_all">
                                 <a href="#">See All</a>

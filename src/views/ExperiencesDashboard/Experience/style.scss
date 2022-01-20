@@ -1,6 +1,5 @@
 .experience__root{
   width: 100%;
-  height: 85px;
   display: flex;
   font-size: 12px;
   flex: 1 1 200px;
@@ -19,12 +18,12 @@
 
 .experience__text {
   margin-left: 10px;
-  padding-top: 16px;
   padding-left: 6px;
   width: 100%;
+  text-align: left;
 
   & > p{
-    margin-bottom: 8px
+    margin-bottom: 0px
   }
 }
 
