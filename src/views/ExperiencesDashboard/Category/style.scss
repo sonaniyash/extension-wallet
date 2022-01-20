@@ -1,5 +1,6 @@
 .category__root {
   display: flex;
+  position: relative;
   justify-content: flex-start;
   height: 94px;
   border-radius: 10px;
@@ -24,4 +25,16 @@
 .logo_wrapper {
   display: flex;
   justify-content: flex-start;
+}
+
+.arrow_wrapper {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding : 0 12px 12px 0; 
+  width: 13%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 6px;
 }

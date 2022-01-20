@@ -20,7 +20,9 @@ const Category = ({ category }: Props) => {
                 </div>
                 <p>{category.name}</p>
             </div>
+
             <div className="arrow_wrapper">
+                <img src="./assets/experience/arrow-right.svg" />
             </div>
         </div>
     );

@@ -9,6 +9,7 @@ import HeaderAccountSelect from "../../components/common/HeaderAccountSelect";
 import { useGetAllCollectibles } from "../../hooks/api/collectibles";
 
 import { InputSearch } from "../../components/common/InputSearch";
+import SearchInput from "./SearchInput";
 
 import "./styles.scss";
 
@@ -71,7 +72,7 @@ const ExperiencesDashboard = () => {
             <HeaderAccountSelect />
 
             <section className="root content">
-                <InputSearch placeholder="Search experiences" searchHandler={() => { console.log("Searching experiences") }} />
+                <SearchInput />
 
                 <div className="option-btn-wrapper">
                     <button id="discover-btn" className={`btn ${activeTab == 0 ? "btn-dark" : "btn-white"}`} onClick={() => { setActive(0) }}>Discover</button>
