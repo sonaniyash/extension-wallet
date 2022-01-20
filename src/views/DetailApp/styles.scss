@@ -1,0 +1,116 @@
+.detailApp {
+  font-family: 'Manrope', sans-serif;
+
+  &__header {
+    position: relative;
+
+    &__top {
+      min-height: 57px;
+      background-color: #E5D0FF;
+    }
+
+    &__bottom {
+      min-height: 55px;
+    }
+
+    &__logo {
+      background-color: #C4C4C4;
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.04);
+      width: 69px;
+      height: 69px;
+      border-radius: 10px;
+      position: absolute;
+      top: 30px;
+      left: 20px;
+    }
+
+    &__shareBtn {
+      position: absolute;
+      top: 73px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 22px;
+      img {
+        width: 18px;
+        height: 18px;
+        padding-right: 10px;
+      }
+    }
+  }
+
+  &__content {
+    padding: 0 20px;
+    text-align: left;
+  }
+
+  &__title {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 24px;
+    color: #414047;
+    text-align: left;
+    margin: 0 0 3px 0;
+  }
+
+  &__description {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    color: #6F6E73;
+    text-align: left;
+  }
+
+  &__link {
+    display: block;
+    margin-top: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    color: #587BE0;
+  }
+
+  &__footer {
+    margin-top: 18px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__openBtn {
+    display: flex;
+    align-items: center;
+    padding: 10px 8px 10px 16px;
+    background-color: #414047;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22px;
+    color: #FFFFFF;
+    letter-spacing: -0.408px;
+    border: none;
+    outline: none;
+    img {
+      padding-left: 16px;
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &__subscribers {
+    display: flex;
+    align-items: center;
+    margin-left: 13px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    color: #6F6E73;
+    img {
+      width: 16px;
+      height: 16px;
+      margin-right: 5px;
+    }
+  }
+}
