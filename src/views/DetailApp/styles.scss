@@ -34,6 +34,7 @@
       font-size: 16px;
       line-height: 22px;
       text-decoration: none;
+
       img {
         width: 18px;
         height: 18px;
@@ -94,6 +95,7 @@
     border: none;
     outline: none;
     text-decoration: none;
+
     img {
       padding-left: 16px;
       width: 24px;
@@ -109,10 +111,79 @@
     font-weight: 500;
     line-height: 22px;
     color: #6F6E73;
+
     img {
       width: 16px;
       height: 16px;
       margin-right: 5px;
+    }
+  }
+
+  &__tabPanel {
+    margin: 16px -20px;
+    display: flex;
+
+    &__tab {
+      width: 50%;
+      font-size: 15px;
+      line-height: 28px;
+      color: #6F6E73;
+      padding-bottom: 9px;
+      text-align: center;
+      border-bottom: 1px solid #DFDFE0;
+      cursor: pointer;
+
+      &--active {
+        color: #33373B;
+        border-bottom: 3px solid #33373B;
+      }
+    }
+  }
+
+  &__tabContent {
+    &__tab {
+      &__title {
+        font-size: 16px;
+        line-height: 22px;
+        color: #414047;
+      }
+
+      &__details {
+        font-size: 14px;
+        line-height: 22px;
+        color: #414047;
+      }
+
+      &__appUrl {
+        display: flex;
+        margin-top: 23px;
+        align-items: center;
+        color: #587BE0;
+        cursor: pointer;
+        font-size: 14px;
+        line-height: 22px;
+        text-decoration: none;
+
+        img {
+          margin-right: 9px;
+        }
+      }
+    }
+  }
+
+  &__accordion {
+    &__summary {
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &__arrow {
+      transform: rotate(90deg);
+
+      &--rotated {
+        transform: rotate(270deg);
+      }
     }
   }
 }
