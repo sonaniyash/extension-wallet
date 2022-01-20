@@ -60,5 +60,11 @@ export const ROUTES = {
   },
   DETAIL_APP: {
     url: "/apps/:id",
+  },
+  CATEGORIES: {
+    url: '/categories',
+  },
+  CATEGORY: {
+    url: '/category/:id',
   }
 };

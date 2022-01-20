@@ -31,8 +31,10 @@ export const TEST_DETAILED_APP = {
     data: {
         version: '1.0.3',
         app_url: 'https://nearapps.io/',
+        image_url: '/assets/mock/docu.svg',
         downloads_count: 21408376,
-        name: 'Crypto Vault',
+        name: 'Docu sign',
+        description: 'sign smart contracts seamlessly',
         app_callback_url: 'https://nearapps.io/home',
         owner_id: 'x1dO0CVk4RDfnXcszT263',
         app_id: 'c2dO0CVk4RDfnXcszT251',

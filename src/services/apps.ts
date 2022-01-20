@@ -1,14 +1,14 @@
 import { TEST_APPS, TEST_DETAILED_APP } from '../mock/apps';
 
 const api = {
-    getApps: async (): Promise<any> => {
+    getApps: async (): Promise<Array<any>> => {
         return new Promise(function (resolve) {
-            return setTimeout(() => resolve(TEST_APPS), 700);
+            return setTimeout(() => resolve(TEST_APPS.data), 700);
         });
     },
     getAppById: async (id: string): Promise<any> => {
         return new Promise(function (resolve) {
-            return setTimeout(() => resolve(TEST_DETAILED_APP), 700);
+            return setTimeout(() => resolve(TEST_DETAILED_APP.data), 700);
         });
     },
     // getApps: async () => {
