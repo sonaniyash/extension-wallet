@@ -51,6 +51,24 @@ export const TEST_DETAILED_APP = {
         tags: [
             'vault',
             'crypto'
-        ]
+        ],
+        activities: [
+            {
+                user: {
+                    avatar: '/assets/mock/johndoe.svg',
+                    account: 'johndoe.near',
+                },
+                activity: 'signed the contract successfully',
+                date: '19.01.2022'
+            },
+            {
+                user: {
+                    avatar: '/assets/mock/cryptoking.svg',
+                    account: 'CryptoKing.near',
+                },
+                activity: 'requested to sign the contract',
+                date: '13.01.2022'
+            }
+        ],
     }
 };
