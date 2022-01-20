@@ -14,6 +14,7 @@ import SearchInput from "./SearchInput";
 import "./styles.scss";
 
 import Category from "./Category";
+import ExperienceItem from "./Experience";
 
 const ExperiencesDashboard = () => {
     const categories = [
@@ -48,6 +49,49 @@ const ExperiencesDashboard = () => {
             backgroundColor: '#F0EBFF',
         },
     ];
+
+    const experiences = {
+        recent: [
+            {
+                name: 'DeFi Swap',
+                description: 'Swap your digital assets',
+                image: './assets/mock/images/defi.svg',
+                subscribeAmount: '+200',
+            },
+            {
+                name: 'Docu sign',
+                description: 'sign smart contracts seamlessly',
+                image: './assets/mock/images/docu.svg',
+                subscribeAmount: '+1k',
+            },
+        ],
+        other: [
+            {
+                name: 'DeFi Swap',
+                description: 'Invest in digital assets',
+                image: './assets/mock/images/defi.svg',
+                subscribeAmount: '+200',
+            },
+            {
+                name: 'DeFi Invest',
+                description: 'Swap your digital assets',
+                image: './assets/mock/images/defi-invest.svg',
+                subscribeAmount: '+15k',
+            },
+            {
+                name: 'DeFolio',
+                description: 'Track your DeFi assets',
+                image: './assets/mock/images/defolio.svg',
+                subscribeAmount: '+12k',
+            },
+            {
+                name: 'Docu sign',
+                description: 'sign smart contracts seamlessly',
+                image: './assets/mock/images/docu.svg',
+                subscribeAmount: '+1k',
+            },
+        ],
+    };
 
     const { collectibles, isSearching } = useGetAllCollectibles();
     const [collectiblesToShow, setCollectiblesToShow] = useState(collectibles);
@@ -92,6 +136,22 @@ const ExperiencesDashboard = () => {
                         <div className="categories_wrapper">
                             {
                                 categories.map((category, index) => <Category category={category} key={index} />)
+                            }
+                        </div>
+                    </div>
+
+                    <div className="trending_container">
+                        <div className="categories_header">
+                            <span className="title">Trending experiences</span>
+
+                            <span className="see_all">
+                                <a href="#">See All</a>
+                                <img src="./assets/experience/arrow-right-blue.svg" alt="arrow" />
+                            </span>
+                        </div>
+                        <div className="experiences_wrapper">
+                            {
+                                experiences.other.map((experience, index) => <ExperienceItem item={experience} key={index} />)
                             }
                         </div>
                     </div>
