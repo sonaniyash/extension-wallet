@@ -250,3 +250,33 @@ export const CATEGORIES: Array<any> = [
     backgroundColor: '#F0EBFF',
   },
 ];
+
+export const TEST_HISTORY: Array<any> = [
+  {
+    type: 'send',
+    owner: 'Fede.near',
+    id: "123",
+    to: 'Lea.near',
+    date: "2022-01-07 09:22:06",
+    image: "/assets/account-1.png",
+
+  },
+  {
+    type: 'mint',
+    owner: 'kun.near',
+    id: "124",
+    to: '',
+    date: "2022-01-07 09:22:06",
+    image: "/assets/account-1.png",
+
+  },
+  {
+    type: 'send',
+    owner: 'Fede.near',
+    id: "125",
+    to: 'Lea.near',
+    date: "2022-01-07 09:22:06",
+    image: "/assets/account-1.png",
+
+  }
+];

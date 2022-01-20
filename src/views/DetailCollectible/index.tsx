@@ -6,6 +6,7 @@ import TabsContainer from '../../components/common/TabsContainer';
 import TabsHeader from '../../components/common/TabsHeader';
 import MakeOfferModal from '../../components/MakeOfferModal';
 import OffersList from '../../components/OffersList';
+import TradeHistoryList from '../../components/TradeHistoryList';
 import { useGetCollectibleById } from '../../hooks/api/collectibles';
 import { getUserIdFromToken } from '../../utils/utils';
 import { StyledButton, StyledDetailCollectible } from './styled';
@@ -24,6 +25,7 @@ export default function DetailCollectible() {
     const [activeTab, setActive] = useState(0);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [overView, setOverView] = useState(false);
+
     const isOwner = () => {
         return userId == collectible.owner_id
     }
@@ -114,14 +116,14 @@ export default function DetailCollectible() {
                                                     alt=""
                                                 />
                                             </div>
-                                            {overView ? (
+                                            {overView && (
                                                 <div className='description'>
                                                     {collectible.description}
                                                 </div>
-                                            ) : null}
+                                            )}
                                         </div>
                                         <div data-tab="1" ref={tab2} className="tab-text">
-                                            text tab 2
+                                            <TradeHistoryList />
                                         </div>
                                     </>
                                 </TabsContainer>
@@ -153,7 +155,7 @@ export default function DetailCollectible() {
                                             <OffersList fromNFT />
                                         </div>
                                         <div data-tab="2" ref={tab3} className="tab-text">
-                                            text tab 3
+                                            <TradeHistoryList />
                                         </div>
                                     </>
                                 </TabsContainer>

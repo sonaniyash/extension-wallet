@@ -9,7 +9,7 @@ const apiNearUrl = 'https://api.nearlogin.io';
 const api = {
     getAllCollectibles: async (userId: any): Promise<Array<any>> => {
         return axios
-            .get(`${apiNearUrl}/nfts?user_id=${userId}`)
+            .get(`${apiNearUrl}/nfts/list?owner_id=${userId}`)
             .then((response: any) => response.data.data);
     },
     getCollectibleById: async (id: string): Promise<any> => {
