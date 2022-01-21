@@ -1,6 +1,8 @@
 import './style.scss';
 import React from 'react';
 
+import rightArrow from "../../../public/assets/experience/arrow-right-blue.svg";
+
 type Category = {
     backgroundColor: string;
     icon: string;
@@ -22,7 +24,7 @@ const Category = ({ category }: Props) => {
             </div>
 
             <div className="arrow_wrapper">
-                <img src="./assets/experience/arrow-right.svg" />
+                <img src={rightArrow} />
             </div>
         </div>
     );

@@ -1,6 +1,9 @@
 import React from 'react';
 import './style.scss';
 
+import searchIcon from "../../../public/assets/experience/search.svg";
+import vortexIcon from "../../../public/assets/experience/vortex.svg";
+
 const SearchInput = () => {
     return (
         <div className="search_container">
@@ -9,11 +12,11 @@ const SearchInput = () => {
                     type="text"
                     placeholder="Search experiences"
                     className="search_input" />
-                <img className="search_icon" src="./assets/experience/search.svg" alt="search" />
+                <img className="search_icon" src={searchIcon} alt="search" />
             </div>
 
             <button type="button" className="vortex_btn">
-                <img src="./assets/experience/vortex.svg" alt="HomePage" />
+                <img src={vortexIcon} alt="HomePage" />
             </button>
         </div>
     )

@@ -1,6 +1,8 @@
 import React from 'react';
 import './style.scss';
 
+import rightArrow from "../../../public/assets/experience/arrow-right-blue.svg";
+
 type Item = {
     name: string;
     description: string;
@@ -25,7 +27,7 @@ export default function ExperienceItem({ item }: Props) {
                 <p className="experience__text_amount">{item.subscribeAmount} users</p>
             </div>
             <div className="experience__arrow_block">
-                <img src="./assets/experience/arrow-right.svg" />
+                <img src={rightArrow} />
             </div>
         </div>
     );

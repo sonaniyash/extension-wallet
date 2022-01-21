@@ -9,6 +9,7 @@ import HeaderAccountSelect from "../../components/common/HeaderAccountSelect";
 import { useGetAllExperiences } from "../../hooks/api/experiences";
 import { useGetAllCategories } from "../../hooks/api/categories";
 
+import rightArrow from "../../public/assets/experience/arrow-right-blue.svg";
 
 import SearchInput from "./SearchInput";
 
@@ -51,7 +52,7 @@ const ExperiencesDashboard = () => {
 
                             <span className="see_all">
                                 <a href="#">See All</a>
-                                <img src="./assets/experience/arrow-right-blue.svg" alt="arrow" />
+                                <img src={rightArrow} alt="arrow" />
                             </span>
                         </div>
                         <div className="categories_wrapper">
@@ -67,7 +68,7 @@ const ExperiencesDashboard = () => {
 
                             <span className="see_all">
                                 <a href="#">See All</a>
-                                <img src="./assets/experience/arrow-right-blue.svg" alt="arrow" />
+                                <img src={rightArrow} alt="arrow" />
                             </span>
                         </div>
                         <div className="experiences_wrapper">
