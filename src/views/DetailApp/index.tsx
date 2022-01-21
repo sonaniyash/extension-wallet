@@ -101,7 +101,19 @@ export default function DetailApp() {
                             )}
                             {!!activeTab && (
                                 <div className="detailApp__tabContent__tab">
-
+                                    <div className="detailApp__badge">{app.activities.length} activity found</div>
+                                    {app.activities.map((item: any) => (
+                                        <div className="detailApp__activity">
+                                            <img src={item.user.avatar} alt="avatar"/>
+                                            <div className="detailApp__activity__details">
+                                                <div>
+                                                    <span>{item.user.account}</span>{' '}
+                                                    {item.activity}
+                                                </div>
+                                                <div className="detailApp__activity__details__date">{item.date}</div>
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
                             )}
                         </div>

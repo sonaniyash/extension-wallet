@@ -142,6 +142,9 @@
 
   &__tabContent {
     &__tab {
+      display: flex;
+      flex-direction: column;
+
       &__title {
         font-size: 16px;
         line-height: 22px;
@@ -183,6 +186,48 @@
 
       &--rotated {
         transform: rotate(270deg);
+      }
+    }
+  }
+
+  &__badge {
+    margin: 0 auto 16px auto;
+    padding: 2px 12px;
+    border-radius: 20px;
+    background-color: #F5F5F5;
+    font-size: 13px;
+    line-height: 18px;
+    color: #6F6E73;
+  }
+
+  &__activity {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 24px;
+
+    img {
+      margin-right: 17px;
+      width: 35px;
+      height: 35px;
+    }
+
+    &__details {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      font-size: 15px;
+      line-height: 21px;
+      color: #33373B;
+
+      span {
+        color: #885FFF;
+      }
+
+      &__date {
+        margin-top: 5px;
+        font-size: 13px;
+        line-height: 18px;
+        color: #6F6E73;
       }
     }
   }
