@@ -160,35 +160,21 @@ export const EXPERIENCES = {
   ],
 };
 
-export const TEST_COLLECTIBLES: Array<Collectibles> = [
+export const TEST_COLLECTIBLES: Array<any> = [
   {
-    id: "1",
-    name: "Panda",
-    imgUrl: "/assets/panda_collectible.png",
-    owner: "Fede123",
-    description: "string long long long"
-  },
-  {
-    id: "2",
-    name: "Other",
-    imgUrl: "/assets/app-2.png",
-    owner: "Kun123",
-    description: "string long long long"
-  },
-  {
-    id: "3",
-    name: "NFT",
-    imgUrl: "/assets/nft_collectible.png",
-    owner: "Lea123",
-    description: "string long long long"
-  },
-  {
-    id: "4",
-    name: "D3",
-    imgUrl: "/assets/d3.png",
-    owner: "Julio123",
-    description: "string long long long"
-  },
+    nft_id: "thHkGvISXhucKPxr9BvB4",
+    updated: 1642181349003,
+    status: "active",
+    category: "Digital Arts",
+    created: 1642181349003,
+    attributes: [
+        {}
+    ],
+    description: "Al diego le gusta esto",
+    owner_id: "wQWFNYPkTYy5rRzmWnO76",
+    file_url: "/assets/panda_collectible.png",
+    title: "medabot trucho"
+  }
 ];
 
 export const TEST_OFFERS: Array<any> = [
