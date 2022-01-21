@@ -42,7 +42,6 @@ const CreateAccount = () => {
       };
 
       const session = await createAccount(payload);
-      console.log("session", session);
       axios.defaults.headers.common[
         "Authorization"
       ] = `Bearer ${session.token}`;
