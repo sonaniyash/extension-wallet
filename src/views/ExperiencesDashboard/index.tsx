@@ -39,9 +39,9 @@ const ExperiencesDashboard = () => {
             <section className="root content">
                 <SearchInput />
 
-                <div className="option-btn-wrapper">
-                    <button id="discover-btn" className={`btn ${activeTab == 0 ? "btn-dark" : "btn-white"}`} onClick={() => { setActive(0) }}>Discover</button>
-                    <button id="my-apps-btn" className={`btn ${activeTab == 1 ? "btn-dark" : "btn-white"}`} onClick={() => { setActive(1) }}>My apps</button>
+                <div className="options">
+                    <button className={`options__btn ${activeTab == 0 ? "options__btn-dark" : "options__btn-white"}`} onClick={() => { setActive(0) }}>Discover</button>
+                    <button className={`options__btn ${activeTab == 1 ? "options__btn-dark" : "options__btn-white"}`} onClick={() => { setActive(1) }}>My apps</button>
                 </div>
 
                 <div>

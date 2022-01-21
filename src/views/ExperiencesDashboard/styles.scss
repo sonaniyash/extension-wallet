@@ -110,25 +110,25 @@
 
 /*controls btn*/
 
-.option-btn-wrapper {
+.options{
   display: flex;
-}
 
-.btn {
-  margin: 10px 15px 10px 0;
-  padding: 10px 25px;
-  outline: none;
-  border: none;
-  border-radius: 5px;
-}
+  &__btn {
+    margin: 10px 15px 10px 0;
+    padding: 10px 25px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+  }
 
-.btn-dark {
-  color: white;
-  background-color: #414047;
-}
+  &__btn-dark {
+    color: white;
+    background-color: #414047;
+  }
 
-.btn-white {
-  color: #000000;
-  background-color: #ffffff;
-  border: 1px solid #f5f5f5;
+  &__btn-white {
+    color: #000000;
+    background-color: #ffffff;
+    border: 1px solid #f5f5f5;
+  }
 }
