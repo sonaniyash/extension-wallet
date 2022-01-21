@@ -57,7 +57,7 @@ const ExperiencesDashboard = () => {
                         </div>
                         <div className="categories_wrapper">
                             {
-                                isCategorySearching && categories && categories.map((category, index) => <Category category={category} key={index} />)
+                                !isCategorySearching && categories && categories.map((category, index) => <Category category={category} key={index} />)
                             }
                         </div>
                     </div>
