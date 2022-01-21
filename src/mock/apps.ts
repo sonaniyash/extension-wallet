@@ -35,6 +35,7 @@ export const TEST_DETAILED_APP = {
         downloads_count: 21408376,
         name: 'Docu sign',
         description: 'sign smart contracts seamlessly',
+        details: 'it is easy to electronically sign, manage and distribute all your contracts and documents safely, securely, anywhere, anytime- paperlessly.',
         app_callback_url: 'https://nearapps.io/home',
         owner_id: 'x1dO0CVk4RDfnXcszT263',
         app_id: 'c2dO0CVk4RDfnXcszT251',
@@ -45,11 +46,29 @@ export const TEST_DETAILED_APP = {
             'transactions',
             'users'
         ],
-        category: 'Finance',
+        category: 'Utilities',
         users_count: 22336391,
         tags: [
             'vault',
             'crypto'
-        ]
+        ],
+        activities: [
+            {
+                user: {
+                    avatar: '/assets/mock/johndoe.svg',
+                    account: 'johndoe.near',
+                },
+                activity: 'signed the contract successfully',
+                date: '19.01.2022'
+            },
+            {
+                user: {
+                    avatar: '/assets/mock/cryptoking.svg',
+                    account: 'CryptoKing.near',
+                },
+                activity: 'requested to sign the contract',
+                date: '13.01.2022'
+            }
+        ],
     }
 };
