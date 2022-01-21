@@ -22,6 +22,7 @@ import Notifications from "./views/Notifications";
 import DetailCollectible from "./views/DetailCollectible";
 import CreateNTFs from "./views/CreateNTFs";
 import { InitAxiosInterceptor } from "./utils/interceptor";
+import DetailApp from './views/DetailApp';
 
 
 const App = () => {
@@ -59,6 +60,7 @@ const App = () => {
             <Route path={ROUTES.SETTINGS.url} element={<Settings />} />
             <Route path={ROUTES.DETAIL_COLLECTIBLE.url} element={<DetailCollectible />} />
             <Route path={ROUTES.CREATE_NFT.url} element={<CreateNTFs />} />
+            <Route path={ROUTES.DETAIL_APP.url} element={<DetailApp />} />
           </Routes>
       </QueryClientProvider>
     </div>
