@@ -151,7 +151,7 @@ const Dashboard = () => {
               alt="chevron go to page"
             />
           </a>
-          <a className="web3-btn dash-btn">
+          <a className="web3-btn dash-btn" onClick={() => navigate(ROUTES.DETAIL_APP.url.replace(':id', 'app_name'))}>
             <span>web3 Apps</span>
             <img
               className="chevron"

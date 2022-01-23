@@ -7,24 +7,24 @@ import { ContextMain } from "../../context/store";
 import { ReducerTypes } from "../../context/reducer";
 import ContactItem from "../../components/ContactItem";
 import { InputSearch } from "../../components/common/InputSearch";
-import { filterArrayObjectByValue } from "../../utils/utils";
 import { useGetContacts } from "../../hooks/api/contacts";
 
 import "./styles.scss";
 import { CreateButton, ImportButton, ModalContent } from "./styles";
 import HeaderAccountSelect from "../../components/common/HeaderAccountSelect";
+import { getUserIdFromToken } from "../../utils/utils";
 
 
 Modal.setAppElement("#popup");
 
 const Contacts = () => {
   const navigate = useNavigate();
-  const [, dispatch] = React.useContext(ContextMain);
-
-  const { contacts, isSearching } = useGetContacts();
-
+  const [state, dispatch] = React.useContext(ContextMain);
   const [searchInput, setsearchInput] = useState("");
-  const [contactsToShow, setContactsToShow] = useState(contacts);
+  const userId = getUserIdFromToken(state);
+
+  const { contacts, isSearching } = useGetContacts(searchInput, userId);
+
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   const selectContact = (id: string) => {
@@ -41,11 +41,7 @@ const Contacts = () => {
 
   const searchValueInput = (e: any) => {
     setsearchInput(e.target.value);
-    const contactToShow = filterArrayObjectByValue(
-      searchInput.toLowerCase(),
-      contacts && contacts ? contacts : []
-    );
-    setContactsToShow(contactToShow);
+
   };
 
   const addContactHandler = () => {
@@ -74,10 +70,6 @@ const Contacts = () => {
     });
   }, []);
 
-  useEffect(() => {
-    setContactsToShow(contacts);
-  }, [contacts]);
-
   return (
     <>
       <HeaderAccountSelect/>
@@ -85,9 +77,11 @@ const Contacts = () => {
         <InputSearch addHandler={addContactHandler} searchHandler={searchValueInput} />
         <div className="contacts__list">
           {isSearching ? "Searching..." : ""}
-          {contactsToShow && contactsToShow.map((contact: any) => (
+          {!isSearching && contacts && contacts.length === 0 ? "No contacts found" : ""}
+
+          {contacts && contacts.map((contact: any) => (
             <ContactItem
-              key={contact.account}
+              key={contact.contact_id}
               contact={contact}
               clickHandler={selectContact}
             />

@@ -5,63 +5,69 @@ import { Collectibles } from "../views/DetailCollectible";
 export const TEST_CONTACTS: Array<Contact> = [
   {
     id: "7",
-    firstName: "Esther",
-    lastName: "Howard",
+    first_name: "Esther",
+    last_name: "Howard",
     fullName: "Esther Howard",
     phone: "+3346 44446464",
     imgUrl: "",
     account: "ester.near",
-    email: "ester@test.com"
+    email: "ester@test.com",
+    contact_id: "213dasd2121e21"
   },
   {
     id: "1",
-    firstName: "Devon",
-    lastName: "Lane",
+    first_name: "Devon",
+    last_name: "Lane",
     fullName: "Devon Lane",
     phone: "+3346 44446464",
     imgUrl: "",
     account: "devon.near",
-    email: "devon@test.com"
+    email: "devon@test.com",
+    contact_id: "12xe12e1c2e12"
   },
   {
     id: "2",
-    firstName: "Scott",
-    lastName: "Pilgrim",
+    first_name: "Scott",
+    last_name: "Pilgrim",
     fullName: "Scott Pilgrim",
     phone: "+3346 44446464",
     imgUrl: "",
     account: "scottyboy.near",
-    email: "scottyboy@test.com"
+    email: "scottyboy@test.com",
+    contact_id: "12e1c2e1c21x"
   },
   {
     id: "3",
-    firstName: "Jhonny",
-    lastName: "Wonder",
+    first_name: "Jhonny",
+    last_name: "Wonder",
     fullName: "Jhonny Wonder",
     phone: "+3346 44446464",
     imgUrl: "",
     account: "jwonder.near",
-    email: "jwonder@test.com"
+    email: "jwonder@test.com",
+    contact_id: "12ex12c13412"
   },
   {
     id: "4",
-    firstName: "Leslie",
-    lastName: "Nope",
+    first_name: "Leslie",
+    last_name: "Nope",
     fullName: "Leslie Nope",
     phone: "+3346 44446464",
     imgUrl: "",
     account: "npleslie.near",
-    email: "npleslie@test.com"
+    email: "npleslie@test.com",
+    contact_id: "112421dfdsfs"
   },
   {
     id: "5",
-    firstName: "Guadalupe",
-    lastName: "Mendez",
+    first_name: "Guadalupe",
+    last_name: "Mendez",
     fullName: "Guadalupe Mendez",
     phone: "+3346 44446464",
     imgUrl: "",
     account: "mendezgd.near",
-    email: "mendezgd@test.com"
+    email: "mendezgd@test.com",
+    contact_id: "234325ewert34"
   },
 ];
 

@@ -5,7 +5,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 
 import Home from "./views/Home";
 import CreateAccount from "./views/CreateAccount";
-import Store from "./context/store";
+import { ContextMain } from "./context/store";
 import Verification from "./views/Verification";
 import Secure from "./views/Secure";
 import { ROUTES } from "./const/routeNames";
@@ -21,10 +21,13 @@ import EditContact from "./views/EditContact";
 import Notifications from "./views/Notifications";
 import DetailCollectible from "./views/DetailCollectible";
 import CreateNTFs from "./views/CreateNTFs";
+import { InitAxiosInterceptor } from "./utils/interceptor";
+import DetailApp from './views/DetailApp';
+
 
 const App = () => {
   const navigate = useNavigate();
-
+  InitAxiosInterceptor(React.useContext(ContextMain));
   useEffect(() => {
     navigate(ROUTES.HOME.url);
   }, []);
@@ -41,7 +44,6 @@ const App = () => {
   return (
     <div className="App">
       <QueryClientProvider client={queryClient} contextSharing>
-        <Store>
           <Routes>
             <Route path={ROUTES.HOME.url} element={<Home />} />
             <Route path={ROUTES.CREATE_ACCT.url} element={<CreateAccount />} />
@@ -58,8 +60,8 @@ const App = () => {
             <Route path={ROUTES.SETTINGS.url} element={<Settings />} />
             <Route path={ROUTES.DETAIL_COLLECTIBLE.url} element={<DetailCollectible />} />
             <Route path={ROUTES.CREATE_NFT.url} element={<CreateNTFs />} />
+            <Route path={ROUTES.DETAIL_APP.url} element={<DetailApp />} />
           </Routes>
-        </Store>
       </QueryClientProvider>
     </div>
   );
