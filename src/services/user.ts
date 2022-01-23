@@ -11,7 +11,7 @@ const api = {
   },
   createAccount: async (data: CreateAccountData) => {
     return axios
-      .post(`${baseUrl}/user/registration`, data)
+      .post(`${baseUrl}/user/create`, data)
       .then((response) => response.data);
   },
   loginWithWallet: async (walletName: string) => {
