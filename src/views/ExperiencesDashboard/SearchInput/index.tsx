@@ -4,11 +4,12 @@ import './style.scss';
 import searchIcon from "../../../public/assets/experience/search.svg";
 import vortexIcon from "../../../public/assets/experience/vortex.svg";
 
-const SearchInput = () => {
+const SearchInput = (props: any) => {
     return (
         <div className="search_container">
             <div className="input_wrapper">
                 <input
+                    onChange={(event) => { props.search(event.target.value) }}
                     type="text"
                     placeholder="Search experiences"
                     className="search_input" />
