@@ -16,7 +16,7 @@ export const useGetAllExperiences = () => {
     };
 };
 
-/** Terporary util function to mock search functionality, will be removed when API is implemented */
+/** Temporary util function to mock search functionality, will be removed when API is implemented */
 
 const filterExperiences = (arr: any, term: string) => {
     var found: any = [];

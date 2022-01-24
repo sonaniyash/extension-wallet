@@ -14,7 +14,7 @@ const api = {
 
     searchExperience: async (): Promise<Array<any>> => {
         // return axios
-        //   .get(`/expereinces`)
+        //   .get(`/experiences`)
         //   .then((response) => response.data);
         return new Promise(function (resolve) {
             return setTimeout(() => resolve(EXPERIENCES.other), 100);
