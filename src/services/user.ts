@@ -1,7 +1,7 @@
 import axios from "axios";
 import { CreateAccountData } from "../context/models";
 
-export const baseUrl = `${process.env.EXTENSION_ENDPOINT}/api`;
+export const baseUrl = `${process.env.EXTENSION_ENDPOINT}`;
 
 const api = {
   getAccountDetails: async () => {
