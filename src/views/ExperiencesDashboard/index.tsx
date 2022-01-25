@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
 import { ContextMain } from "../../context/store";
 import { ReducerTypes } from "../../context/reducer";
 import { ROUTES } from "../../const/routeNames";
 
+import Modal from "../../components/Modal";
+import CategoryFilter from './CategoryFilter';
 import HeaderAccountSelect from "../../components/common/HeaderAccountSelect";
 import { useGetAllExperiences } from "../../hooks/api/experiences";
 import { useGetAllCategories } from "../../hooks/api/categories";
@@ -25,13 +26,16 @@ const ExperiencesDashboard = () => {
     const { categories, isSearching: isCategorySearching } = useGetAllCategories();
     const [searchQuery, setSearchQuery] = useState("");
 
+    const [filter, setFilter] = useState(null);
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+
     const [activeTab, setActive] = useState(0);
     const [, dispatch] = React.useContext(ContextMain);
 
     const [searchResult, setSearchResult] = useState([]);
 
     const filterExperiences = (arr: any, term: string) => {
-        var found: any = [];
+        const found: any = [];
 
         arr.map((a: any) => {
             if (a.name.match(term)) {
@@ -48,6 +52,8 @@ const ExperiencesDashboard = () => {
         setSearchResult(result);
     }
 
+    const toggleModal = () => setModalIsOpen((prev) => !prev);
+
     useEffect(() => {
         dispatch({
             type: "SET_UI",
@@ -59,9 +65,12 @@ const ExperiencesDashboard = () => {
     return (
         <>
             <HeaderAccountSelect />
+            <Modal open={modalIsOpen} setOpen={setModalIsOpen} closeBtn>
+                <CategoryFilter categories={categories} />
+            </Modal>
 
             <section className="root content">
-                <SearchInput search={search} />
+                <SearchInput search={search} toggleFilterModal={toggleModal} />
 
                 {searchQuery.length > 0 ?
                     <div className="searchResults">

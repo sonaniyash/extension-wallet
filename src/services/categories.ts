@@ -1,8 +1,14 @@
 // import axios from "axios";
 import { CATEGORIES } from "../mock/mock";
 
+interface Category {
+    name: string;
+    icon: string;
+    backgroundColor: string;
+}
+
 const api = {
-    getAllCategories: async (): Promise<Array<any>> => {
+    getAllCategories: async (): Promise<Array<Category>> => {
         // return axios
         //   .get(`/accounts`)
         //   .then((response) => response.data);
