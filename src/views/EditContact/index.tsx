@@ -108,7 +108,7 @@ const CreateContacts = () => {
           type="text"
           id="address"
           name="address"
-          value={formik.values.address}
+          value={formik.values.address.length ? formik.values.address[0].address : ''}
           onPaste={formik.handleChange}
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
@@ -135,7 +135,7 @@ const CreateContacts = () => {
         {!!formik.values.email &&
           !!formik.touched.email &&
           !!formik.errors.email && (
-            <p className="error-text"> {formik.errors.email}</p>
+            <p className="error-text"> {formik.values.email.length ? formik.values.email[0].address : ''}</p>
           )}
 
         <Label htmlFor="full name">Phone (optional)</Label>
