@@ -5,13 +5,14 @@ import "./styles.scss";
 interface Props {
   searchHandler: React.FormEventHandler<HTMLInputElement>;
   addHandler?: React.FormEventHandler<HTMLAnchorElement>;
+  placeholder?: string
 }
 
-export const InputSearch = ({ searchHandler, addHandler }: Props) => {
+export const InputSearch = ({ searchHandler, addHandler, placeholder }: Props) => {
   return (
     <div className="input-search">
       <input
-        placeholder="Search Contact"
+        placeholder={placeholder}
         onInput={searchHandler}
         className="input-search__input"
         type="search"

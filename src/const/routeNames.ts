@@ -70,4 +70,7 @@ export const ROUTES = {
   SEND_TO_CONTACT: {
     url: "/sendtocontact/:id"
   },
+  EXPERIENCES_DASHBOARD: {
+    url: "/experiences-dashboard"
+  },
 };

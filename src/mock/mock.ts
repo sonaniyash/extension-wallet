@@ -117,6 +117,49 @@ export const TEST_EXPERIENCES: Array<ConnectedExp> = [
   }
 ];
 
+export const EXPERIENCES = {
+  recent: [
+    {
+      name: 'DeFi Swap',
+      description: 'Swap your digital assets',
+      image: './assets/mock/images/defi.svg',
+      subscribeAmount: '+200',
+    },
+    {
+      name: 'Docu sign',
+      description: 'sign smart contracts seamlessly',
+      image: './assets/mock/images/docu.svg',
+      subscribeAmount: '+1k',
+    },
+  ],
+  other: [
+    {
+      name: 'DeFi Swap',
+      description: 'Invest in digital assets',
+      image: './assets/mock/images/defi.svg',
+      subscribeAmount: '+200',
+    },
+    {
+      name: 'DeFi Invest',
+      description: 'Swap your digital assets',
+      image: './assets/mock/images/defi-invest.svg',
+      subscribeAmount: '+15k',
+    },
+    {
+      name: 'DeFolio',
+      description: 'Track your DeFi assets',
+      image: './assets/mock/images/defolio.svg',
+      subscribeAmount: '+12k',
+    },
+    {
+      name: 'Docu sign',
+      description: 'sign smart contracts seamlessly',
+      image: './assets/mock/images/docu.svg',
+      subscribeAmount: '+1k',
+    },
+  ],
+};
+
 export const TEST_COLLECTIBLES: Array<Collectibles> = [
   {
     id: "1",
@@ -169,4 +212,37 @@ export const TEST_OFFERS: Array<any> = [
     ammount: "12.221",
     date: "2022-01-01 09:22:06"
   },
-]
+];
+
+export const CATEGORIES: Array<any> = [
+  {
+    name: 'Exchanges',
+    icon: './assets/experience/categories/exchanges.svg',
+    backgroundColor: '#EAEFFF',
+  },
+  {
+    name: 'Games',
+    icon: './assets/experience/categories/games.svg',
+    backgroundColor: '#F5F5F5',
+  },
+  {
+    name: 'Marketplaces',
+    icon: './assets/experience/categories/marketplaces.svg',
+    backgroundColor: '#E2F9F3',
+  },
+  {
+    name: 'Defi',
+    icon: './assets/experience/categories/defi.svg',
+    backgroundColor: '#FFF3EC',
+  },
+  {
+    name: 'Collectibles',
+    icon: './assets/experience/categories/collectibles.svg',
+    backgroundColor: '#EBF5FF',
+  },
+  {
+    name: 'Utilities',
+    icon: './assets/experience/categories/utilities.svg',
+    backgroundColor: '#F0EBFF',
+  },
+];

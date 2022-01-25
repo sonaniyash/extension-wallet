@@ -92,9 +92,8 @@ const CreateAccount = () => {
           <input
             id="walletName"
             name="walletName"
-            className={`accountId_input ${
-              formik.errors.walletName ? "wrong" : ""
-            }`}
+            className={`accountId_input ${formik.errors.walletName ? "wrong" : ""
+              }`}
             value={formik.values.walletName}
             onPaste={formik.handleChange}
             onBlur={formik.handleBlur}
