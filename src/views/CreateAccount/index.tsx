@@ -22,7 +22,7 @@ const CreateAccount = () => {
 
   const initialValues: any = {
     fullName: "",
-    walletName: "",
+    walletName: state.createAccountData.email ?  state.createAccountData.email.replace(/@.*$/, "") : "" // set email name as suggested Wallet Name,
   };
 
   const formik = useFormik({
