@@ -19,9 +19,9 @@ Modal.setAppElement("#popup");
 
 const Contacts = () => {
   const navigate = useNavigate();
-  const [state, dispatch] = React.useContext(ContextMain);
+  const [, dispatch] = React.useContext(ContextMain);
   const [searchInput, setsearchInput] = useState("");
-  const userId = getUserIdFromToken(state);
+  const userId = getUserIdFromToken();
 
   const { contacts, isSearching } = useGetContacts(searchInput, userId);
 

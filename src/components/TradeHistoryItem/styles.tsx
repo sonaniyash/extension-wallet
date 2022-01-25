@@ -1,45 +1,28 @@
 import styled from 'styled-components';
 
-export const OfferItemContainer = styled.div` 
+export const StyledTradeHistoryItem = styled.div` 
     padding: 0 20px;
     margin-bottom: 20px;
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
-    .offer-item-img {
+    .history-item-img {
         width: 20px;
         height: 20px;
         padding: 8px;
         border-radius: 50px;
         background: #DFDFE0;
     }
-    .offer-item-body {
+    .history-item-body {
+        padding-left: 10px;
         text-align: start;
-        .offer-item-id {
+        .history-item-owner {
             font-weight: 600;
             font-size: 15px;
             line-height: 20px;
             color: #885FFF;
             margin-bottom: 7px;
         }
-        .offer-item-button {
-            display: inline-block;
-            min-height: 24px;
-            min-width: 50px;
-            padding: 0 12px;
-            font-size: 13px;
-            margin-right: 5px;
-            border-radius: 6px;
-            &::after {
-                content: '';
-            }
-            &.--white {
-                background-color: white;
-                border: 1px solid #000000;
-                color: #000000;
-            }
-        }
-        .offer-item-time {
+        .history-item-time {
             font-weight: 500;
             font-size: 12px;
             line-height: 22px;
@@ -60,20 +43,17 @@ export const OfferItemContainer = styled.div`
                 border-radius: 69px;
             }
         }    
-        .offer-item-amount-nft {
+        .history-item-id {
             font-weight: 600;
             font-size: 15px;
             line-height: 20px;
             color: black;
         }    
+        .history-item-to {
+            font-weight: 600;
+            font-size: 15px;
+            line-height: 20px;
+            color: #885FFF;
+        }
     }
-
-    .offer-item-ammount {
-        font-weight: 600;
-        font-size: 15px;
-        line-height: 20px;
-        color: #1D2C3C;
-    }
-  
-    
 `

@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { useGetMyoffers } from '../../hooks/api/offers';
 import OfferItem from '../common/OfferItem';
 
+interface Props {
+    fromNFT?: boolean;
+}
 
-const OffersList = () => {
+const OffersList = ({ fromNFT }: Props) => {
     const { offers, isSearching } = useGetMyoffers();
     const [offersToShow, setCollectiblesToShow] = useState(offers);
 
@@ -14,9 +17,9 @@ const OffersList = () => {
     return (
         <>
             {isSearching ? "Searching..." : ""}
-              {offersToShow && offersToShow.map((offers: any) => (
-                <OfferItem key={offers.id} item={offers} onClick={() => {}} />
-              ))}
+            {offersToShow && offersToShow.map((offers: any) => (
+                <OfferItem key={offers.id} item={offers} onClick={() => { }} fromNFT={fromNFT} />
+            ))}
         </>
     )
 }

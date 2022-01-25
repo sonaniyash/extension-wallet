@@ -68,7 +68,7 @@ input {
 }
 `;
 
-export const StyledButton = styled.div`
+export const StyledButton = styled.button`
 margin-top: 10px;
 background: #885FFF;
 border-radius: 10px;

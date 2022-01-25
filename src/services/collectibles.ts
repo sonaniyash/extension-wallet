@@ -1,25 +1,20 @@
 // import axios from "axios";
-import { TEST_COLLECTIBLES, TEST_OFFERS } from "../mock/mock";
+import { TEST_OFFERS } from "../mock/mock";
+import axios from "axios";
+
+export const apiNearUrl = `${process.env.NEARAPI_BACKEND}`;
 
 const api = {
-    getAllCollectibles: async (): Promise<Array<any>> => {
-        return new Promise(function (resolve) {
-            return setTimeout(() => resolve(TEST_COLLECTIBLES), 700);
-        });
+    getAllCollectibles: async (userId: any): Promise<Array<any>> => {
+        return axios
+            .get(`${apiNearUrl}/nfts/list?owner_id=${userId}`)
+            .then((response: any) => response.data.data);
     },
     getCollectibleById: async (id: string): Promise<any> => {
-        return new Promise(function (resolve) {
-            return setTimeout(() => {
-                const result = TEST_COLLECTIBLES.find((val) => val.id === id)
-                resolve(result)
-            }, 700);
-        });
-    },
-    getMyOffers: async (): Promise<Array<any>> => {
-        return new Promise(function (resolve) {
-            return setTimeout(() => resolve(TEST_OFFERS), 700);
-        });
-    },
+        return axios
+            .get(`${apiNearUrl}/nfts/${id}`)
+            .then((response: any) => response.data.data);
+    }
 };
 
 export default api;

@@ -160,57 +160,47 @@ export const EXPERIENCES = {
   ],
 };
 
-export const TEST_COLLECTIBLES: Array<Collectibles> = [
+export const TEST_COLLECTIBLES: Array<any> = [
   {
-    id: "1",
-    name: "Panda",
-    imgUrl: "/assets/panda_collectible.png",
-    owner: "Fede123",
-    description: "string long long long"
-  },
-  {
-    id: "2",
-    name: "Other",
-    imgUrl: "/assets/app-2.png",
-    owner: "Kun123",
-    description: "string long long long"
-  },
-  {
-    id: "3",
-    name: "NFT",
-    imgUrl: "/assets/nft_collectible.png",
-    owner: "Lea123",
-    description: "string long long long"
-  },
-  {
-    id: "4",
-    name: "D3",
-    imgUrl: "/assets/d3.png",
-    owner: "Julio123",
-    description: "string long long long"
-  },
+    nft_id: "thHkGvISXhucKPxr9BvB4",
+    updated: 1642181349003,
+    status: "active",
+    category: "Digital Arts",
+    created: 1642181349003,
+    attributes: [
+        {}
+    ],
+    description: "Al diego le gusta esto",
+    owner_id: "wQWFNYPkTYy5rRzmWnO76",
+    file_url: "/assets/panda_collectible.png",
+    title: "medabot trucho"
+  }
 ];
 
 export const TEST_OFFERS: Array<any> = [
   {
     id: "136516",
     ammount: "20.055",
-    date: "2021-06-07 09:22:06"
+    date: "2021-06-07 09:22:06",
+    owner: 'El kun'
   },
   {
     id: "994654",
     ammount: "0.325",
-    date: "2021-12-07 09:22:06"
+    date: "2021-12-07 09:22:06",
+    owner: 'Lea'
   },
   {
     id: "55111",
     ammount: "1.231",
-    date: "2022-01-07 09:22:06"
+    date: "2022-01-07 09:22:06",
+    owner: 'Julio'
   },
   {
     id: "123561",
     ammount: "12.221",
-    date: "2022-01-01 09:22:06"
+    date: "2022-01-01 09:22:06",
+    owner: 'Fede'
   },
 ];
 
@@ -245,4 +235,34 @@ export const CATEGORIES: Array<any> = [
     icon: './assets/experience/categories/utilities.svg',
     backgroundColor: '#F0EBFF',
   },
+];
+
+export const TEST_HISTORY: Array<any> = [
+  {
+    type: 'send',
+    owner: 'Fede.near',
+    id: "123",
+    to: 'Lea.near',
+    date: "2022-01-07 09:22:06",
+    image: "/assets/account-1.png",
+
+  },
+  {
+    type: 'mint',
+    owner: 'kun.near',
+    id: "124",
+    to: '',
+    date: "2022-01-07 09:22:06",
+    image: "/assets/account-1.png",
+
+  },
+  {
+    type: 'send',
+    owner: 'Fede.near',
+    id: "125",
+    to: 'Lea.near',
+    date: "2022-01-07 09:22:06",
+    image: "/assets/account-1.png",
+
+  }
 ];
