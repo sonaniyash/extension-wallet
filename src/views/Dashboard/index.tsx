@@ -155,8 +155,7 @@ const Dashboard = () => {
               alt="chevron go to page"
             />
           </a>
-
-          <a onClick={goToExperiencesDashboard} className="web3-btn dash-btn">
+          <a className="web3-btn dash-btn" onClick={goToExperiencesDashboard} >
             <span>web3 Apps</span>
             <img
               className="chevron"

@@ -53,10 +53,22 @@ export const ROUTES = {
     url: "/settings",
   },
   DETAIL_COLLECTIBLE: {
-    url: "/detailcollectible/:id"
+    url: "/detailcollectible/:id",
   },
   CREATE_NFT: {
-    url: "/createnft"
+    url: "/createnft",
+  },
+  DETAIL_APP: {
+    url: "/apps/:id",
+  },
+  CATEGORIES: {
+    url: '/categories',
+  },
+  CATEGORY: {
+    url: '/category/:id',
+  },
+  SEND_TO_CONTACT: {
+    url: "/sendtocontact/:id"
   },
   EXPERIENCES_DASHBOARD: {
     url: "/experiences-dashboard"
