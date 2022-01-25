@@ -14,12 +14,7 @@ const api = {
         return axios
             .get(`${apiNearUrl}/nfts/${id}`)
             .then((response: any) => response.data.data);
-    },
-    getMyOffers: async (): Promise<Array<any>> => {
-        return new Promise(function (resolve) {
-            return setTimeout(() => resolve(TEST_OFFERS), 700);
-        });
-    },
+    }
 };
 
 export default api;
