@@ -9,7 +9,6 @@ import createContactSchema from "../../validation/createContactSchema";
 import { useNavigate, useParams } from "react-router";
 import { ROUTES } from "../../const/routeNames";
 import { getUserIdFromToken } from "../../utils/utils";
-import { ContextMain } from "../../context/store";
 import arrowUpBlue from "../../public/assets/arrow-up-blue.png";
 import arrowUpwhite from "../../public/assets/arrow-up.png";
 
@@ -18,8 +17,7 @@ Modal.setAppElement("#popup");
 
 const SendToContact = () => {
   const navigate = useNavigate();
-  const [state] = React.useContext(ContextMain);
-  const userId = getUserIdFromToken(state)
+  const userId = getUserIdFromToken()
   const { id } = useParams();
   const {contact} = useGetContact(id);
 

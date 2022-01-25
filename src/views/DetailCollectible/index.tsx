@@ -2,8 +2,8 @@ import React, { useRef, useState } from 'react'
 import Modal from "react-modal";
 import { useParams } from 'react-router';
 
-import offerImg from '/assets/offer.png';
-import chevron from "../../public/assets/chevron-r-black.svg";
+import offerImg from '../../public/assets/offers.png';
+import chevron from '../../public/assets/chevron-r-black.svg';
 
 import HeaderAccountSelect from '../../components/common/HeaderAccountSelect';
 import TabsContainer from '../../components/common/TabsContainer';
