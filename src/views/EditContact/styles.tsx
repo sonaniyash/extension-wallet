@@ -27,7 +27,6 @@ const ChangePhotoBlock = styled.div`
     display: flex;
     align-items: center;
     padding: 13px 25px 0 25px;
-    width: 100%;
 `;
 
 const PhotoContact = styled.div`
