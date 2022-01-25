@@ -51,7 +51,7 @@ const CreateContacts = () => {
           onPaste={formik.handleChange}
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
-          placeholder={"Ex. John doe"}
+          placeholder={"Ex. John"}
           className="home__selectors__input"
         />
         {!!formik.values.first_name &&
@@ -68,7 +68,7 @@ const CreateContacts = () => {
           onPaste={formik.handleChange}
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
-          placeholder={"Ex. John doe"}
+          placeholder={"Ex. Doe"}
           className="home__selectors__input"
         />
         {!!formik.values.last_name &&

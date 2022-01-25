@@ -2,9 +2,7 @@
 import { TEST_OFFERS } from "../mock/mock";
 import axios from "axios";
 
-const apiNearUrl = 'https://api.nearlogin.io';
-// const userId = 'wQWFNYPkTYy5rRzmWnO76'
-// const userId = 'UaLh5zaWZSUzjZLl6bV6L'
+export const apiNearUrl = `${process.env.NEARAPI_BACKEND}`;
 
 const api = {
     getAllCollectibles: async (userId: any): Promise<Array<any>> => {

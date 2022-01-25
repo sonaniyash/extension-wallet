@@ -71,14 +71,15 @@ export default function MakeOfferModal({ onClose, collectible }: Props) {
                     onChange={formik.handleChange}
                 />
             </div>
-            <div className='balance'>
+            {
+            /*<div className='balance'>
                 <section className='balance_label'>
                     Balance
                 </section>
                 <section className='balance_value'>
                     1.0005 NEAR
                 </section>
-            </div>
+            </div> */}
 
             <div className="expires_label">Expires</div>
 

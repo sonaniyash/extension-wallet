@@ -1,6 +1,10 @@
 import React, { useRef, useState } from 'react'
 import Modal from "react-modal";
 import { useParams } from 'react-router';
+
+import offerImg from '/assets/offer.png';
+import chevron from "../../public/assets/chevron-r-black.svg";
+
 import HeaderAccountSelect from '../../components/common/HeaderAccountSelect';
 import TabsContainer from '../../components/common/TabsContainer';
 import TabsHeader from '../../components/common/TabsHeader';
@@ -81,7 +85,7 @@ export default function DetailCollectible() {
                             !isOwner() && (<StyledButton onClick={() => setModalIsOpen(true)}>
                                 <img
                                     className="icon"
-                                    src="/assets/offer.png"
+                                    src={offerImg}
                                 />
 
                                 <span className="body__title">
@@ -112,7 +116,7 @@ export default function DetailCollectible() {
                                                 <span> Overview</span>
                                                 <img
                                                     className={`chevron-${!overView ? 'close' : 'open'}`}
-                                                    src="/assets/chevron-r-black.svg"
+                                                    src={chevron}
                                                     alt=""
                                                 />
                                             </div>
@@ -141,7 +145,7 @@ export default function DetailCollectible() {
                                                 <span> Overview</span>
                                                 <img
                                                     className={`chevron-${!overView ? 'close' : 'open'}`}
-                                                    src="/assets/chevron-r-black.svg"
+                                                    src={chevron}
                                                     alt=""
                                                 />
                                             </div>

@@ -2,7 +2,7 @@
 import { TEST_HISTORY } from "../mock/mock";
 import axios from "axios";
 
-const apiNearUrl = 'https://api.nearlogin.io';
+export const apiNearUrl = `${process.env.NEARAPI_BACKEND}`;
 
 
 const api = {
