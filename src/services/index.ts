@@ -7,6 +7,7 @@ import appsApi from './apps';
 import experiencesApi from "./experiences";
 import categoriesApi from "./categories";
 import tradeHistoryApi from "./tradeHistory";
+import notificationsApi from "./notifications";
 
 const api = {
     ...userApi,
@@ -17,7 +18,8 @@ const api = {
     ...appsApi,
     ...experiencesApi,
     ...categoriesApi,
-    ...tradeHistoryApi
+    ...tradeHistoryApi,
+    ...notificationsApi,
 };
 
 export default api;

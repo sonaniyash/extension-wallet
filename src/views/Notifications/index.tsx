@@ -1,45 +1,56 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import HeaderAccountSelect from "../../components/common/HeaderAccountSelect";
+import {
+  useGetAllNotifications,
+  useMarkAllNotificationsAsRead,
+} from "../../hooks/api/notifications";
 
 import accountImg from "../../public/assets/account-1.png";
 
-import { BodyNotification, BodyTextNotification, BodyTimeNotification, Header, ImgNotification, ItemNotification } from "./styles";
+import {
+  BodyNotification,
+  BodyTextNotification,
+  BodyTimeNotification,
+  Header,
+  ImgNotification,
+  ItemNotification,
+} from "./styles";
 
 const Notifications = () => {
+  const { notifications, isLoading } = useGetAllNotifications();
+  const { markAllAsRead } = useMarkAllNotificationsAsRead();
 
-  const [notifications, setnotifications] = useState<any>()
+  const renderMessage = (notification: any) => {
+    switch (notification.type) {
+      case "OfferRevoked":
+        return `The offer was revoked`;
 
-  const nav = useNavigate();
-
-  useEffect(() => {
-
-  }, [])
-
-
+      default:
+        return "";
+    }
+  };
 
   return (
     <>
-        <HeaderAccountSelect/>
-        <Header>Notifications</Header>
-        <ItemNotification>
-          <ImgNotification src={accountImg} alt="" />
-          <BodyNotification>
+      <HeaderAccountSelect />
+      <Header>
+        Notifications
+        <a onClick={() => markAllAsRead()}>Mark all as read</a>
+      </Header>
+      {!isLoading &&
+        notifications?.map((notification) => (
+          <ItemNotification key={notification.id}>
+            <ImgNotification src={accountImg} alt="" />
+            <BodyNotification>
               <BodyTextNotification>
-                <span>CryptoKing.near</span>  made an offer for collectible <span>#72873 </span>
+                {renderMessage(notification)}
               </BodyTextNotification>
-              <BodyTimeNotification>5 days ago</BodyTimeNotification>
-          </BodyNotification>
-        </ItemNotification>
-        <ItemNotification>
-          <ImgNotification src={accountImg} alt="" />
-          <BodyNotification>
-              <BodyTextNotification>
-                <span>CryptoKing.near</span>  made an offer for collectible <span>#72873 </span>
-              </BodyTextNotification>
-              <BodyTimeNotification>5 days ago</BodyTimeNotification>
-          </BodyNotification>
-        </ItemNotification>
+              <BodyTimeNotification>
+                {new Date(notification.createdAt).toLocaleString()}
+              </BodyTimeNotification>
+            </BodyNotification>
+          </ItemNotification>
+        ))}
     </>
   );
 };
