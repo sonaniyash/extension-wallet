@@ -2,7 +2,7 @@
 import { TEST_HISTORY } from "../mock/mock";
 import axios from "axios";
 
-export const apiNearUrl = `${process.env.NEARAPI_BACKEND}`;
+export const apiNearUrl = `${process.env.EXTENSION_ENDPOINT}`;
 
 
 const api = {

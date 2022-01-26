@@ -2,7 +2,7 @@
 import { TEST_OFFERS } from "../mock/mock";
 import axios from "axios";
 
-export const apiNearUrl = `${process.env.NEARAPI_BACKEND}`;
+export const apiNearUrl = `${process.env.EXTENSION_ENDPOINT}`;
 
 const api = {
     getAllCollectibles: async (userId: any): Promise<Array<any>> => {
