@@ -38,6 +38,7 @@ padding: 12px 90px;
 `
 
 export const StyledDetailCollectible = styled.div`
+position: relative;
 .icon-section {
     .background {
         filter: blur(1px) brightness(0.4);
@@ -45,7 +46,6 @@ export const StyledDetailCollectible = styled.div`
         width: 362px;
         height: 180px;
         left: 0px;
-        top: 70px;
         background: rgba(10, 10, 11, 0.6);
     }
     .icon{
@@ -53,7 +53,7 @@ export const StyledDetailCollectible = styled.div`
         width: 170px;
         height: 145.7px;
         left: 96px;
-        top: 87px;
+        top: 17px;
     }
 }
 .detail-section {
@@ -61,7 +61,7 @@ export const StyledDetailCollectible = styled.div`
         position: absolute;
         height: 22px;
         left: 15px;
-        top: 266px;
+        top: 196px;
         font-family: Manrope;
         font-style: normal;
         font-weight: 600;
@@ -74,7 +74,7 @@ export const StyledDetailCollectible = styled.div`
         position: absolute;
         height: 20px;
         left: 20px;
-        top: 294px;
+        top: 224px;
         font-family: Manrope;
         font-style: normal;
         font-weight: 500;
@@ -86,7 +86,7 @@ export const StyledDetailCollectible = styled.div`
         position: absolute;
         height: 38px;
         left: 34px;
-        top: 325px;
+        top: 255px;
         display: flex;
         .name-wrapper {
             display: flex;
