@@ -59,7 +59,8 @@ const DetailContacts = () => {
             {contact ? contact?.first_name?.substring(0, 1)?.toUpperCase() + contact?.last_name?.substring(0, 1)?.toUpperCase() : ''}
           </ContactIcon>
           <div>
-            <SeeTransContact></SeeTransContact>
+            {contact && contact.wallet_id ? <SeeTransContact></SeeTransContact> : null}
+            
             <EditContact onClick={editContact} ></EditContact>
           </div>
         </HeaderContact>
