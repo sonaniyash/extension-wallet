@@ -23,7 +23,7 @@ const Dashboard = () => {
   };
 
   const goToExperiencesDashboard = () => {
-    navigate(ROUTES.EXPERIENCES_DASHBOARD.url)
+    navigate(ROUTES.EXPERIENCES_DASHBOARD.url);
   }
 
   const [activeTab, setActive] = useState(0);
