@@ -1,19 +1,24 @@
 import axios from "axios";
 export const apiNearUrl = `${process.env.EXTENSION_ENDPOINT}`;
 
-
+import { CONTACTS } from '../mock/mock';
 
 const api = {
   getContacts: async (userId: any): Promise<Array<any>> => {
-    return axios
-      .get(`${apiNearUrl}/contacts/list/${userId}`)
-      .then((response: any) => response.data.data);
+    // return axios
+    //   .get(`${apiNearUrl}/contacts/list/${userId}`)
+    //   .then((response: any) => response.data.data);
+
+    return new Promise(function (resolve) {
+        return setTimeout(() => resolve(CONTACTS), 100);
+        // return setTimeout(() => reject(), 1500);
+    });
   },
 
   getContact: async (id: string | undefined): Promise<any> => {
-    return axios
-      .get(`${apiNearUrl}/contacts/${id}`)
-      .then((response: any) => response.data.data);
+    // return axios
+    //   .get(`${apiNearUrl}/contacts/${id}`)
+    //   .then((response: any) => response.data.data);
     // return new Promise(function (resolve) {
     //   return setTimeout(() => {
     //     const result = TEST_CONTACTS.find((val)=> val.id ===id)
@@ -21,6 +26,12 @@ const api = {
     //   }, 700);
       // return setTimeout(() => reject(), 1500);
     // });
+
+    return new Promise(function (resolve) {
+      const result = CONTACTS.find(c => c.contact_id === id);
+      return setTimeout(() => resolve(result), 100);
+      // return setTimeout(() => reject(), 1500);
+  });
   },
   editContact: async (contactData: any, userId: any, id: any) => {
     const payload = {

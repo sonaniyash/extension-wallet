@@ -100,4 +100,8 @@ const ButtonWrapper = styled.a`
   
 `
 
-export { ContactIcon, DetailSection, HeaderContact, EditContact, SeeTransContact, NameH2, SubtitleEmail, ConnectedCount, ButtonWrapper };
+const GuestContactWrapper = styled.div`
+    margin-top: 100px;
+`
+
+export { ContactIcon, DetailSection, HeaderContact, EditContact, SeeTransContact, NameH2, SubtitleEmail, ConnectedCount, ButtonWrapper, GuestContactWrapper };

@@ -9,7 +9,7 @@ import HeaderAccountSelect from "../../components/common/HeaderAccountSelect";
 
 import ConnectedExpItem, { ConnectedExp } from "../../components/ConnectedExpItem";
 
-import { ContactIcon, DetailSection, EditContact, HeaderContact, SeeTransContact, SubtitleEmail, NameH2, ConnectedCount, ButtonWrapper } from "./styles";
+import { ContactIcon, DetailSection, EditContact, HeaderContact, SeeTransContact, SubtitleEmail, NameH2, ConnectedCount, ButtonWrapper, GuestContactWrapper } from "./styles";
 import { ROUTES } from "../../const/routeNames";
 import arrowUp from "../../public/assets/arrow-up.png";
 import arrowDown from "../../public/assets/arrow-down.png";
@@ -66,79 +66,113 @@ const DetailContacts = () => {
         <NameH2> {contact ? `${contact.first_name} ${contact.last_name}` : ''}</NameH2>
         <SubtitleEmail> {contact ? contact.wallet_id : ''}</SubtitleEmail>
       </DetailSection>
-      <TabsHeader
-        tabsHeader={["Collectibles", "Actions", "Connected expereinces"]}
-        setActive={setActive}
-      />
-      <TabsContainer tabs={[tab1, tab2, tab3]} activeTabId={activeTab}>
-        <>
-          <div data-tab="0" ref={tab1} className="tab-text">
-            <CollectibleItem item={0} />
-            <CollectibleItem item={0} />
-            <CollectibleItem item={0} />
-            <CollectibleItem item={0} />
-          </div>
-          <div data-tab="1" ref={tab2} className="tab-text">
-            <ButtonWrapper onClick={() => {
-              setSendIsOpen(true);
-            }}>
-              <div className="body">
-                <span className="body__title">
-                  Send
-                </span>
-              </div>
-              <img
-                className="icon"
-                src={arrowUp}
-                alt=""
-              />
-            </ButtonWrapper>
-            <ButtonWrapper onClick={() => {
-              setReceiveIsOpen(true)
-            }}>
-              <div className="body">
-                <span className="body__title">
-                  Receive
-                </span>
-              </div>
-              <img
-                className="icon"
-                src={arrowDown}
-                alt=""
-              />
-            </ButtonWrapper>
-            <div>
-              <Modal
-                id="customModal"
-                isOpen={sendIsOpen}
-                onRequestClose={closeModal}
-                style={customStyles}
-                className="open-modal"
-              >
-                <SendModal entity="send" id={id ? id : ''} />
-              </Modal>
-              <Modal
-                id="customModal"
-                isOpen={receiveIsOpen}
-                onRequestClose={closeModal}
-                style={customStyles}
-                className="open-modal"
-              >
-                <SendModal entity="receive" id={id ? id : ''}/>
-              </Modal>
+
+      {contact && contact.wallet_id ? 
+      <div>
+        <TabsHeader
+          tabsHeader={["Collectibles", "Actions", "Connected expereinces"]}
+          setActive={setActive}
+        />
+        <TabsContainer tabs={[tab1, tab2, tab3]} activeTabId={activeTab}>
+          <>
+            <div data-tab="0" ref={tab1} className="tab-text">
+              <CollectibleItem item={0} />
+              <CollectibleItem item={0} />
+              <CollectibleItem item={0} />
+              <CollectibleItem item={0} />
             </div>
+            <div data-tab="1" ref={tab2} className="tab-text">
+              <ButtonWrapper onClick={() => {
+                setSendIsOpen(true);
+              }}>
+                <div className="body">
+                  <span className="body__title">
+                    Send
+                  </span>
+                </div>
+                <img
+                  className="icon"
+                  src={arrowUp}
+                  alt=""
+                />
+              </ButtonWrapper>
+              <ButtonWrapper onClick={() => {
+                setReceiveIsOpen(true)
+              }}>
+                <div className="body">
+                  <span className="body__title">
+                    Receive
+                  </span>
+                </div>
+                <img
+                  className="icon"
+                  src={arrowDown}
+                  alt=""
+                />
+              </ButtonWrapper>
+              <div>
+                <Modal
+                  id="customModal"
+                  isOpen={sendIsOpen}
+                  onRequestClose={closeModal}
+                  style={customStyles}
+                  className="open-modal"
+                >
+                  <SendModal entity="send" id={id ? id : ''} />
+                </Modal>
+                <Modal
+                  id="customModal"
+                  isOpen={receiveIsOpen}
+                  onRequestClose={closeModal}
+                  style={customStyles}
+                  className="open-modal"
+                >
+                  <SendModal entity="receive" id={id ? id : ''}/>
+                </Modal>
+              </div>
+            </div>
+            <div data-tab="2" ref={tab3} className="tab-text">
+              {exps && exps?.length > 0 && (
+                <ConnectedCount>
+                  {exps?.length} connected experiences with devon
+                </ConnectedCount>)}
+              {exps ? exps.map((exp) => (
+                <ConnectedExpItem item={exp} />
+              )) : null}
+            </div>
+          </>
+      </TabsContainer> 
+      </div> : 
+      <GuestContactWrapper>
+        <ButtonWrapper 
+        onClick={() => { setSendIsOpen(true);}}>
+          <div className="body">
+            <span className="body__title">
+              Share NFT
+            </span>
           </div>
-          <div data-tab="2" ref={tab3} className="tab-text">
-            {exps && exps?.length > 0 && (
-              <ConnectedCount>
-                {exps?.length} connected experiences with devon
-              </ConnectedCount>)}
-            {exps ? exps.map((exp) => (
-              <ConnectedExpItem item={exp} />
-            )) : null}
+          <img
+            className="icon"
+            src={arrowUp}
+            alt=""
+          />
+        </ButtonWrapper>
+        <ButtonWrapper onClick={() => {
+          setReceiveIsOpen(true)
+        }}>
+          <div className="body">
+            <span className="body__title">
+              Invite contact
+            </span>
           </div>
-        </>
-      </TabsContainer>
+          <img
+            className="icon"
+            src={arrowDown}
+            alt=""
+          />
+        </ButtonWrapper>
+      </GuestContactWrapper>}
+
     </>
   );
 };
