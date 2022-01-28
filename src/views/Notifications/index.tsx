@@ -24,6 +24,13 @@ const Notifications = () => {
     switch (notification.type) {
       case "OfferRevoked":
         return `The offer was revoked`;
+      case "OfferSent":
+        return (
+          <>
+            {notification.data.sender_wallet_name} made an offer of
+            {notification.data.amount} NEAR for ${notification.data.nft_title}
+          </>
+        );
 
       default:
         return "";
