@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { FC } from 'react';
 import './style.scss';
 
 import searchIcon from "../../../public/assets/experience/search.svg";
 import vortexIcon from "../../../public/assets/experience/vortex.svg";
 
-const SearchInput = (props: any) => {
+interface SearchInputInterface {
+    search: (value: string) => void;
+    toggleFilterModal: () => void;
+}
+
+const SearchInput: FC<SearchInputInterface> = (props) => {
     return (
         <div className="search_container">
             <div className="input_wrapper">
@@ -16,7 +21,7 @@ const SearchInput = (props: any) => {
                 <img className="search_icon" src={searchIcon} alt="search" />
             </div>
 
-            <button type="button" className="vortex_btn">
+            <button type="button" className="vortex_btn" onClick={props.toggleFilterModal}>
                 <img src={vortexIcon} alt="HomePage" />
             </button>
         </div>
