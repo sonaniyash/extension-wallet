@@ -25,7 +25,12 @@ const api = {
   editContact: async (contactData: any, userId: any, id: any) => {
     const payload = {
       first_name: contactData.first_name,
-      email: [contactData.email],
+      email: [
+        {
+          address: contactData.email,
+          type: "home"
+        }
+      ],
       phone: [
           {
             number: contactData && contactData.phone ? contactData.phone : '',
@@ -33,7 +38,12 @@ const api = {
           }
       ],
           last_name: contactData.last_name,
-          address: [contactData.address],
+          address: [
+            {
+              formatted: contactData.address,
+              type: "residence"
+            }
+          ],
           job_title: "",
           companies: [],
           groups: [],
@@ -55,7 +65,10 @@ const api = {
   createContact: async (contactData: any, userId: any) => {
     const payload = {
       first_name: contactData.first_name,
-      email: [contactData.email],
+      email: [{
+        address: contactData.email,
+        type: "home"
+      }],
       phone: [
           {
             number: contactData && contactData.phone ? contactData.phone : '',
@@ -63,7 +76,12 @@ const api = {
           }
   ],
       last_name: contactData.last_name,
-      address: [contactData.address],
+      address: [
+        {
+          formatted: contactData.address,
+          type: "residence"
+        }
+      ],
       job_title: "",
       companies: [],
       groups: [],

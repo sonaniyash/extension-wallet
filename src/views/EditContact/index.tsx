@@ -48,10 +48,10 @@ const CreateContacts = () => {
   useEffect(() => {
     if (contact) {
       const values = {
-        email: contact.email,
+        email: contact.email && contact.email.length ? contact.email[0].address : '',
         first_name: contact.first_name,
         last_name: contact.last_name,
-        address: contact.address && contact.address[0],
+        address: contact.address && contact.address.length ? contact.address[0].formatted : '',
         nearAccount: contact.wallet_id,
         phone: contact.phone[0] && contact.phone[0].number,
       }
@@ -112,13 +112,13 @@ const CreateContacts = () => {
           onPaste={formik.handleChange}
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
-          placeholder={"Ex. John doe"}
+          placeholder={"Addresss"}
           className="home__selectors__input"
         />
         {!!formik.values.address &&
           !!formik.touched.address &&
           !!formik.errors.address && (
-            <p className="error-text"> {formik.errors.address}</p>
+            <p className="error-text"> {formik.values.address}</p>
           )}
         <Label htmlFor="full name">Email</Label>
         <input
@@ -135,7 +135,7 @@ const CreateContacts = () => {
         {!!formik.values.email &&
           !!formik.touched.email &&
           !!formik.errors.email && (
-            <p className="error-text"> {formik.errors.email}</p>
+            <p className="error-text"> {formik.values.email}</p>
           )}
 
         <Label htmlFor="full name">Phone (optional)</Label>
