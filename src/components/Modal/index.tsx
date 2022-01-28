@@ -27,8 +27,8 @@ const Modal: FC<ModalProps> = ({
     return (
         <>
             {open && (
-                <Overlay onClick={() => setOpen(true)}>
-                    <div className="Modal">
+                <Overlay onClick={() => setOpen(false)}>
+                    <div className="Modal" onClick={(e) => e.stopPropagation()}>
                         {closeBtn && (
                             <button className="Modal__close-btn" onClick={() => setOpen(false)}>
                                 <img src="/assets/svg/close-icon.svg" alt="close"/>

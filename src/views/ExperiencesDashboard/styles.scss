@@ -91,6 +91,14 @@
     align-items: center;
     color: #885fff;
     cursor: pointer;
+
+    a {
+      padding-right: 8px;
+      color: #885fff;
+      font-size: 14px;
+      line-height: 22px;
+      text-decoration: none;
+    }
   }
 
   & > img {

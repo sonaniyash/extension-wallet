@@ -7,6 +7,7 @@ type Category = {
     backgroundColor: string;
     icon: string;
     name: string;
+    disabled: boolean;
 };
 
 interface Props {
