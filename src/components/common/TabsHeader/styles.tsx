@@ -3,6 +3,7 @@ import { VARIABLES } from '../../../styles/variables';
 
 interface Props {
     widthMax: string;
+    active?: boolean;
   }
 
 const Tab = styled.div<Props>`
@@ -14,17 +15,16 @@ const Tab = styled.div<Props>`
   align-items: end;
   padding: 17px 0;
   background: white;
-  color: #607D8B;
   overflow: hidden;
   text-align: center;
   flex-grow: 1;
   cursor: pointer;
   user-select: none;
   font-style: normal;
-  font-weight: 600;
+  //font-weight: 600;
   font-size: 14px;
   line-height: 20px;
-  text-align: center;
+  color: ${(props: Props) => props.active ? '#000000' : '#607D8B'};
 `;
 
 const TabIndicator = styled.div<Props>`

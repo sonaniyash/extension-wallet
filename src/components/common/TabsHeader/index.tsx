@@ -5,10 +5,11 @@ import { Tab, TabBar, TabIndicator} from "./styles";
 
 interface Props {
   setActive: any;
+  activeTab: number;
   tabsHeader: any;
 }
 
-const TabsHeader = ({ setActive, tabsHeader }: Props) => {
+const TabsHeader = ({ setActive, activeTab, tabsHeader }: Props) => {
   const indicator = useRef<HTMLInputElement | any>();
   const tabbar = useRef<HTMLInputElement | any>();
   const [width, setwidth] = useState(0);
@@ -28,7 +29,7 @@ const TabsHeader = ({ setActive, tabsHeader }: Props) => {
 
   const listItems = tabsHeader.map((tab: any, index: any) => {
     return (
-      <Tab widthMax={width+'px'} key={tab} data-tab={index} onClick={clickTab}>
+      <Tab widthMax={width+'px'} key={tab} data-tab={index} onClick={clickTab} active={+index === +activeTab}>
         {tab}
       </Tab>
     );
@@ -38,7 +39,7 @@ const TabsHeader = ({ setActive, tabsHeader }: Props) => {
     <>
       <TabBar ref={tabbar} className="tabbar">
         {listItems}
-        <TabIndicator widthMax={width+'px'} className="indicator" ref={indicator}></TabIndicator>
+        <TabIndicator widthMax={width+'px'} className="indicator" ref={indicator} />
       </TabBar>
     </>
   );

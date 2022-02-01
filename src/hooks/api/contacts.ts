@@ -1,9 +1,9 @@
-import {  useMutation, useQuery } from "react-query";
-import api from "../../services";
-import { filterArrayObjectByValue } from "../../utils/utils";
+import { useMutation, useQuery } from 'react-query';
+import api from '../../services';
+import { filterArrayObjectByValue } from '../../utils/utils';
 
-export const useGetContacts = ( filterString: string, userId: string) => {
-  const {data , isLoading} =  useQuery('contacts',
+export const useGetContacts = (filterString: string, userId: string) => {
+  const { data, isLoading } = useQuery('contacts',
     () => api.getContacts(userId),
     {
       onError: (e) => {
@@ -26,7 +26,7 @@ export const useGetContacts = ( filterString: string, userId: string) => {
 };
 
 export const useGetContact = (contactId: string | undefined) => {
-  const {data , isLoading} =  useQuery(['contact', contactId],
+  const { data, isLoading } = useQuery(['contact', contactId],
     () => api.getContact(contactId),
     {
       onError: (e) => {
@@ -46,7 +46,7 @@ export const useContact = (userId: any) => {
     (contactData: any) => api.createContact(contactData, userId),
     {
       onSuccess: () => {
-        console.log("Contact created successfully");
+        console.log('Contact created successfully');
       },
       onError: (e) => {
         console.error(e);
@@ -64,7 +64,7 @@ export const useEditContact = (id: any, userId: any) => {
     (contactData: any) => api.editContact(contactData, userId, id),
     {
       onSuccess: () => {
-        console.log("Contact created successfully");
+        console.log('Contact created successfully');
       },
       onError: (e) => {
         console.error(e);
