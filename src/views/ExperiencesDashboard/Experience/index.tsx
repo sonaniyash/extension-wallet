@@ -1,5 +1,7 @@
 import React from 'react';
 import './style.scss';
+import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '../../../const/routeNames';
 
 import rightArrow from "../../../public/assets/experience/arrow-right-blue.svg";
 
@@ -15,8 +17,12 @@ interface Props {
 }
 
 export default function ExperienceItem({ item }: Props) {
+    const navigate = useNavigate();
+
+    const navigateToDetailApp = () => navigate(ROUTES.DETAIL_APP.url.replace(':id', item.name));
+
     return (
-        <div className="experience__root">
+        <div className="experience__root" onClick={navigateToDetailApp} >
             <div className="experience__image">
                 <img src={item.image} />
             </div>
