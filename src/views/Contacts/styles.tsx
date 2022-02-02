@@ -25,11 +25,11 @@ export const ImportButton = styled(AddButton)`
             position: absolute;
             width: 19px;
             height: 19px;
-            left: -25px;
+            left: -30px;
             top: 1px;
             display: inline-block; 
             background-repeat: no-repeat;
-            background-image: url('./assets/import-contact.png');
+            background-image: url('./assets/google.png');
         }
 `;
 

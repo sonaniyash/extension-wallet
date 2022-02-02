@@ -31,8 +31,25 @@ const Contacts = () => {
     navigate(ROUTES.DETAIL_CONTACT.url.replace(':id', id));
   };
 
-  const importContact = () => {
-    navigate(ROUTES.IMPORT_CONTACT.url);
+  const importContact = (e:any,source:string) => {
+  
+
+    localStorage.setItem('contact-import-source',source);
+
+    const iframe = document.createElement('iframe');
+    iframe.style.background = "transparent";
+    iframe.style.height = "100%";
+    iframe.style.width = "100%";
+    iframe.style.position = "fixed";
+    iframe.style.top = "0px";
+    iframe.style.right = "0px";
+    iframe.style.zIndex = "9000000000000000000";
+    iframe.frameBorder = "none";
+    iframe.src = chrome.extension.getURL("import-contacts.html")
+
+    document.body.appendChild(iframe);
+
+    closeModal();
   }
 
   const createContact = () => {
@@ -70,6 +87,8 @@ const Contacts = () => {
     });
   }, []);
 
+
+  
   return (
     <>
       <HeaderAccountSelect />
@@ -98,7 +117,7 @@ const Contacts = () => {
       >
         <ModalContent>
           <CreateButton onClick={createContact} > New Contact</CreateButton>
-          <ImportButton onClick={importContact} > Import Contacts</ImportButton>
+          <ImportButton onClick={(e)=> {importContact(e,'gmail')}} > Import Google Contacts</ImportButton>
         </ModalContent>
       </Modal>
     </>

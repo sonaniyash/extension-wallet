@@ -1,5 +1,5 @@
 {
-  "name": "Chrome Extension Boilerplate",
+  "name": "NFT Maker",
   "description": "Chrome Extension boilerplate created with React Typescript.",
   "manifest_version": 2,
   "version": "1.0.0",
@@ -21,20 +21,19 @@
     ],
     "persistent": false
   },
-  "cross_origin_embedder_policy": {
-    "value": "require-corp"
-  },
-  "cross_origin_opener_policy": {
-    "value": "same-origin"
-  },
   "content_scripts": [
     {
       "matches": [
-        "*://*/*"
+        "http://*/*"
       ],
       "js": [
         "content.js"
       ]
     }
-  ]
+  ],
+  "permissions": [
+    "https://xkfvqk07j4.execute-api.us-east-1.amazonaws.com/",
+    "https://api.nearlogin.io/"
+  ],
+  "content_security_policy": "script-src 'self' https://api.cloudsponge.com https://cdn.ravenjs.com; object-src 'self';"
 }

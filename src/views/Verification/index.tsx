@@ -39,6 +39,10 @@ const Verification = () => {
     onSubmit: async (values: VerificationValues) => {
       await verifyUser(values, {
         onSuccess: (session: any) => {
+
+          //response from verification endpoint, should have id and token
+          console.log(session)
+
           axios.defaults.headers.common[
             "Authorization"
           ] = `Bearer ${session.token}`;
