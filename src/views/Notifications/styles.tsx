@@ -3,11 +3,12 @@ import { VARIABLES } from '../../styles/variables';
 
 
 const Header = styled.h1`
-    width: 100%;
+    background-color: #F5F5F5;
+    justify-content: space-between;
+    padding: 0 20px;
     height: 60px;
     margin: 0;
     display: flex;
-    justify-content: center;
     align-items: center;
     border-bottom: 1px solid ${VARIABLES.$grey_light_3};
     font-weight: 600;
@@ -19,6 +20,7 @@ const Header = styled.h1`
 const ItemNotification = styled.div`
     padding: 20px;
     display: flex;
+    border-bottom: 1px solid ${VARIABLES.$grey_light_3};
 `;
 
 const ImgNotification = styled.img`
@@ -29,13 +31,14 @@ const ImgNotification = styled.img`
 
 const BodyNotification = styled.div`
    display: flex;
-   padding: 0 20px;
+   padding-left: 20px;
    flex-direction: column;
    align-items: flex-start;
    text-align: start;
 `;
 
 const BodyTextNotification = styled.div`
+    width: 260px;
     font-weight: 500;
     font-size: 15px;
     line-height: 20px;
@@ -45,8 +48,14 @@ const BodyTextNotification = styled.div`
 `;
 
 const BodyTimeNotification = styled.div`
-    font-size: 13px;
+    padding-left: 145px;
+    font-size: 8px;
     line-height: 18px;
 `;
 
-export {Header, ItemNotification, ImgNotification, BodyNotification, BodyTextNotification, BodyTimeNotification};
+const HeaderNotification = styled.div`
+    padding-bottom: 4px;
+    display: flex;
+`;
+
+export { Header, ItemNotification, ImgNotification, BodyNotification, BodyTextNotification, BodyTimeNotification, HeaderNotification };
