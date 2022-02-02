@@ -1,4 +1,4 @@
-import React, {  useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../const/routeNames";
@@ -38,14 +38,15 @@ const CreateNTFs = () => {
         <TabsHeader
           tabsHeader={tabHeader}
           setActive={setActive}
+          activeTab={activeTab}
         />
         <TabsContainer tabs={[tab1, tab2, tab3]} activeTabId={activeTab}>
           <>
             <div data-tab="0" ref={tab1} className="tab-text">
-              <MyNFTList/>
+              <MyNFTList />
             </div>
             <div data-tab="1" ref={tab2} className="tab-text">
-              <OffersList/>
+              <OffersList />
             </div>
             <div data-tab="2" ref={tab3} className="tab-text">
 

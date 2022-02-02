@@ -1,9 +1,9 @@
 import { useQuery } from "react-query";
 import api from "../../services";
 
-export const useGetHistory = () => {
+export const useGetHistory = (id: any) => {
     const { data, isLoading } = useQuery('tradeHistory',
-        () => api.getHistorty(),
+        () => api.getHistorty(id),
         {
             onError: (e) => {
                 console.error(e);

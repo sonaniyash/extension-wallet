@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useGetHistory } from '../../hooks/api/tradeHistory';
 import TradeHistoryItem from '../TradeHistoryItem';
+interface Props {
+    id: any;
+}
 
 
-const TradeHistoryList = () => {
-    const { history, isSearching } = useGetHistory();
+const TradeHistoryList = ({ id }: Props) => {
+    const { history, isSearching } = useGetHistory(id);
     const [historyToShow, setHistoryToShow] = useState(history);
 
     useEffect(() => {

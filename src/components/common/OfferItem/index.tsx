@@ -19,9 +19,9 @@ const OfferItem = ({ item, onClick, fromNFT }: Props) => {
           <img className="offer-item-img" src={tagImg} alt="" />
           <div className="offer-item-body">
             <span>
-              <span className="offer-item-id">{item.owner}</span> made an offer of <span className="offer-item-amount-nft">{item.ammount}</span>
+              <span className="offer-item-id">{item.owner_id}</span> made an offer of <span className="offer-item-amount-nft">{item.amount}</span>
             </span>
-            <div className="offer-item-time"> {moment(item.date).fromNow(true) + ' left'}  </div>
+            <div className="offer-item-time"> {moment(item.expire_in).isAfter() ? moment(item.expire_in).fromNow(true) + ' left' : 'Overdue!'}  </div>
             <div className="">
               <button className="button btn-dark offer-item-button">Accept</button>
               <button className="button btn-dark offer-item-button">Counter offer</button>
