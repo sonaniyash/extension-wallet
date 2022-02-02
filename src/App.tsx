@@ -1,30 +1,30 @@
-import * as React from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { useEffect } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import * as React from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { useEffect } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
-import Home from "./views/Home";
-import CreateAccount from "./views/CreateAccount";
-import { ContextMain } from "./context/store";
-import Verification from "./views/Verification";
-import Secure from "./views/Secure";
-import { ROUTES } from "./const/routeNames";
-import Dashboard from "./views/Dashboard";
-import Unlock from "./views/Unlock";
-import Contacts from "./views/Contacts";
-import Settings from "./views/Settings";
+import Home from './views/Home';
+import CreateAccount from './views/CreateAccount';
+import { ContextMain } from './context/store';
+import Verification from './views/Verification';
+import Secure from './views/Secure';
+import { ROUTES } from './const/routeNames';
+import Dashboard from './views/Dashboard';
+import Unlock from './views/Unlock';
+import Contacts from './views/Contacts';
+import Settings from './views/Settings';
 
-import "./styles.scss";
-import DetailContacts from "./views/DetailContact";
-import CreateContacts from "./views/CreateContact";
-import EditContact from "./views/EditContact";
-import Notifications from "./views/Notifications";
-import DetailCollectible from "./views/DetailCollectible";
-import CreateNTFs from "./views/CreateNTFs";
-import ExperiencesDashboard from "./views/ExperiencesDashboard";
-import { InitAxiosInterceptor } from "./utils/interceptor";
+import './styles.scss';
+import DetailContacts from './views/DetailContact';
+import CreateContacts from './views/CreateContact';
+import EditContact from './views/EditContact';
+import Notifications from './views/Notifications';
+import DetailCollectible from './views/DetailCollectible';
+import CreateNTFs from './views/CreateNTFs';
+import ExperiencesDashboard from './views/ExperiencesDashboard';
+import { InitAxiosInterceptor } from './utils/interceptor';
 import DetailApp from './views/DetailApp';
-import SendToContact from "./views/SendToContact";
+import SendToContact from './views/SendToContact';
 
 
 const App = () => {
