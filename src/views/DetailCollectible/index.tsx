@@ -108,6 +108,7 @@ export default function DetailCollectible() {
                                 <TabsHeader
                                     tabsHeader={["Info", "Trade History"]}
                                     setActive={setActive}
+                                    activeTab={activeTab}
                                 />
                                 <TabsContainer tabs={[tab1, tab2]} activeTabId={activeTab}>
                                     <>
@@ -127,7 +128,7 @@ export default function DetailCollectible() {
                                             )}
                                         </div>
                                         <div data-tab="1" ref={tab2} className="tab-text">
-                                            <TradeHistoryList />
+                                            <TradeHistoryList id={collectible.nft_id} />
                                         </div>
                                     </>
                                 </TabsContainer>
@@ -137,6 +138,7 @@ export default function DetailCollectible() {
                                 <TabsHeader
                                     tabsHeader={["Info", "Pending Offers", "Trade History"]}
                                     setActive={setActive}
+                                    activeTab={activeTab}
                                 />
                                 <TabsContainer tabs={[tab1, tab2, tab3]} activeTabId={activeTab}>
                                     <>
@@ -159,7 +161,7 @@ export default function DetailCollectible() {
                                             <OffersList fromNFT />
                                         </div>
                                         <div data-tab="2" ref={tab3} className="tab-text">
-                                            <TradeHistoryList />
+                                            <TradeHistoryList id={collectible.nft_id} />
                                         </div>
                                     </>
                                 </TabsContainer>

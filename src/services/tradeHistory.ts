@@ -1,16 +1,13 @@
-// import axios from "axios";
-import { TEST_HISTORY } from "../mock/mock";
 import axios from "axios";
 
-export const apiNearUrl = `${process.env.EXTENSION_ENDPOINT}`;
+export const baseUrl = `${process.env.EXTENSION_ENDPOINT}`;
 
 
 const api = {
-    getHistorty: async (): Promise<Array<any>> => {
-        return new Promise(function (resolve) {
-            return setTimeout(() => resolve(TEST_HISTORY), 700);
-        });
-    },
-};
-
+    getHistorty: async (id: any): Promise<Array<any>> => {
+        return axios
+            .get(`${baseUrl}/transactions/nft/${id}`)
+            .then((response) => response.data);
+    }
+}
 export default api;
