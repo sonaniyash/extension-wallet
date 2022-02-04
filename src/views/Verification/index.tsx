@@ -40,8 +40,7 @@ const Verification = () => {
       await verifyUser(values, {
         onSuccess: (session: any) => {
 
-          //response from verification endpoint, should have id and token
-          console.log(session)
+          //response from verification endpoint
 
           axios.defaults.headers.common[
             "Authorization"

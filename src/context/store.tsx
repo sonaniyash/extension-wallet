@@ -31,7 +31,6 @@ const Store = ({ children }: any) => {
     localStorageState ? JSON.parse(localStorageState) : initialState
   );
   localStorage.setItem("state", JSON.stringify(state));
-  console.log("state", state);
   return (
     <ContextMain.Provider value={[state, dispatch]}>
       {children}
