@@ -6,9 +6,17 @@ import { ROUTES } from '../../../const/routeNames';
 import rightArrow from "../../../public/assets/experience/arrow-right-blue.svg";
 
 type Item = {
+    app_callback_url: string;
+    app_id: string;
+    app_url: string;
+    category: string;
+    developer:string;
+    downloads_count: number;
     name: string;
+    owner_id: string;
+    users_count: string;
+    version: string;
     description: string;
-    subscribeAmount?: string;
     image: string;
 };
 
@@ -19,7 +27,7 @@ interface Props {
 export default function ExperienceItem({ item }: Props) {
     const navigate = useNavigate();
 
-    const navigateToDetailApp = () => navigate(ROUTES.DETAIL_APP.url.replace(':id', item.name));
+    const navigateToDetailApp = () => navigate(ROUTES.DETAIL_APP.url.replace(':id', item.app_id));
 
     return (
         <div className="experience__root" onClick={navigateToDetailApp} >
@@ -30,7 +38,7 @@ export default function ExperienceItem({ item }: Props) {
             <div className="experience__text">
                 <p className="experience__text_name">{item.name}</p>
                 <p className="experience__text_description">{item.description}</p>
-                <p className="experience__text_amount">{item.subscribeAmount} users</p>
+                <p className="experience__text_amount">{item.users_count} users</p>
             </div>
             <div className="experience__arrow_block">
                 <img src={rightArrow} />

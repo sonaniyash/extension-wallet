@@ -7,7 +7,7 @@ import { ROUTES } from "../../const/routeNames";
 import Modal from "../../components/Modal";
 import CategoryFilter from "./CategoryFilter";
 import HeaderAccountSelect from "../../components/common/HeaderAccountSelect";
-import { useGetAllExperiences } from "../../hooks/api/experiences";
+import { useGetApps } from "../../hooks/api/apps";
 import { useGetAllCategories } from "../../hooks/api/categories";
 
 import rightArrow from "../../public/assets/experience/arrow-right-blue.svg";
@@ -19,10 +19,8 @@ import "./styles.scss";
 import Category from "./Category";
 import ExperienceItem from "./Experience";
 
-import { EXPERIENCES } from '../../mock/mock';
-
 const ExperiencesDashboard = () => {
-    const { experiences, isSearching } = useGetAllExperiences();
+    const { apps, isSearching } = useGetApps();
     const { categories, isSearching: isCategorySearching } = useGetAllCategories();
     const [searchQuery, setSearchQuery] = useState("");
 
@@ -48,7 +46,7 @@ const ExperiencesDashboard = () => {
 
     const search = (value: string) => {
         setSearchQuery(value);
-        const result: any = filterExperiences(EXPERIENCES.other, value);
+        const result: any = filterExperiences(apps, value);
         setSearchResult(result);
     }
 
@@ -96,7 +94,7 @@ const ExperiencesDashboard = () => {
                             </div>
                             <div className="experiences_wrapper">
                                 {isSearching ? "Searching..." : ""}
-                                {!isSearching && experiences && experiences.map((experience, index) => <ExperienceItem item={experience} key={index} />)}
+                                {!isSearching && apps && apps.map((app: any, index: any) => <ExperienceItem item={app} key={index} />)}
                             </div>
                         </div>
                     </div> : <div>
@@ -127,7 +125,7 @@ const ExperiencesDashboard = () => {
                                 </div>
                                 <div className="experiences_wrapper">
                                     {isSearching ? "Searching..." : ""}
-                                    {!isSearching && experiences && experiences.map((experience, index) => <ExperienceItem item={experience} key={index} />)}
+                                    {!isSearching && apps && apps.map((app: any, index: any) => <ExperienceItem item={app} key={index} />)}
                                 </div>
                             </div>
                         </div>

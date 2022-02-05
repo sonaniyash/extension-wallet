@@ -108,6 +108,7 @@ export default function DetailCollectible() {
                                 <TabsHeader
                                     tabsHeader={["Info", "Trade History"]}
                                     setActive={setActive}
+                                    activeTab={activeTab}
                                 />
                                 <TabsContainer tabs={[tab1, tab2]} activeTabId={activeTab}>
                                     <>
@@ -137,6 +138,7 @@ export default function DetailCollectible() {
                                 <TabsHeader
                                     tabsHeader={["Info", "Pending Offers", "Trade History"]}
                                     setActive={setActive}
+                                    activeTab={activeTab}
                                 />
                                 <TabsContainer tabs={[tab1, tab2, tab3]} activeTabId={activeTab}>
                                     <>

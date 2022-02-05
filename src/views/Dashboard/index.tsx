@@ -163,6 +163,7 @@ const Dashboard = () => {
         <TabsHeader
           tabsHeader={["Collectibles", "Transactions"]}
           setActive={setActive}
+          activeTab={activeTab}
         />
         <TabsContainer tabs={[tab1, tab2]} activeTabId={activeTab}>
           <>

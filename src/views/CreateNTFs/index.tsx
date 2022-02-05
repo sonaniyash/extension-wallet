@@ -38,6 +38,7 @@ const CreateNTFs = () => {
         <TabsHeader
           tabsHeader={tabHeader}
           setActive={setActive}
+          activeTab={activeTab}
         />
         <TabsContainer tabs={[tab1, tab2, tab3]} activeTabId={activeTab}>
           <>
