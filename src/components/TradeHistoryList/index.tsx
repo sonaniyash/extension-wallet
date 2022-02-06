@@ -1,27 +1,22 @@
-import React, { useEffect, useState } from 'react'
-import { useGetHistory } from '../../hooks/api/tradeHistory';
-import TradeHistoryItem from '../TradeHistoryItem';
+import React from "react";
+import { useGetTradeHistory } from "../../hooks/api/tradeHistory";
+import TradeHistoryItem from "../TradeHistoryItem";
 interface Props {
-    id: any;
+  id: string;
 }
-
 
 const TradeHistoryList = ({ id }: Props) => {
-    const { history, isSearching } = useGetHistory(id);
-    const [historyToShow, setHistoryToShow] = useState(history);
-
-    useEffect(() => {
-        setHistoryToShow(history);
-    }, [history]);
-
+  const { history, isLoading } = useGetTradeHistory(id);
+  if (isLoading) return <>Searching...</>;
+  else
     return (
-        <>
-            {isSearching ? "Searching..." : ""}
-            {historyToShow && historyToShow.map((history: any) => (
-                <TradeHistoryItem key={history.id} item={history} />
-            ))}
-        </>
-    )
-}
+      <>
+        {history &&
+          history.map((item: any) => (
+            <TradeHistoryItem key={item.id} item={item} />
+          ))}
+      </>
+    );
+};
 
-export default TradeHistoryList
+export default TradeHistoryList;

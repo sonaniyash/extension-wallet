@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router';
 import { useGetAllCollectibles } from '../../hooks/api/collectibles';
 import CollectibleItem from '../common/CollectibleItem';
@@ -9,17 +9,13 @@ import { getUserIdFromToken } from '../../utils/utils';
 const MyNFTList = () => {
     const navigate = useNavigate();
     const userId = getUserIdFromToken();
-    const { collectibles, isSearching } = useGetAllCollectibles(userId);
-    const [collectiblesToShow, setCollectiblesToShow] = useState(collectibles);
+    const { collectibles, isLoading } = useGetAllCollectibles(userId);
 
-    useEffect(() => {
-        setCollectiblesToShow(collectibles);
-    }, [collectibles]);
-
-    return (
+    if (isLoading) return <>Searching...</>;
+    else
+      return (
         <>
-            {isSearching ? "Searching..." : ""}
-            {collectiblesToShow && collectiblesToShow.map((collectible: any) => (
+            {collectibles && collectibles.map((collectible: any) => (
                 <CollectibleItem key={collectible.title} item={collectible} onClick={() => navigate(ROUTES.DETAIL_COLLECTIBLE.url.replace(':id', collectible.nft_id))} />
             ))}
         </>

@@ -28,7 +28,7 @@ export default function DetailCollectible() {
     const { collectible, isSearching } = useGetCollectibleById(id ? id : '');
     const [activeTab, setActive] = useState(0);
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [overView, setOverView] = useState(false);
+    const [overView, setOverView] = useState(true);
 
     const isOwner = () => {
         return userId == collectible.owner_id

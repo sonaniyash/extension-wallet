@@ -4,10 +4,10 @@ export const baseUrl = `${process.env.EXTENSION_ENDPOINT}`;
 
 
 const api = {
-    getHistorty: async (id: any): Promise<Array<any>> => {
+    getNftTransactions: async (id: any): Promise<Array<any>> => {
         return axios
             .get(`${baseUrl}/transactions/nft/${id}`)
-            .then((response) => response.data);
+            .then((response) => response.data.data);
     }
 }
 export default api;

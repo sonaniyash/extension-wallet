@@ -13,11 +13,6 @@ const api = {
         return axios
             .post(`${baseUrl}/api/offer/create`, offerData)
             .then((response) => response.data);
-        // return new Promise(function (resolve) {
-        //     console.log("offerData" ,offerData);
-        //   return setTimeout(() => resolve(offerData), 1500);
-        // return setTimeout(() => reject(), 1500);
-        // });
     },
 };
 

@@ -12,7 +12,7 @@ export const useGetMyoffers = () => {
     );
     return {
         offers: data,
-        isSearching: isLoading,
+        isLoading,
     };
 };
 
