@@ -5,13 +5,13 @@ export const apiNearUrl = `${process.env.EXTENSION_ENDPOINT}`;
 const api = {
   getContacts: async (userId: any): Promise<Array<any>> => {
     return axios
-      .get(`${apiNearUrl}/contacts/list/${userId}`)
+      .get(`${apiNearUrl}contacts/list/${userId}`)
       .then((response: any) => response.data.data);
   },
 
   getContact: async (id: string | undefined): Promise<any> => {
     return axios
-      .get(`${apiNearUrl}/contacts/${id}`)
+      .get(`${apiNearUrl}contacts/${id}`)
       .then((response: any) => response.data.data);
   },
 

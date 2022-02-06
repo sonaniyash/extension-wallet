@@ -19,10 +19,12 @@ window.cloudsponge.init({
 
     let newcontacts = contacts.map((c) => ({
       ...c,
-      owner_id: null,
+      owner_id: appState.account.user_id,
       app_id: "extension",
       source: source_title,
     }));
+
+    console.log(JSON.stringify(newcontacts));
 
     //Ajax Request to import contact
     fetch(`${EXTENSION_ENDPOINT}/contacts/import`, {
