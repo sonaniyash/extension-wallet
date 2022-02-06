@@ -12,7 +12,7 @@ export const useGetAllCollectibles = (userId: string) => {
     );
     return {
         collectibles: data,
-        isSearching: isLoading,
+        isLoading,
     };
 };
 

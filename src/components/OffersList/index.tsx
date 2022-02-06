@@ -1,27 +1,29 @@
-import React, { useEffect, useState } from 'react'
-import { useGetMyoffers } from '../../hooks/api/offers';
-import OfferItem from '../common/OfferItem';
+import React from "react";
+import { useGetMyoffers } from "../../hooks/api/offers";
+import OfferItem from "../common/OfferItem";
 
 interface Props {
-    fromNFT?: boolean;
+  fromNFT?: boolean;
 }
 
 const OffersList = ({ fromNFT }: Props) => {
-    const { offers, isSearching } = useGetMyoffers();
-    const [offersToShow, setCollectiblesToShow] = useState(offers);
+  const { offers, isLoading } = useGetMyoffers();
 
-    useEffect(() => {
-        setCollectiblesToShow(offers);
-    }, [offers]);
-
+  if (isLoading) return <>Searching...</>;
+  else
     return (
-        <>
-            {isSearching ? "Searching..." : ""}
-            {offersToShow && offersToShow.map((offers: any) => (
-                <OfferItem key={offers.id} item={offers} onClick={() => { }} fromNFT={fromNFT} />
-            ))}
-        </>
-    )
-}
+      <>
+        {offers &&
+          offers.map((offer: any) => (
+            <OfferItem
+              key={offer.id}
+              item={offer}
+              onClick={() => {}}
+              fromNFT={fromNFT}
+            />
+          ))}
+      </>
+    );
+};
 
-export default OffersList
+export default OffersList;

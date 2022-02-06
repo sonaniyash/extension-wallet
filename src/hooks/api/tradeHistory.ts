@@ -1,9 +1,9 @@
 import { useQuery } from "react-query";
 import api from "../../services";
 
-export const useGetHistory = (id: any) => {
+export const useGetTradeHistory = (id: any) => {
     const { data, isLoading } = useQuery('tradeHistory',
-        () => api.getHistorty(id),
+        () => api.getNftTransactions(id),
         {
             onError: (e) => {
                 console.error(e);
@@ -12,6 +12,6 @@ export const useGetHistory = (id: any) => {
     );
     return {
         history: data,
-        isSearching: isLoading,
+        isLoading,
     };
 };
