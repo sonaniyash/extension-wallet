@@ -1,6 +1,6 @@
 {
-  "name": "NFT Maker",
-  "description": "Chrome Extension boilerplate created with React Typescript.",
+  "name": "Homepage",
+  "description": "A gateway to a web3 experience",
   "manifest_version": 2,
   "version": "1.0.0",
   "icons": {

@@ -15,3 +15,20 @@ export const useGetAppById = (appId: string) => {
         isSearching: isLoading,
     };
 };
+
+export const useGetApps = () => {
+    const { data, isLoading } = useQuery('apps',
+        () => api.getApps(),
+        {
+            onError: (e) => {
+                console.error(e);
+            },
+            refetchOnMount: false,
+            refetchOnWindowFocus: false,
+        }
+    );
+    return {
+        apps: data,
+        isSearching: isLoading,
+    };
+};
