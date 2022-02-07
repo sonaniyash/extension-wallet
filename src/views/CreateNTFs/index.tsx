@@ -9,8 +9,9 @@ import TabsHeader from '../../components/common/TabsHeader';
 
 import HeaderAccountSelect from "../../components/common/HeaderAccountSelect";
 import { Button, CreateNFTSection } from "./styles";
-import MyNFTList from "../../components/MyNFTList";
+import NFTList from "../../components/NFTList";
 import OffersList from "../../components/OffersList";
+import { getUserIdFromToken } from '../../utils/utils';
 
 const CreateNTFs = () => {
   const navigate = useNavigate();
@@ -43,7 +44,7 @@ const CreateNTFs = () => {
         <TabsContainer tabs={[tab1, tab2, tab3]} activeTabId={activeTab}>
           <>
             <div data-tab="0" ref={tab1} className="tab-text">
-              <MyNFTList />
+              <NFTList userId={getUserIdFromToken()} />
             </div>
             <div data-tab="1" ref={tab2} className="tab-text">
               <OffersList />

@@ -9,7 +9,8 @@ import { ROUTES } from "../../const/routeNames";
 
 import "./styles.scss";
 import HeaderAccountSelect from "../../components/common/HeaderAccountSelect";
-import MyNFTList from "../../components/MyNFTList";
+import NFTList from "../../components/NFTList";
+import { getUserIdFromToken } from '../../utils/utils';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -168,7 +169,7 @@ const Dashboard = () => {
         <TabsContainer tabs={[tab1, tab2]} activeTabId={activeTab}>
           <>
             <div data-tab="0" ref={tab1} className="tab-text">
-              <MyNFTList />
+              <NFTList userId ={getUserIdFromToken()}/>
             </div>
             <div data-tab="1" ref={tab2} className="tab-text">
               text tab 2
