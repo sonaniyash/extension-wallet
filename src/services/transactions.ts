@@ -6,7 +6,7 @@ const api = {
   getTransactions: async (userId: string): Promise<Array<any>> => {
     // return axios
     //   .get(`${apiNearUrl}/transactions/list/${userId}`)
-    //   .then((response) => response.data);
+    //   .then((response) => response.data.data);
     return new Promise((resolve) => setTimeout(() => resolve(TRANSACTIONS.data), 700));
   },
 };

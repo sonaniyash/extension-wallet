@@ -33,49 +33,56 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 27px;
 
       &__icon-direction {
         border-radius: 20px;
         width: 40px;
         height: 40px;
         background-color: #F5F5F5;
+        margin-right: 14px;
       }
 
       &__main-info {
         font-size: 14px;
         line-height: 19px;
-        flex: 2 0;
+        flex: 1 1 100%;
+        text-align: left;
 
         &__amount {
           text-transform: uppercase;
         }
 
-        &__action {
-
-        }
-
-        &__counterparty {
-
-        }
+        &__action {}
+        &__counterparty {}
       }
 
       &__date {
         font-size: 13px;
         line-height: 18px;
         color: #808080;
-        flex: 1 0;
+        flex: 1 1.5 100%;
+        text-align: right;
       }
 
       &--sender {
         .transaction__main-info__amount,
         .transaction__main-info__counterparty {
-          color: #3BD0AC;
+          color: #885FFF;
+          a {
+            text-decoration: none;
+            color: #885FFF;
+          }
         }
       }
       &--receiver {
         .transaction__main-info__amount,
         .transaction__main-info__counterparty {
-          color: #885FFF;
+          color: #3BD0AC;
+          a {
+            text-decoration: none;
+            color: #3BD0AC;
+          }
         }
       }
     }

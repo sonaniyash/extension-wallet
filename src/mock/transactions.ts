@@ -50,6 +50,25 @@ const TRANSACTIONS = {
           'email': 'fimak@bk.ru'
         }
       ]
+    },
+    {
+      'sender_id': '2JBRxuNovs0kBK1_FtlAG',
+      'blockchain_status': 'pending',
+      'transaction_value': 'NA',
+      'updated': 1643882244156,
+      'recipient_id': 'lYdjGxWmNwNWex8i9jhjj',
+      'created': 1643882244156,
+      'transaction_id': '2c4LqBXze87jmqDqcM_ZS',
+      'transaction_item_id': '0u4JPIvTxPT01VDXeCXm8',
+      'type': 'gift',
+      'sender': false,
+      'formattedtime': '2 minutes ago',
+      'counterparty': [
+        {
+          'full_name': 'Ilyas Khairzhanov',
+          'email': 'ilyas@mail.ru'
+        }
+      ]
     }
   ]
 };

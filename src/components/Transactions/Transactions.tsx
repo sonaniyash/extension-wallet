@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import clsx from 'classnames';
 
@@ -13,14 +13,28 @@ const TABS = [
   { name: 'received', active: false }
 ];
 const ICONS = {
-  sender: `/assets/direction-sent.svg`,
-  receiver: '/assets/direction-receive.svg',
+  sender: `/assets/svg/direction-sent.svg`,
+  receiver: '/assets/svg/direction-receive.svg',
 };
 
 const Transactions = () => {
   const userId = getUserIdFromToken();
-  const { data, isLoading } = useGetTransactionsByUserId(userId);
   const [tabs, setTabs] = useState(TABS);
+  const { data, isLoading } = useGetTransactionsByUserId(userId);
+  const [filteredData, setFilteredData] = useState(data);
+
+  useEffect(() => {
+    if (data) {
+      const activeTab = tabs.find((item) => item.active)?.name;
+      if (activeTab === 'sent') {
+        setFilteredData(data.filter((item) => item.sender));
+      } else if (activeTab === 'received') {
+        setFilteredData(data.filter((item) => !item.sender));
+      } else {
+        setFilteredData(data);
+      }
+    }
+  }, [data, tabs]);
 
   const handleTabClick = (id: number) => setTabs((prevState) => {
     return prevState.map((el, idx) => {
@@ -28,6 +42,16 @@ const Transactions = () => {
       return el;
     });
   });
+
+  const renderActionMsg = (item: any) => {
+    let msg = item.sender ? 'Send to' : 'Received from';
+    if (item.type === 'create_wallet') {
+      msg = 'Wallet has been created';
+    } else if (item.type === 'create_nft_series') {
+      msg = 'NFT series has been created';
+    }
+    return <span>{`${msg} `}</span>;
+  }
 
   return isLoading ? (
     <div>Loading...</div>
@@ -46,8 +70,8 @@ const Transactions = () => {
         ))}
       </div>
       <div className="transactions__list">
-        {data?.map((item) => (
-          <div className={clsx('transaction', {
+        {filteredData?.map((item) => (
+          <div key={item.id} className={clsx('transaction', {
           'transaction--sender': item.sender,
           'transaction--receiver': !item.sender,
         })}>
@@ -55,9 +79,15 @@ const Transactions = () => {
               <img src={item.sender ? ICONS.sender : ICONS.receiver} alt="direction" />
             </div>
             <div className="transaction__main-info">
-              <div className="transaction__main-info__amount">0.456 NEAR</div>
+              <div className="transaction__main-info__amount">
+                <a
+                  href={`/nft/${item.transaction_item_id}`}
+                >
+                  {`#${item.transaction_item_id}`}
+                </a>
+              </div>
               <div className="transaction__main-info__action">
-                <span>Sent to</span>
+                {renderActionMsg(item)}
                 <span className="transaction__main-info__counterparty">
                   {item.counterparty?.[0]?.email
                     ? item.counterparty?.[0]?.email
