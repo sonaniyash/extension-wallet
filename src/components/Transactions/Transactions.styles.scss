@@ -1,0 +1,83 @@
+.transactions {
+  padding: 0 15px 0 8px;
+
+  &__filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 30px;
+
+    &__btn {
+      border-radius: 10px;
+      background-color: #FFFFFF;
+      padding: 6px 12px;
+      outline: none;
+      border: none;
+      font-family: Manrope, sans-serif;
+      font-size: 14px;
+      line-height: 18px;
+      letter-spacing: -0.154px;
+      color: #6F6E73;
+      text-transform: capitalize;
+
+      &--active {
+        color: #414047;
+        border: 1px solid #BEBEC2;
+        box-sizing: border-box;
+      }
+    }
+  }
+
+  &__list {
+    .transaction {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &__icon-direction {
+        border-radius: 20px;
+        width: 40px;
+        height: 40px;
+        background-color: #F5F5F5;
+      }
+
+      &__main-info {
+        font-size: 14px;
+        line-height: 19px;
+        flex: 2 0;
+
+        &__amount {
+          text-transform: uppercase;
+        }
+
+        &__action {
+
+        }
+
+        &__counterparty {
+
+        }
+      }
+
+      &__date {
+        font-size: 13px;
+        line-height: 18px;
+        color: #808080;
+        flex: 1 0;
+      }
+
+      &--sender {
+        .transaction__main-info__amount,
+        .transaction__main-info__counterparty {
+          color: #3BD0AC;
+        }
+      }
+      &--receiver {
+        .transaction__main-info__amount,
+        .transaction__main-info__counterparty {
+          color: #885FFF;
+        }
+      }
+    }
+  }
+}

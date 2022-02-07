@@ -1,15 +1,16 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import TabsContainer from "../../components/common/TabsContainer";
-import TabsHeader from "../../components/common/TabsHeader";
-import { ContextMain } from "../../context/store";
-import { ReducerTypes } from "../../context/reducer";
-import { ROUTES } from "../../const/routeNames";
+import TabsContainer from '../../components/common/TabsContainer';
+import TabsHeader from '../../components/common/TabsHeader';
+import { ContextMain } from '../../context/store';
+import { ReducerTypes } from '../../context/reducer';
+import { ROUTES } from '../../const/routeNames';
 
-import "./styles.scss";
-import HeaderAccountSelect from "../../components/common/HeaderAccountSelect";
-import NFTList from "../../components/NFTList";
+import './styles.scss';
+import HeaderAccountSelect from '../../components/common/HeaderAccountSelect';
+import Transactions from '../../components/Transactions';
+import NFTList from '../../components/NFTList';
 import { getUserIdFromToken } from '../../utils/utils';
 
 const Dashboard = () => {
@@ -25,7 +26,7 @@ const Dashboard = () => {
 
   const goToExperiencesDashboard = () => {
     navigate(ROUTES.EXPERIENCES_DASHBOARD.url);
-  }
+  };
 
   const [activeTab, setActive] = useState(0);
   const tab1 = useRef<any>();
@@ -34,7 +35,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     dispatch({
-      type: "SET_UI",
+      type: 'SET_UI',
       payload: ROUTES.DASHBOARD.url,
       reducer: ReducerTypes.Main,
     });
@@ -147,7 +148,7 @@ const Dashboard = () => {
               alt="chevron go to page"
             />
           </a>
-          <a className="web3-btn dash-btn" onClick={goToExperiencesDashboard} >
+          <a className="web3-btn dash-btn" onClick={goToExperiencesDashboard}>
             <span>web3 Apps</span>
             <img
               className="chevron"
@@ -162,17 +163,17 @@ const Dashboard = () => {
           </a>
         </div>
         <TabsHeader
-          tabsHeader={["Collectibles", "Transactions"]}
+          tabsHeader={['Collectibles', 'Transactions']}
           setActive={setActive}
           activeTab={activeTab}
         />
         <TabsContainer tabs={[tab1, tab2]} activeTabId={activeTab}>
           <>
             <div data-tab="0" ref={tab1} className="tab-text">
-              <NFTList userId ={getUserIdFromToken()}/>
+              <NFTList userId={getUserIdFromToken()} />
             </div>
             <div data-tab="1" ref={tab2} className="tab-text">
-              text tab 2
+              <Transactions />
             </div>
           </>
         </TabsContainer>
