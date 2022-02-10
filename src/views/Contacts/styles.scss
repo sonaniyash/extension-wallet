@@ -2,6 +2,8 @@
 
 .contacts {
   @include page-padding();
+  height: 488px;
+  overflow-y: auto;
 }
 
 .modal-create-account {
