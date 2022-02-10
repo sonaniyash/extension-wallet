@@ -33,12 +33,15 @@ const CreateAccount = () => {
     validateOnBlur: true,
     validateOnChange: true,
     onSubmit: async (values) => {
+
+
+
       const payload = {
         ...values,
         walletName: values.walletName + ".near",
         mode: state.createAccountData.mode,
-        email: state.createAccountData.email,
-        phone: state.createAccountData.phone,
+        ...(state.createAccountData.email && {email: state.createAccountData.email}),
+        ...(state.createAccountData.phone && {phone: state.createAccountData.phone})
       };
 
       const session = await createAccount(payload);
