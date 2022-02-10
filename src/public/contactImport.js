@@ -1,51 +1,68 @@
-const EXTENSION_ENDPOINT =
-  "https://xkfvqk07j4.execute-api.us-east-1.amazonaws.com";
-
+/* eslint-disable no-prototype-builtins */
 window.cloudsponge.init({
   skipContactsDisplay: true,
   skipSourceMenu: true,
   beforeDisplayContacts: function (contacts, source, owner) {
-    console.log(contacts);
-
-    //save contacts on backend
-    let source_title =
-      source === "office365"
-        ? "Microsoft"
-        : source === "icloud"
-        ? "Apple"
-        : "Google";
-
     let appState = JSON.parse(localStorage.getItem("state"));
 
-    let newcontacts = contacts.map((c) => ({
-      ...c,
-      owner_id: appState.account.user_id,
-      app_id: "extension",
-      source: source_title,
-    }));
-
-    console.log(JSON.stringify(newcontacts));
-
-    //Ajax Request to import contact
-    fetch(`${EXTENSION_ENDPOINT}/contacts/import`, {
-      method: "post",
-      headers: new Headers({
-        "Content-type": "application/json",
-        Authorization: `Bearer ${appState.token}`,
-      }),
-      body: JSON.stringify(newcontacts),
-    })
-      .then((response) => {
-        console.log(response.data.message);
-      })
-      .catch((error) => {
-        if (error.response.data) {
-          console.log(error.response.data.message);
+    //reformat contact data
+    let newcontacts = contacts.map((c) => {
+      c.email.forEach((e) => {
+        if (!e.type) {
+          e.type = "home";
         }
-      })
-      .finally(() => {
-        window.parent.document.body.removeChild(window.frameElement);
+        delete e.primary;
       });
+
+      let dob = "null";
+
+      if (c.hasOwnProperty("dob")) {
+        dob = c.dob;
+      }
+
+      return {
+        first_name:
+          c.first_name ||
+          c.email[0].address
+            .match(/^([^@]*)@/)[1] //get name from email
+            .replace(/[^a-zA-Z ]/g, " "), //get only letters
+        last_name: c.last_name || "  ",
+        email: c.email,
+        dob: dob,
+        owner_id: appState.account.user_id,
+      };
+    });
+
+    let message = JSON.stringify({
+      message: "contact-import",
+      success: true,
+      source,
+      contacts: newcontacts,
+    });
+    window.top.postMessage(message, "*");
+    window.parent.document.body.removeChild(window.frameElement);
+  },
+  afterImport: function (source, success) {
+    if (!success) {
+      let message = JSON.stringify({
+        message: "contact-import",
+        success: false,
+        source,
+        contacts: [],
+      });
+      window.top.postMessage(message, "*");
+      window.parent.document.body.removeChild(window.frameElement);
+    }
+  },
+  beforeClosing: function () {
+    let message = JSON.stringify({
+      message: "contact-import",
+      success: false,
+      source: null,
+      contacts: [],
+    });
+    window.top.postMessage(message, "*");
+    window.parent.document.body.removeChild(window.frameElement);
   },
 });
 

@@ -59,6 +59,24 @@ export const useContact = (userId: any) => {
   };
 };
 
+export const useContactBulk = () => {
+  const { mutateAsync, isLoading } = useMutation(
+    (contactData: any) => api.createContactBulk(contactData),
+    {
+      onSuccess: () => {
+        console.log('Contacts created successfully');
+      },
+      onError: (e) => {
+        console.error(e);
+      },
+    }
+  );
+  return {
+    createContacts: mutateAsync,
+    isCreating: isLoading,
+  };
+};
+
 export const useEditContact = (id: any, userId: any) => {
   const { mutateAsync, isLoading } = useMutation(
     (contactData: any) => api.editContact(contactData, userId, id),

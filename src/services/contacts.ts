@@ -93,6 +93,11 @@ const api = {
     // return setTimeout(() => reject(), 1500);
     // });
   },
+    createContactBulk: async (contactData: any) => {
+    return axios
+      .post(`${apiNearUrl}/contacts/import`, contactData)
+      .then((response) => response);
+  }
 };
 
 export default api;
